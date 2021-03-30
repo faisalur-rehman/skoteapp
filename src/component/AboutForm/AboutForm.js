@@ -1,36 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 
 const AboutForm = () => {
-  const [name, setName] = useState("");
-  const [role, setRole] = useState("");
-
-  const handleName = ({ target }) => {
-    setName(target.value);
-  };
-
-  const handleRole = ({ target }) => {
-    setRole(target.value);
-  };
-
   return (
     <form>
       <label htmlFor="name">Name* : </label>
-      <input
-        type="text"
-        id="name"
-        value={name}
-        onChange={handleName}
-        required
-      />
+      <input type="text" id="name" />
       <br />
       <label htmlFor="role">Role* : </label>
-      <input
-        type="text"
-        id="role"
-        value={role}
-        onChange={handleRole}
-        required
-      />
+      <input type="text" id="role" required />
     </form>
   );
 };
