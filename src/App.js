@@ -3,6 +3,7 @@ import AccountVerfication from "./component/AccountVerification/AccountVerificat
 import AboutForm from "./component/AboutForm/AboutForm";
 import CompanyDetails from "./component/CompanyDetails/CompanyDetails";
 import BusinessInfo from "./component/BusinessInfo/BusinessInfo";
+import Competitors from "./component/BusinessInfo/Competitors";
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       {/* <AccountVerfication /> */}
       {/* <AboutForm /> */}
       {/* <CompanyDetails /> */}
-      <BusinessInfo />
+      {/* <BusinessInfo /> */}
+      <Competitors />
     </div>
   );
 }
