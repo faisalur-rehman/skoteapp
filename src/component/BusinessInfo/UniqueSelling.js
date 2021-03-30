@@ -3,6 +3,7 @@ import React from "react";
 const UniqueSelling = () => {
   return (
     <form>
+      <h1>Unique Selling Point</h1>
       <label htmlFor="sellingPoint">Your unique selling point: </label>
       <input type="text" id="sellingPoint" name="sellingPoint" />
       <br />

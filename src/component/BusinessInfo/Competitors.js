@@ -3,6 +3,7 @@ import React from "react";
 const Competitors = () => {
   return (
     <form>
+      <h1>Competitors</h1>
       <label htmlFor="competitor">Your Competitors: </label>
       <input type="text" name="competitor" id="competitor" />
       <br />
