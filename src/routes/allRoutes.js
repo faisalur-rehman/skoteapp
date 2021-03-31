@@ -304,34 +304,4 @@ const userRoutes = [
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
 ]
 
-const authRoutes = [
-  { path: "/logout", component: Logout },
-  { path: "/login", component: Login },
-  { path: "/forgot-password", component: ForgetPwd },
-  { path: "/register", component: Register },
-
-  { path: "/pages-maintenance", component: PagesMaintenance },
-  { path: "/pages-comingsoon", component: PagesComingsoon },
-  { path: "/pages-404", component: Pages404 },
-  { path: "/pages-500", component: Pages500 },
-  { path: "/crypto-ico-landing", component: CryptoIcoLanding },
-
-  // Authentication Inner
-  { path: "/pages-login", component: Login1 },
-  { path: "/pages-login-2", component: Login2 },
-  { path: "/pages-register", component: Register1 },
-  { path: "/pages-register-2", component: Register2 },
-  { path: "/page-recoverpw", component: Recoverpw },
-  { path: "/page-recoverpw-2", component: Recoverpw2 },
-  { path: "/pages-forgot-pwd", component: ForgetPwd1 },
-  { path: "/auth-lock-screen", component: LockScreen },
-  { path: "/auth-lock-screen-2", component: LockScreen2 },
-  { path: "/page-confirm-mail", component: ConfirmMail },
-  { path: "/page-confirm-mail-2", component: ConfirmMail2 },
-  { path: "/auth-email-verification", component: EmailVerification },
-  { path: "/auth-email-verification-2", component: EmailVerification2 },
-  { path: "/auth-two-step-verification", component: TwostepVerification },
-  { path: "/auth-two-step-verification-2", component: TwostepVerification2 },
-]
-
-export { userRoutes, authRoutes }
+export { userRoutes }

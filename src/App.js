@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types'
-import React, {useEffect} from "react"
+import PropTypes from "prop-types"
+import React, { useEffect } from "react"
 
 import { Switch, BrowserRouter as Router } from "react-router-dom"
 import { connect } from "react-redux"
 
 // Import Routes all
-import { userRoutes, authRoutes } from "./routes/allRoutes"
+import { userRoutes } from "./routes/allRoutes"
 
 // Import all middleware
 import Authmiddleware from "./routes/middleware/Authmiddleware"
@@ -41,7 +41,6 @@ fakeBackend()
 // initFirebaseBackend(firebaseConfig)
 
 const App = props => {
-
   function getLayout() {
     let layoutCls = VerticalLayout
     switch (props.layout.layoutType) {
@@ -60,16 +59,6 @@ const App = props => {
     <React.Fragment>
       <Router>
         <Switch>
-          {authRoutes.map((route, idx) => (
-            <Authmiddleware
-              path={route.path}
-              layout={NonAuthLayout}
-              component={route.component}
-              key={idx}
-              isAuthProtected={false}
-            />
-          ))}
-
           {userRoutes.map((route, idx) => (
             <Authmiddleware
               path={route.path}
@@ -87,7 +76,7 @@ const App = props => {
 }
 
 App.propTypes = {
-  layout: PropTypes.any
+  layout: PropTypes.any,
 }
 
 const mapStateToProps = state => {
