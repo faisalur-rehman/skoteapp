@@ -1,24 +1,30 @@
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Field } from "formik";
+import FormikComponent from "../Formik";
+
+const initialValues = { clients: "" };
 
 const Clients = () => {
+  function validate(values) {
+    const errors = {};
+    return errors;
+  }
+  function handleSubmit(data) {
+    console.log(data);
+  }
   return (
-    <Formik
-      initialValues={{ clients: "" }}
-      validate={(values) => {
-        const errors = {};
-        return errors;
-      }}
-      onSubmit={(data) => console.log(data)}
+    <FormikComponent
+      initialValues={initialValues}
+      validate={validate}
+      handleSubmit={handleSubmit}
     >
-      {() => (
-        <Form>
-          <h1>Clients</h1>
-          <label htmlFor="clients">Your Clients</label>
-          <Field type="text" name="clients" id="clients" />
-        </Form>
-      )}
-    </Formik>
+      <h1>Clients</h1>
+      <label htmlFor="clients">Your Clients</label>
+      <Field type="text" name="clients" id="clients" />
+      <div>
+        <button type="submit">Submit</button>
+      </div>
+    </FormikComponent>
   );
 };
 
