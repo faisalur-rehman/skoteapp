@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
-import MetaTags from 'react-meta-tags';
+import MetaTags from "react-meta-tags"
 import {
   Container,
   Row,
@@ -57,18 +57,19 @@ const Dashboard = props => {
     { title: "Year", linkto: "#", isActive: true },
   ]
 
-
   useEffect(() => {
     setTimeout(() => {
       setSubscribemodal(true)
-    }, 2000);
+    }, 2000)
   }, [])
 
   return (
     <React.Fragment>
       <div className="page-content">
         <MetaTags>
-          <title>Dashboard | Skote - Responsive Bootstrap 5 Admin Dashboard</title>
+          <title>
+            Dashboard | Skote - Responsive Bootstrap 5 Admin Dashboard
+          </title>
         </MetaTags>
         <Container fluid>
           {/* Render Breadcrumb */}
@@ -78,11 +79,7 @@ const Dashboard = props => {
           />
 
           <Row>
-            <Col xl="4">
-              <WelcomeComp />
-              <MonthlyEarning />
-            </Col>
-            <Col xl="8">
+            <Col xl="12">
               <Row>
                 {/* Reports Render */}
                 {reports.map((report, key) => (
@@ -111,217 +108,16 @@ const Dashboard = props => {
                   </Col>
                 ))}
               </Row>
-
-              <Card>
-                <CardBody>
-                  <div className="d-sm-flex flex-wrap">
-                    <h4 className="card-title mb-4">Email Sent</h4>
-                    <div className="ms-auto">
-                      <ul className="nav nav-pills">
-                        {email.map((mail, key) => (
-                          <li className="nav-item" key={"_li_" + key}>
-                            <Link
-                              className={
-                                mail.isActive ? "nav-link active" : "nav-link"
-                              }
-                              to={mail.linkto}
-                            >
-                              {mail.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  {/* <div className="clearfix"></div> */}
-                  <StackedColumnChart />
-
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col xl="4">
-              <SocialSource />
-            </Col>
-            <Col xl="4">
-              <ActivityComp />
-            </Col>
-
-            <Col xl="4">
-              <TopCities />
-            </Col>
-          </Row>
-
-          <Row>
-            <Col lg="12">
-              <LatestTranaction />
             </Col>
           </Row>
         </Container>
       </div>
-
-      {/* subscribe ModalHeader */}
-      <Modal
-        isOpen={subscribemodal}
-        role="dialog"
-        autoFocus={true}
-        centered={true}
-        tabIndex="-1"
-        data-toggle="modal"
-        toggle={() => {
-          setSubscribemodal(!subscribemodal)
-        }}
-      >
-        <div className="modal-content">
-          <div className="modal-header border-bottom-0">
-            <ModalHeader
-              toggle={() => {
-                setSubscribemodal(!subscribemodal)
-              }}
-            >
-            </ModalHeader>
-          </div>
-          <div className="modal-body">
-            <div className="text-center mb-4">
-              <div className="avatar-md mx-auto mb-4">
-                <div className="avatar-title bg-light rounded-circle text-primary h1">
-                  <i className="mdi mdi-email-open"></i>
-                </div>
-              </div>
-
-              <div className="row justify-content-center">
-                <div className="col-xl-10">
-                  <h4 className="text-primary">Subscribe !</h4>
-                  <p className="text-muted font-size-14 mb-4">Subscribe our newletter and get notification to stay update.</p>
-
-                  <div className="input-group bg-light rounded">
-                    <Input type="email" className="form-control bg-transparent border-0" placeholder="Enter Email address" />
-
-                    <Button color="primary" type="button" id="button-addon2">
-                      <i className="bx bxs-paper-plane"></i>
-                    </Button>
-
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Modal>
-
-      <Modal
-        isOpen={modal}
-        role="dialog"
-        autoFocus={true}
-        centered={true}
-        className="exampleModal"
-        tabIndex="-1"
-        toggle={() => {
-          setmodal(!modal)
-        }}
-      >
-        <div className="modal-content">
-          <ModalHeader
-            toggle={() => {
-              setmodal(!modal)
-            }}
-          >
-            Order Details
-          </ModalHeader>
-          <ModalBody>
-            <p className="mb-2">
-              Product id: <span className="text-primary">#SK2540</span>
-            </p>
-            <p className="mb-4">
-              Billing Name: <span className="text-primary">Neal Matthews</span>
-            </p>
-
-            <div className="table-responsive">
-              <Table className="table table-centered table-nowrap">
-                <thead>
-                  <tr>
-                    <th scope="col">Product</th>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">
-                      <div>
-                        <img src={modalimage1} alt="" className="avatar-sm" />
-                      </div>
-                    </th>
-                    <td>
-                      <div>
-                        <h5 className="text-truncate font-size-14">
-                          Wireless Headphone (Black)
-                        </h5>
-                        <p className="text-muted mb-0">$ 225 x 1</p>
-                      </div>
-                    </td>
-                    <td>$ 255</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      <div>
-                        <img src={modalimage2} alt="" className="avatar-sm" />
-                      </div>
-                    </th>
-                    <td>
-                      <div>
-                        <h5 className="text-truncate font-size-14">
-                          Hoodie (Blue)
-                        </h5>
-                        <p className="text-muted mb-0">$ 145 x 1</p>
-                      </div>
-                    </td>
-                    <td>$ 145</td>
-                  </tr>
-                  <tr>
-                    <td colSpan="2">
-                      <h6 className="m-0 text-right">Sub Total:</h6>
-                    </td>
-                    <td>$ 400</td>
-                  </tr>
-                  <tr>
-                    <td colSpan="2">
-                      <h6 className="m-0 text-right">Shipping:</h6>
-                    </td>
-                    <td>Free</td>
-                  </tr>
-                  <tr>
-                    <td colSpan="2">
-                      <h6 className="m-0 text-right">Total:</h6>
-                    </td>
-                    <td>$ 400</td>
-                  </tr>
-                </tbody>
-              </Table>
-            </div>
-          </ModalBody>
-          <ModalFooter>
-            <Button
-              type="button"
-              color="secondary"
-              onClick={() => {
-                setmodal(!modal)
-              }}
-            >
-              Close
-            </Button>
-          </ModalFooter>
-        </div>
-      </Modal>
     </React.Fragment>
   )
 }
 
 Dashboard.propTypes = {
-  t: PropTypes.any
+  t: PropTypes.any,
 }
 
 export default withTranslation()(Dashboard)
