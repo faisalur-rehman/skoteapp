@@ -1,5 +1,5 @@
 import React from "react"
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types"
 import { FormGroup } from "reactstrap"
 
 import { connect } from "react-redux"
@@ -31,16 +31,16 @@ const RightSidebar = props => {
         <SimpleBar style={{ height: "900px" }}>
           <div data-simplebar className="h-100">
             <div className="rightbar-title px-3 py-4">
-                <Link
-                  to="#"
-                  onClick={e => {
-                    e.preventDefault()
-                    props.showRightSidebarAction(false)
-                  }}
-                  className="right-bar-toggle float-end"
-                >
-                  <i className="mdi mdi-close noti-icon"/>
-                </Link>
+              <Link
+                to="#"
+                onClick={e => {
+                  e.preventDefault()
+                  props.showRightSidebarAction(false)
+                }}
+                className="right-bar-toggle float-end"
+              >
+                <i className="mdi mdi-close noti-icon" />
+              </Link>
               <h5 className="m-0">Settings</h5>
             </div>
 
@@ -285,76 +285,11 @@ const RightSidebar = props => {
                   <hr className="mt-1" />
                 </React.Fragment>
               ) : null}
-
-              <FormGroup>
-                <span className="mb-2 d-block" id="radio-title">
-                  Preloader
-                </span>
-
-                <div className="form-check form-switch">
-                  <input
-                    type="checkbox"
-                    className="form-check-input checkbox"
-                    id="checkbox_1"
-                    checked={props.isPreloader}
-                    onChange={() => {
-                      props.changePreloader(!props.isPreloader)
-                    }}
-                  />
-
-                  <label className="form-check-label" htmlFor="checkbox_1">
-                    Preloader
-                  </label>
-                </div>
-              </FormGroup>
-
-              <h6 className="text-center">Choose Layouts</h6>
-
-              <div className="mb-2">
-                <Link
-                  to="//skote-v-light.react.themesbrand.com"
-                  target="_blank"
-                >
-                  <img
-                    src={layout1}
-                    className="img-fluid img-thumbnail"
-                    alt=""
-                  />
-                </Link>
-              </div>
-
-              <div className="mb-2">
-                <Link to="//skote-v-dark.react.themesbrand.com" target="_blank">
-                  <img
-                    src={layout2}
-                    className="img-fluid img-thumbnail"
-                    alt=""
-                  />
-                </Link>
-              </div>
-
-              <div className="mb-2">
-                <Link to="//skote-v-rtl.react.themesbrand.com" target="_blank">
-                  <img
-                    src={layout3}
-                    className="img-fluid img-thumbnail"
-                    alt=""
-                  />
-                </Link>
-              </div>
-
-              <Link
-                to="#"
-                className="btn btn-primary btn-block mt-3"
-                target="_blank"
-              >
-                <i className="mdi mdi-cart ms-1"/> Purchase Now
-              </Link>
             </div>
           </div>
         </SimpleBar>
       </div>
-      <div className="rightbar-overlay"/>
+      <div className="rightbar-overlay" />
     </React.Fragment>
   )
 }
@@ -372,7 +307,7 @@ RightSidebar.propTypes = {
   leftSideBarTheme: PropTypes.any,
   leftSideBarType: PropTypes.any,
   showRightSidebarAction: PropTypes.func,
-  topbarTheme: PropTypes.any
+  topbarTheme: PropTypes.any,
 }
 
 const mapStateToProps = state => {
