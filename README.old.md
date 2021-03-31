@@ -1,1 +1,0 @@
-# skote-frontend-app
