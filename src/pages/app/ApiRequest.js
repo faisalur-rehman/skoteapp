@@ -9,3 +9,23 @@ export async function postData(endpoint, data) {
     ...data,
   })
 }
+export async function formPostData(endpoint, data, token) {
+  return api.post(
+    `${endpoint}`,
+    {
+      ...data,
+    },
+    {
+      headers: {
+        "x-auth-token": token,
+      },
+    }
+  )
+}
+export async function formGetData(endpoint, token) {
+  return api.get(`${endpoint}`, {
+    headers: {
+      "x-auth-token": token,
+    },
+  })
+}

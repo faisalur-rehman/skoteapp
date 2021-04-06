@@ -1,39 +1,73 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Field, ErrorMessage } from "formik"
 import FormikComponent from "./Formik"
 import { Row, Col, Button } from "reactstrap"
+import { formPostData, formGetData } from "./ApiRequest"
+import axios from "axios"
 
 const initialValues = {
   logo: "",
-  busName: "",
-  busEmail: "",
-  busPhone: "",
-  website: "",
+  bus_name: "",
+  bus_email: "",
+  bus_phone: "",
+  bus_address: "",
+  website_link: "",
 }
 
-const UniqueSelling = () => {
+const CompanyDetail = () => {
+  const [errors, setErrors] = useState(null)
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/company",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDY4NzYxOWMxMzYyMDM1ZjA3MDBhZGEiLCJuYW1lIjoiRmFpc2FsIFJlaG1hbiIsImVtYWlsIjoiZmFpc2FsQGdtYWlsLmNvbSIsImlhdCI6MTYxNzYxODgyOX0.UNpseiy7Nd8TWe2o201PnlDEY0ldaGG70GCymR6_Zwo"
+        )
+        console.log(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchData()
+  }, [])
   function validate(values) {
     const errors = {}
 
-    if (!values.busName) {
-      errors.busName = "Required"
+    if (!values.bus_name) {
+      errors.bus_name = "Required"
+    }
+    if (!values.bus_address) {
+      errors.bus_address = "Required"
     }
 
-    if (!values.busPhone) {
-      errors.busPhone = "Required"
+    if (!values.bus_phone) {
+      errors.bus_phone = "Required"
     }
-    if (!values.busEmail) {
-      errors.busEmail = "Required"
+    if (!values.bus_email) {
+      errors.bus_email = "Required"
     } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.busEmail)
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.bus_email)
     ) {
-      errors.busEmail = "Invalid email address"
+      errors.bus_email = "Invalid email address"
     }
     return errors
   }
 
-  function handleSubmit(data) {
+  async function handleSubmit(data) {
     console.log(data)
+    try {
+      console.log(data)
+      const resData = await formPostData(
+        "/company",
+        data,
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDY4NzYxOWMxMzYyMDM1ZjA3MDBhZGEiLCJuYW1lIjoiRmFpc2FsIFJlaG1hbiIsImVtYWlsIjoiZmFpc2FsQGdtYWlsLmNvbSIsImlhdCI6MTYxNzYxODgyOX0.UNpseiy7Nd8TWe2o201PnlDEY0ldaGG70GCymR6_Zwo"
+      )
+      setErrors(null)
+      console.log(resData)
+    } catch (error) {
+      setErrors(error.response.data.errors[0])
+      console.log(error.response)
+    }
   }
   return (
     <div className="page-content">
@@ -46,19 +80,20 @@ const UniqueSelling = () => {
               validate={validate}
               handleSubmit={handleSubmit}
             >
+              {errors && <p style={{ color: "red" }}>{errors}</p>}
               <label htmlFor="logo">Logo : </label>
-              <Field type="file" name="logo" className="form-control" />
+              <Field type="text" name="logo" className="form-control" />
 
               <br />
               <label htmlFor="busName">Business Name* : </label>
               <Field
                 type="text"
-                name="busName"
+                name="bus_name"
                 id="busName"
                 className="form-control"
               />
               <ErrorMessage
-                name="busName"
+                name="bus_name"
                 component="div"
                 style={{ color: "red" }}
               />
@@ -67,12 +102,12 @@ const UniqueSelling = () => {
               <label htmlFor="busEmail">Business Email* : </label>
               <Field
                 type="text"
-                name="busEmail"
+                name="bus_email"
                 id="busEmail"
                 className="form-control"
               />
               <ErrorMessage
-                name="busEmail"
+                name="bus_email"
                 component="div"
                 style={{ color: "red" }}
               />
@@ -81,12 +116,25 @@ const UniqueSelling = () => {
               <label htmlFor="busPhone">Business Phone* : </label>
               <Field
                 type="number"
-                name="busPhone"
+                name="bus_phone"
                 id="busPhone"
                 className="form-control"
               />
               <ErrorMessage
-                name="busPhone"
+                name="bus_phone"
+                component="div"
+                style={{ color: "red" }}
+              />
+
+              <br />
+              <label htmlFor="busAddress">Business Address* : </label>
+              <Field
+                name="bus_address"
+                id="busAddress"
+                className="form-control"
+              />
+              <ErrorMessage
+                name="bus_address"
                 component="div"
                 style={{ color: "red" }}
               />
@@ -95,17 +143,22 @@ const UniqueSelling = () => {
               <label htmlFor="website">Website : </label>
               <Field
                 type="text"
-                name="website"
+                name="website_link"
                 id="website"
                 className="form-control"
               />
               <ErrorMessage
-                name="website"
+                name="website_link"
                 component="div"
                 style={{ color: "red" }}
               />
               <div>
-                <Button type="submit" className="w-md mt-3" color="primary">
+                <Button
+                  type="submit"
+                  // onClick={handleSubmit}
+                  className="w-md mt-3"
+                  color="primary"
+                >
                   Submit
                 </Button>
               </div>
@@ -117,4 +170,4 @@ const UniqueSelling = () => {
   )
 }
 
-export default UniqueSelling
+export default CompanyDetail

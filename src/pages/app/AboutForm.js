@@ -1,9 +1,31 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Row, Col, Button } from "reactstrap"
 import FormikComponent from "./Formik"
 import { Field, ErrorMessage } from "formik"
+import { formPostData, formGetData } from "./ApiRequest"
 
 const AboutForm = () => {
+  const [error, setError] = useState(null)
+  // const [name, setName] = useState("")
+  // const [role, setRole] = useState("")
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/about",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDY4NzYxOWMxMzYyMDM1ZjA3MDBhZGEiLCJuYW1lIjoiRmFpc2FsIFJlaG1hbiIsImVtYWlsIjoiZmFpc2FsQGdtYWlsLmNvbSIsImlhdCI6MTYxNzYxODgyOX0.UNpseiy7Nd8TWe2o201PnlDEY0ldaGG70GCymR6_Zwo"
+        )
+        console.log(data.about.name, data.about.role)
+        // setName(data.about.name)
+        // setRole(data.about.role)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchData()
+  }, [])
+
   let initilaValues = {
     name: "",
     role: "",
@@ -18,8 +40,19 @@ const AboutForm = () => {
     }
     return errors
   }
-  function handleSubmit(data) {
-    console.log(data)
+  async function handleSubmit(data) {
+    try {
+      const resData = await formPostData(
+        "/about",
+        data,
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDY4NzYxOWMxMzYyMDM1ZjA3MDBhZGEiLCJuYW1lIjoiRmFpc2FsIFJlaG1hbiIsImVtYWlsIjoiZmFpc2FsQGdtYWlsLmNvbSIsImlhdCI6MTYxNzYxODgyOX0.UNpseiy7Nd8TWe2o201PnlDEY0ldaGG70GCymR6_Zwo"
+      )
+      setError(null)
+      console.log(resData)
+    } catch (error) {
+      setError(err.response.data.name)
+      console.log(error.response.data.name)
+    }
   }
   return (
     <div className="page-content">
