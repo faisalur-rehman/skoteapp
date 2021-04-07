@@ -13,6 +13,7 @@ import { Link } from "react-router-dom"
 import { withTranslation } from "react-i18next"
 
 const SidebarContent = props => {
+  console.log(props)
   const ref = useRef()
   // Use ComponentDidMount and ComponentDidUpdate method symultaniously
   useEffect(() => {
@@ -133,6 +134,57 @@ const SidebarContent = props => {
                 <li>
                   <Link to="/ecommerce-add-product">
                     {props.t("Add Product")}
+                  </Link>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <Link to="/#" className="has-arrow waves-effect">
+                <i className="bx bx-store"></i>
+                <span>{props.t("Forms")}</span>
+              </Link>
+              <ul className="sub-menu" aria-expanded="false">
+                <li>
+                  <Link to="/account">{props.t("Account Verification")}</Link>
+                </li>
+                <li>
+                  <Link to="/aboutForm">{props.t("About Form")}</Link>
+                </li>
+                <li>
+                  <Link to="/businessInfo">{props.t("Business Info")}</Link>
+                </li>
+                <li>
+                  <Link to="/clients">{props.t("Clients")}</Link>
+                </li>
+                <li>
+                  <Link to="/competitors">{props.t("Competitors")}</Link>
+                </li>
+                <li>
+                  <Link to="/targetMarket">{props.t("TargetMarket")}</Link>
+                </li>
+                <li>
+                  <Link to="/uniqueSelling">{props.t("UniqueSelling")}</Link>
+                </li>
+                <li>
+                  <Link to="/companyDetail">{props.t("Company Detail")}</Link>
+                </li>
+                <li>
+                  <Link to="/websiteColor">{props.t("Website Color")}</Link>
+                </li>
+                <li>
+                  <Link to="/websiteContent">{props.t("Website Content")}</Link>
+                </li>
+                <li>
+                  <Link to="/websiteStyle">{props.t("Website Style")}</Link>
+                </li>
+                <li>
+                  <Link to="/websitesYouDisLike">
+                    {props.t("Websites You DisLike")}
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/websitesYouLike">
+                    {props.t("Websites You Like")}
                   </Link>
                 </li>
               </ul>

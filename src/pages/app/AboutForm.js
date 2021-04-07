@@ -2,34 +2,38 @@ import React, { useState, useEffect } from "react"
 import { Row, Col, Button } from "reactstrap"
 import FormikComponent from "./Formik"
 import { Field, ErrorMessage } from "formik"
-import { formPostData, formGetData } from "./ApiRequest"
+import { formPostData, formGetData, patchData } from "./ApiRequest"
+
+let initialValues = {
+  name: "",
+  role: "",
+}
 
 const AboutForm = () => {
   const [error, setError] = useState(null)
-  // const [name, setName] = useState("")
-  // const [role, setRole] = useState("")
+  const [values, setValues] = useState()
+  const [id, setId] = useState()
 
   useEffect(() => {
     async function fetchData() {
       try {
         const { data } = await formGetData(
           "/about",
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDY4NzYxOWMxMzYyMDM1ZjA3MDBhZGEiLCJuYW1lIjoiRmFpc2FsIFJlaG1hbiIsImVtYWlsIjoiZmFpc2FsQGdtYWlsLmNvbSIsImlhdCI6MTYxNzYxODgyOX0.UNpseiy7Nd8TWe2o201PnlDEY0ldaGG70GCymR6_Zwo"
+          localStorage.getItem("token")
         )
-        console.log(data.about.name, data.about.role)
-        // setName(data.about.name)
-        // setRole(data.about.role)
+        setId(data.about["_id"])
+        initialValues.name = data.about.name
+        initialValues.role = data.about.role
+        setValues(initialValues)
+        setError(null)
       } catch (error) {
         console.log(error)
+        setError(error.response)
       }
     }
     fetchData()
   }, [])
 
-  let initilaValues = {
-    name: "",
-    role: "",
-  }
   function validate(values) {
     const errors = {}
     if (!values.name) {
@@ -41,17 +45,27 @@ const AboutForm = () => {
     return errors
   }
   async function handleSubmit(data) {
+    let resData
     try {
-      const resData = await formPostData(
-        "/about",
-        data,
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDY4NzYxOWMxMzYyMDM1ZjA3MDBhZGEiLCJuYW1lIjoiRmFpc2FsIFJlaG1hbiIsImVtYWlsIjoiZmFpc2FsQGdtYWlsLmNvbSIsImlhdCI6MTYxNzYxODgyOX0.UNpseiy7Nd8TWe2o201PnlDEY0ldaGG70GCymR6_Zwo"
-      )
+      if (values) {
+        resData = await patchData(
+          "/about",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/about",
+          data,
+          localStorage.getItem("token")
+        )
+      }
       setError(null)
       console.log(resData)
     } catch (error) {
-      setError(err.response.data.name)
-      console.log(error.response.data.name)
+      setError(error.response)
+      console.log(error.response)
     }
   }
   return (
@@ -63,7 +77,7 @@ const AboutForm = () => {
           </Col>
           <Col sm={9}>
             <FormikComponent
-              initialValues={initilaValues}
+              initialValues={initialValues}
               validate={validate}
               handleSubmit={handleSubmit}
             >

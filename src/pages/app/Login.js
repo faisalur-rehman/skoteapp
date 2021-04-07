@@ -16,10 +16,11 @@ const Login = () => {
     try {
       const resData = await postData("/auth/login", data)
       setError(null)
-      console.log(resData)
+      localStorage.setItem("token", resData.data.token)
+      // console.log(resData.data.token)
     } catch (err) {
       setError(err.response.data.name)
-      console.log(err.response.data.name)
+      // console.log(err.response.data.name)
     }
     setClicked(true)
   }

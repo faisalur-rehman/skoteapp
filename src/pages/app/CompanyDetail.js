@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react"
 import { Field, ErrorMessage } from "formik"
 import FormikComponent from "./Formik"
 import { Row, Col, Button } from "reactstrap"
-import { formPostData, formGetData } from "./ApiRequest"
-import axios from "axios"
+import { formPostData, formGetData, patchData } from "./ApiRequest"
 
-const initialValues = {
+let initialValues = {
   logo: "",
   bus_name: "",
   bus_email: "",
@@ -13,18 +12,30 @@ const initialValues = {
   bus_address: "",
   website_link: "",
 }
-
 const CompanyDetail = () => {
   const [errors, setErrors] = useState(null)
+  const [values, setValues] = useState()
+  const [id, setId] = useState()
+
   useEffect(() => {
     async function fetchData() {
       try {
         const { data } = await formGetData(
           "/company",
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDY4NzYxOWMxMzYyMDM1ZjA3MDBhZGEiLCJuYW1lIjoiRmFpc2FsIFJlaG1hbiIsImVtYWlsIjoiZmFpc2FsQGdtYWlsLmNvbSIsImlhdCI6MTYxNzYxODgyOX0.UNpseiy7Nd8TWe2o201PnlDEY0ldaGG70GCymR6_Zwo"
+          localStorage.getItem("token")
         )
+        setId(data.company._id)
         console.log(data)
+        initialValues.logo = data.company.logo
+        initialValues.bus_name = data.company.bus_name
+        initialValues.bus_email = data.company.bus_email
+        initialValues.bus_phone = data.company.bus_phone
+        initialValues.bus_address = data.company.bus_address
+        initialValues.website_link = data.company.website_link
+        setValues(initialValues)
+        console.log(initialValues)
       } catch (error) {
+        setErrors()
         console.log(error)
       }
     }
@@ -54,14 +65,23 @@ const CompanyDetail = () => {
   }
 
   async function handleSubmit(data) {
-    console.log(data)
+    let resData
     try {
-      console.log(data)
-      const resData = await formPostData(
-        "/company",
-        data,
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDY4NzYxOWMxMzYyMDM1ZjA3MDBhZGEiLCJuYW1lIjoiRmFpc2FsIFJlaG1hbiIsImVtYWlsIjoiZmFpc2FsQGdtYWlsLmNvbSIsImlhdCI6MTYxNzYxODgyOX0.UNpseiy7Nd8TWe2o201PnlDEY0ldaGG70GCymR6_Zwo"
-      )
+      if (values) {
+        console.log("here")
+        resData = await patchData(
+          "/company",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/company",
+          data,
+          localStorage.getItem("token")
+        )
+      }
       setErrors(null)
       console.log(resData)
     } catch (error) {
@@ -153,12 +173,7 @@ const CompanyDetail = () => {
                 style={{ color: "red" }}
               />
               <div>
-                <Button
-                  type="submit"
-                  // onClick={handleSubmit}
-                  className="w-md mt-3"
-                  color="primary"
-                >
+                <Button type="submit" className="w-md mt-3" color="primary">
                   Submit
                 </Button>
               </div>

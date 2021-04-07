@@ -29,3 +29,21 @@ export async function formGetData(endpoint, token) {
     },
   })
 }
+export async function patchData(endpoint, id, data, token) {
+  return api.patch(
+    `${endpoint}/${id}`,
+    { ...data },
+    {
+      headers: {
+        "x-auth-token": token,
+      },
+    }
+  )
+}
+export async function deleteData(endpoint, id, token) {
+  return api.patch(`${endpoint}/${id}`, {
+    headers: {
+      "x-auth-token": token,
+    },
+  })
+}
