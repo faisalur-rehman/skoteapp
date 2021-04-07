@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types"
 import {
   Dropdown,
   DropdownToggle,
@@ -11,7 +11,7 @@ import {
 import { withTranslation } from "react-i18next"
 // Redux
 import { connect } from "react-redux"
-import { withRouter, Link } from "react-router-dom"
+import { withRouter, Link, Redirect } from "react-router-dom"
 
 // users
 import user1 from "../../../assets/images/users/avatar-1.jpg"
@@ -55,31 +55,33 @@ const ProfileMenu = props => {
             alt="Header Avatar"
           />
           <span className="d-none d-xl-inline-block ms-2 me-1">{username}</span>
-          <i className="mdi mdi-chevron-down d-none d-xl-inline-block"/>
+          <i className="mdi mdi-chevron-down d-none d-xl-inline-block" />
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-end">
           <DropdownItem tag="a" href="/profile">
             {" "}
-            <i className="bx bx-user font-size-16 align-middle me-1"/>
+            <i className="bx bx-user font-size-16 align-middle me-1" />
             {props.t("Profile")}{" "}
           </DropdownItem>
           <DropdownItem tag="a" href="/crypto-wallet">
-            <i className="bx bx-wallet font-size-16 align-middle me-1"/>
+            <i className="bx bx-wallet font-size-16 align-middle me-1" />
             {props.t("My Wallet")}
           </DropdownItem>
           <DropdownItem tag="a" href="#">
             <span className="badge bg-success float-end">11</span>
-            <i className="bx bx-wrench font-size-16 align-middle me-1"/>
+            <i className="bx bx-wrench font-size-16 align-middle me-1" />
             {props.t("Settings")}
           </DropdownItem>
           <DropdownItem tag="a" href="auth-lock-screen">
-            <i className="bx bx-lock-open font-size-16 align-middle me-1"/>
+            <i className="bx bx-lock-open font-size-16 align-middle me-1" />
             {props.t("Lock screen")}
           </DropdownItem>
-          <div className="dropdown-divider"/>
-          <Link to="/logout" className="dropdown-item">
-            <i className="bx bx-power-off font-size-16 align-middle me-1 text-danger"/>
-            <span>{props.t("Logout")}</span>
+          <div className="dropdown-divider" />
+          <Link to="/login" className="dropdown-item">
+            <i className="bx bx-power-off font-size-16 align-middle me-1 text-danger" />
+            <span onClick={() => <>{localStorage.removeItem("token")}</>}>
+              {props.t("Logout")}
+            </span>
           </Link>
         </DropdownMenu>
       </Dropdown>
@@ -89,7 +91,7 @@ const ProfileMenu = props => {
 
 ProfileMenu.propTypes = {
   success: PropTypes.any,
-  t: PropTypes.any
+  t: PropTypes.any,
 }
 
 const mapStatetoProps = state => {

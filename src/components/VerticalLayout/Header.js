@@ -9,7 +9,6 @@ import logoLightPng from "../../assets/images/logo-light.png"
 import logoLightSvg from "../../assets/images/logo-light.svg"
 import logoDark from "../../assets/images/logo-dark.png"
 
-
 //i18n
 import { withTranslation } from "react-i18next"
 
@@ -84,7 +83,6 @@ const Header = props => {
                 </span>
               </Link>
             </div>
-
             <button
               type="button"
               onClick={() => {
@@ -95,8 +93,6 @@ const Header = props => {
             >
               <i className="fa fa-fw fa-bars" />
             </button>
-
-           
           </div>
           <div className="d-flex">
             <div className="dropdown d-inline-block d-lg-none ms-2">
