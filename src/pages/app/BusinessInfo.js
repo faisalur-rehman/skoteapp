@@ -8,6 +8,15 @@ const initialValues = { notes: "", company: "", products: "" }
 const BusinessInfo = () => {
   function validate(values) {
     const errors = {}
+    if (!values.notes) {
+      errors.notes = "Required"
+    }
+    if (!values.company) {
+      errors.company = "Required"
+    }
+    if (!values.products) {
+      errors.products = "Required"
+    }
     return errors
   }
   function handleSubmit(data) {
@@ -26,28 +35,30 @@ const BusinessInfo = () => {
             >
               <p>Introduction: </p>
               <label htmlFor="notes">Short Notes: </label>
-              <Field
-                type="text"
+              <Field name="notes" id="notes" className="form-control" />
+              <ErrorMessage
                 name="notes"
-                id="notes"
-                className="form-control"
+                component="div"
+                style={{ color: "red" }}
               />
               <br />
               <label htmlFor="company">Your Company: </label>
-              <Field
-                type="text"
+              <Field name="company" id="company" className="form-control" />
+              <ErrorMessage
                 name="company"
-                id="company"
-                className="form-control"
+                component="div"
+                style={{ color: "red" }}
               />
+
               <br />
               <label htmlFor="products">Your Products: </label>
-              <Field
-                type="text"
+              <Field name="products" id="products" className="form-control" />
+              <ErrorMessage
                 name="products"
-                id="products"
-                className="form-control"
+                component="div"
+                style={{ color: "red" }}
               />
+
               <div>
                 <Button type="submit" color="primary" className="w-md mt-3">
                   Submit
@@ -55,6 +66,7 @@ const BusinessInfo = () => {
               </div>
             </FormikComponent>
           </Col>
+          <Col sm={2}></Col>
         </Row>
       </div>
     </div>

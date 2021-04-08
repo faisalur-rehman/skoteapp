@@ -7,6 +7,15 @@ const initialValues = { sellingPoint: "", strength: "", whyYou: "" }
 const UniqueSelling = () => {
   function validate(values) {
     const errors = {}
+    if (!values.sellingPoint) {
+      errors.sellingPoint = "Required"
+    }
+    if (!values.strength) {
+      errors.strength = "Required"
+    }
+    if (!values.whyYou) {
+      errors.whyYou = "Required"
+    }
     return errors
   }
   function handleSubmit(data) {
@@ -16,8 +25,8 @@ const UniqueSelling = () => {
     <div className="page-content">
       <div className="container">
         <Row>
-          <Col sm={3}>Track Bar Goes Here</Col>
-          <Col sm={9}>
+          <Col sm={2}></Col>
+          <Col sm={8}>
             <FormikComponent
               initialValues={initialValues}
               validate={validate}
@@ -30,6 +39,11 @@ const UniqueSelling = () => {
                 name="sellingPoint"
                 className="form-control"
               />
+              <ErrorMessage
+                name="sellingPoint"
+                component="div"
+                style={{ color: "red" }}
+              />
               <br />
 
               <label htmlFor="strength">Your Strength: </label>
@@ -39,6 +53,12 @@ const UniqueSelling = () => {
                 name="strength"
                 className="form-control"
               />
+              <ErrorMessage
+                name="strength"
+                component="div"
+                style={{ color: "red" }}
+              />
+
               <br />
 
               <label htmlFor="whyYou">Why should customer choose you? </label>
@@ -48,6 +68,12 @@ const UniqueSelling = () => {
                 name="whyYou"
                 className="form-control"
               />
+              <ErrorMessage
+                name="whyYou"
+                component="div"
+                style={{ color: "red" }}
+              />
+
               <div>
                 <Button type="submit" className="w-md mt-3" color="primary">
                   Submit
@@ -55,6 +81,7 @@ const UniqueSelling = () => {
               </div>
             </FormikComponent>
           </Col>
+          <Col sm={2}></Col>
         </Row>
       </div>
     </div>

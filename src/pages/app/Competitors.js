@@ -21,8 +21,8 @@ const Competitors = () => {
     <div className="page-content">
       <div className="container">
         <Row>
-          <Col sm={3}>Track Bar Goes Here</Col>
-          <Col sm={9}>
+          <Col sm={2}></Col>
+          <Col sm={8}>
             <FormikComponent
               initialValues={initialValues}
               validate={validate}
@@ -36,15 +36,13 @@ const Competitors = () => {
                 className="form-control"
               />
               <br />
-              <label htmlFor="webAddress1">Three Website Adresses: </label>
-              <Field
-                type="text"
-                name="webAddress1"
-                id="webAddress"
-                className="form-control"
-              />
-              <Field type="text" name="webAddress2" className="form-control" />
-              <Field type="text" name="webAddress3" className="form-control" />
+              <label>Three Website Adresses: </label>
+              <Field name="webAddress1" className="form-control" />
+              <br />
+              <Field name="webAddress2" className="form-control" />
+              <br />
+              <Field name="webAddress3" className="form-control" />
+              <br />
               <div>
                 <Button type="submit" color="primary" className="w-md mt-3">
                   Submit
@@ -52,6 +50,7 @@ const Competitors = () => {
               </div>
             </FormikComponent>
           </Col>
+          <Col sm={2}></Col>
         </Row>
       </div>
     </div>

@@ -72,22 +72,15 @@ const AboutForm = () => {
     <div className="page-content">
       <div className="container">
         <Row>
-          <Col sm={3} style={{ borderRight: "1px solid black" }}>
-            Track bar will go here
-          </Col>
-          <Col sm={9}>
+          <Col sm={2}></Col>
+          <Col sm={8}>
             <FormikComponent
               initialValues={initialValues}
               validate={validate}
               handleSubmit={handleSubmit}
             >
               <label htmlFor="name">Name* : </label>
-              <Field
-                type="text"
-                name="name"
-                id="name"
-                className="form-control"
-              />
+              <Field name="name" id="name" className="form-control" />
               <ErrorMessage
                 name="name"
                 component="div"
@@ -95,12 +88,7 @@ const AboutForm = () => {
               />
               <br />
               <label htmlFor="role">Role* : </label>
-              <Field
-                type="text"
-                id="role"
-                name="role"
-                className="form-control"
-              />
+              <Field id="role" name="role" className="form-control" />
               <ErrorMessage
                 name="role"
                 component="div"
@@ -113,6 +101,7 @@ const AboutForm = () => {
               </div>
             </FormikComponent>
           </Col>
+          <Col sm={2}></Col>
         </Row>
       </div>
     </div>

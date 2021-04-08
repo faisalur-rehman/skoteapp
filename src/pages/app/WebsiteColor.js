@@ -7,6 +7,12 @@ const initialValues = { sellingPoint: "", strength: "", whyYou: "" }
 const WebsiteColor = () => {
   function validate(values) {
     const errors = {}
+    if (!values.picked) {
+      errors.picked = "Required"
+    }
+    if (!values.color) {
+      errors.color = "Required"
+    }
     return errors
   }
   function handleSubmit(data) {
@@ -16,24 +22,15 @@ const WebsiteColor = () => {
     <div className="page-content">
       <div className="container">
         <Row>
-          <Col sm={3}>Track Bar Goes Here</Col>
-          <Col sm={9}>
+          <Col sm={2}></Col>
+          <Col sm={8}>
             <Formik
               initialValues={{
                 picked: "",
                 color: "",
               }}
-              validate={values => {
-                const errors = {}
-                if (!values.picked) {
-                  errors.picked = "Required"
-                }
-                if (!values.color) {
-                  errors.color = "Required"
-                }
-                return errors
-              }}
-              onSubmit={data => console.log(data)}
+              validate={validate}
+              onSubmit={handleSubmit}
             >
               {({ values }) => (
                 <Form>
@@ -79,6 +76,7 @@ const WebsiteColor = () => {
               )}
             </Formik>
           </Col>
+          <Col sm={2}></Col>
         </Row>
       </div>
     </div>

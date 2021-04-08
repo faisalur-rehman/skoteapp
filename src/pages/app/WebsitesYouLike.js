@@ -18,8 +18,9 @@ const WebsitesYouLike = () => {
     <div className="page-content">
       <div className="container">
         <Row>
-          <Col sm={3}>Track Bar Goes Here</Col>
-          <Col sm={9}>
+          <Col sm={2}></Col>
+
+          <Col sm={8}>
             <Formik
               initialValues={{ websites: [""] }}
               validate={validate}
@@ -39,7 +40,7 @@ const WebsitesYouLike = () => {
                       return (
                         <div>
                           {websites.map((website, index) => (
-                            <div>
+                            <div key={index}>
                               <Field
                                 name={`website${index}`}
                                 type="text"
@@ -54,7 +55,7 @@ const WebsitesYouLike = () => {
                             style={{ color: "red" }}
                           />
                           <Button color="secondary" onClick={() => push("")}>
-                            Add Website
+                            Add More Websites
                           </Button>
                           <Button color="primary" className="m-2" type="submit">
                             Submit
@@ -67,6 +68,7 @@ const WebsitesYouLike = () => {
               )}
             </Formik>
           </Col>
+          <Col sm={2}></Col>
         </Row>
       </div>
     </div>

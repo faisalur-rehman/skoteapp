@@ -8,6 +8,12 @@ const initialValues = { market: "", audience: "" }
 const TargetMarket = () => {
   function validate(values) {
     const errors = {}
+    if (!values.market) {
+      errors.market = "Required"
+    }
+    if (!values.audience) {
+      errors.audience = "Required"
+    }
     return errors
   }
   function handleSubmit(data) {
@@ -17,28 +23,29 @@ const TargetMarket = () => {
     <div className="page-content">
       <div className="container">
         <Row>
-          <Col sm={3}>Track Bar Goes Here</Col>
-          <Col sm={9}>
+          <Col sm={2}></Col>
+          <Col sm={8}>
             <FormikComponent
               initialValues={initialValues}
               validate={validate}
               handleSubmit={handleSubmit}
             >
               <label htmlFor="market">Your Niche Market: </label>
-              <Field
-                type="text"
+              <Field name="market" id="market" className="form-control" />
+              <ErrorMessage
+                component="div"
                 name="market"
-                id="market"
-                className="form-control"
+                style={{ color: "red" }}
               />
               <br />
               <label htmlFor="audience">Your target audience: </label>
-              <Field
-                type="text"
+              <Field name="audience" id="audience" className="form-control" />
+              <ErrorMessage
+                component="div"
                 name="audience"
-                id="audience"
-                className="form-control"
+                style={{ color: "red" }}
               />
+
               <div>
                 <Button type="submit" className="w-md mt-3" color="primary">
                   Submit
@@ -46,6 +53,7 @@ const TargetMarket = () => {
               </div>
             </FormikComponent>
           </Col>
+          <Col sm={2}></Col>
         </Row>
       </div>
     </div>

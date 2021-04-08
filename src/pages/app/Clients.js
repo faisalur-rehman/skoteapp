@@ -17,8 +17,8 @@ const Clients = () => {
     <div className="page-content">
       <div className="container">
         <Row>
-          <Col sm={3}>Track Bar Goes Here</Col>
-          <Col sm={9}>
+          <Col sm={2}></Col>
+          <Col sm={8}>
             <FormikComponent
               initialValues={initialValues}
               validate={validate}
@@ -38,6 +38,7 @@ const Clients = () => {
               </div>
             </FormikComponent>
           </Col>
+          <Col sm={2}></Col>
         </Row>
       </div>
     </div>

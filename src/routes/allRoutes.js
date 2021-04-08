@@ -25,6 +25,7 @@ import WebsitesYouLike from "pages/app/WebsitesYouLike"
 import Login from "pages/app/Login"
 import ForgotPassword from "pages/app/ForgotPassword"
 import Register from "pages/app/Register"
+import WebsiteGoals from "pages/app/WebsiteGoals"
 
 export const publicRoutes = [
   { path: "/login", component: Login },
@@ -53,6 +54,7 @@ const userRoutes = [
   { path: "/websiteStyle", component: WebsiteStyle },
   { path: "/websitesYouDisLike", component: WebsitesYouDisLike },
   { path: "/websitesYouLike", component: WebsitesYouLike },
+  { path: "/websiteGoals", component: WebsiteGoals },
 
   // this route should be at the end of all other routes
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
