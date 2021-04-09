@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik"
 import { Row, Col, Button } from "reactstrap"
 import { formGetData, formPostData, patchData } from "./ApiRequest"
+import { Redirect } from "react-router"
 
 const initialValues = { bus_short_desc: "", company_do: "", products: [""] }
 
@@ -9,6 +10,7 @@ const BusinessInfo = () => {
   const [value, setValues] = useState()
   const [error, setError] = useState(null)
   const [id, setId] = useState()
+  const [clicked, setClicked] = useState(false)
   useEffect(() => {
     async function fetchData() {
       try {
@@ -50,16 +52,15 @@ const BusinessInfo = () => {
     if (values.bus_short_desc.length < 5) {
       errors.bus_short_desc = "Length must be atleast 5 characters long."
     }
-    // if (values.products[0].length < 2) {
-    //   errors.products[0] = "Required"
-    // }
+    for (let i = 0; i < values.products; i++) {
+      if (!values.products[i] || values.products[i].length < 3) {
+        errors.product[i] = "Length must be atleast 3 characters long."
+      }
+    }
     return errors
   }
   async function handleSubmit(data) {
-    // console.log("form data", data)
     let resData
-
-    // console.log("Products", data.products)
     let newData = {
       bus_short_desc: data.bus_short_desc,
       company_do: data.company_do,
@@ -81,18 +82,20 @@ const BusinessInfo = () => {
         )
       }
       setError(null)
-      console.log(resData)
+
+      // console.log(resData)
     } catch (err) {
       setError(err.response.data.errors[0])
       // console.log(err.response.data.errors)
     }
+    setClicked(true)
   }
   return (
     <div className="page-content">
       <div className="container">
         <Row>
-          <Col sm={3}>Track Bar Goes Here</Col>
-          <Col sm={9}>
+          <Col sm={2}></Col>
+          <Col sm={8}>
             <Formik
               initialValues={initialValues}
               validate={validate}
@@ -138,6 +141,11 @@ const BusinessInfo = () => {
                               className="form-control"
                             />
                             <br />
+                            <ErrorMessage
+                              name={`product[${index}]`}
+                              component="div"
+                              style={{ color: "red" }}
+                            />
                           </div>
                         ))}
                         {error && <p style={{ color: "red" }}>{error}</p>}
@@ -147,6 +155,7 @@ const BusinessInfo = () => {
                         <Button color="primary" className="m-2" type="submit">
                           Submit
                         </Button>
+                        {!error && clicked && <Redirect to="uniqueSelling" />}
                       </div>
                     )}
                   </FieldArray>

@@ -1,23 +1,75 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Field, ErrorMessage } from "formik"
 import FormikComponent from "./Formik"
 import { Row, Col, Button } from "reactstrap"
+import { Redirect } from "react-router-dom"
+import { formGetData, formPostData, patchData } from "./ApiRequest"
 
-const initialValues = { market: "", audience: "" }
+const initialValues = { niche_market: "", target_audience: "" }
 
 const TargetMarket = () => {
+  const [values, setValues] = useState()
+  const [error, setError] = useState(null)
+  const [id, setId] = useState()
+  const [clicked, setClicked] = useState(false)
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/business/market",
+          localStorage.getItem("token")
+        )
+        console.log(data)
+        if (data.targetMarket) {
+          setId(data.targetMarket["_id"])
+          initialValues.niche_market = data.targetMarket.niche_market
+          initialValues.target_audience = data.targetMarket.target_audience
+          setValues(initialValues)
+        }
+        setError(null)
+      } catch (err) {
+        console.log(err)
+        setError(err.response)
+      }
+    }
+    fetchData()
+  }, [])
   function validate(values) {
     const errors = {}
-    if (!values.market) {
-      errors.market = "Required"
+    if (values.target_audience.length < 3) {
+      errors.target_audience = "There must be atleast 3 characters."
     }
-    if (!values.audience) {
-      errors.audience = "Required"
+    if (values.niche_market.length < 3) {
+      errors.niche_market = "There must be atleast 3 characters."
     }
     return errors
   }
-  function handleSubmit(data) {
-    console.log(data)
+  async function handleSubmit(data) {
+    let resData
+    console.log(values)
+    try {
+      if (values) {
+        resData = await patchData(
+          "/business/market",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/business/market",
+          data,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+      console.log(resData)
+    } catch (err) {
+      setError(err.response)
+      console.log(err.response)
+    }
+    setClicked(true)
   }
   return (
     <div className="page-content">
@@ -30,19 +82,27 @@ const TargetMarket = () => {
               validate={validate}
               handleSubmit={handleSubmit}
             >
-              <label htmlFor="market">Your Niche Market: </label>
-              <Field name="market" id="market" className="form-control" />
+              <label htmlFor="niche_market">Your Niche Market: </label>
+              <Field
+                name="niche_market"
+                id="niche_market"
+                className="form-control"
+              />
               <ErrorMessage
                 component="div"
-                name="market"
+                name="niche_market"
                 style={{ color: "red" }}
               />
               <br />
-              <label htmlFor="audience">Your target audience: </label>
-              <Field name="audience" id="audience" className="form-control" />
+              <label htmlFor="target_audience">Your target audience: </label>
+              <Field
+                name="target_audience"
+                id="target_audience"
+                className="form-control"
+              />
               <ErrorMessage
                 component="div"
-                name="audience"
+                name="target_audience"
                 style={{ color: "red" }}
               />
 
@@ -51,6 +111,7 @@ const TargetMarket = () => {
                   Submit
                 </Button>
               </div>
+              {!error && clicked && <Redirect to="clients" />}
             </FormikComponent>
           </Col>
           <Col sm={2}></Col>

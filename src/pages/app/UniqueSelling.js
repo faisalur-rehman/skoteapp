@@ -3,12 +3,14 @@ import { Field, ErrorMessage } from "formik"
 import FormikComponent from "./Formik"
 import { Row, Col, Button } from "reactstrap"
 import { formGetData, formPostData, patchData } from "./ApiRequest"
+import { Redirect } from "react-router-dom"
 
 const initialValues = { description: "", strength: "", reason_to_choose: "" }
 const UniqueSelling = () => {
   const [values, setValues] = useState()
   const [error, setError] = useState(null)
   const [id, setId] = useState()
+  const [clicked, setClicked] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -70,6 +72,7 @@ const UniqueSelling = () => {
       setError(err.response)
       console.log(err.response)
     }
+    setClicked(true)
   }
   return (
     <div className="page-content">
@@ -131,6 +134,7 @@ const UniqueSelling = () => {
                   Submit
                 </Button>
               </div>
+              {!error && clicked && <Redirect to="competitors" />}
             </FormikComponent>
           </Col>
           <Col sm={2}></Col>

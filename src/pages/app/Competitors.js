@@ -3,6 +3,7 @@ import { Field, ErrorMessage } from "formik"
 import FormikComponent from "./Formik"
 import { Row, Col, Button } from "reactstrap"
 import { formGetData, formPostData, patchData } from "./ApiRequest"
+import { Redirect } from "react-router-dom"
 
 const initialValues = {
   description: "",
@@ -15,6 +16,7 @@ const Competitors = () => {
   const [values, setValues] = useState()
   const [error, setError] = useState(null)
   const [id, setId] = useState()
+  const [clicked, setClicked] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -78,6 +80,7 @@ const Competitors = () => {
       initialValues.web_addresses = []
       console.log(err.response.data.errors)
     }
+    setClicked(true)
   }
   return (
     <div className="page-content">
@@ -111,6 +114,7 @@ const Competitors = () => {
                   Submit
                 </Button>
               </div>
+              {!error && clicked && <Redirect to="targetMarket" />}
             </FormikComponent>
           </Col>
           <Col sm={2}></Col>
