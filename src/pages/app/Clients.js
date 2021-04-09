@@ -3,6 +3,7 @@ import { Field, ErrorMessage } from "formik"
 import FormikComponent from "./Formik"
 import { Row, Col, Button } from "reactstrap"
 import { Redirect } from "react-router-dom"
+import { formGetData, formPostData, patchData } from "./ApiRequest"
 
 const initialValues = { clients: "" }
 
@@ -16,19 +17,18 @@ const Clients = () => {
     async function fetchData() {
       try {
         const { data } = await formGetData(
-          "/business/clients",
+          "/business/customer",
           localStorage.getItem("token")
         )
         console.log(data)
-        if (data.usp) {
+        if (data.customer) {
           setId(data.usp["_id"])
-          initialValues.market = data.usp.market
-          initialValues.audience = data.usp.audience
+          initialValues.clients = data.customer.clients
           setValues(initialValues)
         }
         setError(null)
       } catch (err) {
-        console.log(err)
+        console.log(err.response)
         setError(err.response)
       }
     }
@@ -44,14 +44,14 @@ const Clients = () => {
     try {
       if (values) {
         resData = await patchData(
-          "/business/clients",
+          "/business/customer",
           id,
           data,
           localStorage.getItem("token")
         )
       } else {
         resData = await formPostData(
-          "/business/clients",
+          "/business/customer",
           data,
           localStorage.getItem("token")
         )
@@ -85,7 +85,8 @@ const Clients = () => {
               <div>
                 <Button type="submit" className="w-md mt-3" color="primary">
                   Submit
-                </Button>
+                </Button>{" "}
+                <Button className="mt-3">Go to Next Section</Button>
               </div>
               {/* {!error && clicked && <Redirect to="targetMarket" />} */}
             </FormikComponent>
