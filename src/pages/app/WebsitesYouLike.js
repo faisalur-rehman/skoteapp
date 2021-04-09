@@ -33,7 +33,7 @@ const WebsitesYouLike = () => {
                   </label>
                   <FieldArray name="websites">
                     {props => {
-                      const { form, push, remove } = props
+                      const { form, push } = props
                       const { values } = form
                       const { websites } = values
 

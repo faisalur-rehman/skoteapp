@@ -8,7 +8,7 @@ const FormikComponent = props => {
       validate={props.validate}
       onSubmit={props.handleSubmit}
     >
-      {() => <Form>{props.children}</Form>}
+      {values => <Form>{props.children}</Form>}
     </Formik>
   )
 }
