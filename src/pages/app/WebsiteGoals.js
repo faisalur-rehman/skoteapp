@@ -3,11 +3,6 @@ import { Row, Col, Button } from "reactstrap"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 
-let initialValues = {
-  objectives: "",
-  goals: "",
-}
-
 const AboutForm = () => {
   const [error, setError] = useState(null)
   const [values, setValues] = useState()
