@@ -27,6 +27,7 @@ import ForgotPassword from "pages/app/ForgotPassword"
 import Register from "pages/app/Register"
 import WebsiteGoals from "pages/app/WebsiteGoals"
 import CallToAction from "pages/app/CallToAction"
+import CheckList from "pages/app/CheckList"
 
 export const publicRoutes = [
   { path: "/login", component: Login },
@@ -57,6 +58,7 @@ const userRoutes = [
   { path: "/websitesYouLike", component: WebsitesYouLike },
   { path: "/websiteGoals", component: WebsiteGoals },
   { path: "/callToAction", component: CallToAction },
+  { path: "/checkList", component: CheckList },
 
   // this route should be at the end of all other routes
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
