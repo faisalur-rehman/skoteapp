@@ -110,7 +110,7 @@ const Clients = () => {
                         <Button color="primary" className="m-2" type="submit">
                           Submit
                         </Button>
-                        {!error && clicked && <Redirect to="uniqueSelling" />}
+                        {/* {!error && clicked && <Redirect to="uniqueSelling" />} */}
                       </div>
                     )}
                   </FieldArray>
