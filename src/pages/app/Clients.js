@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react"
-import { Field, ErrorMessage } from "formik"
+import { Formik, Form, FieldArray, Field, ErrorMessage } from "formik"
 import FormikComponent from "./Formik"
 import { Row, Col, Button } from "reactstrap"
 import { Redirect } from "react-router-dom"
 import { formGetData, formPostData, patchData } from "./ApiRequest"
 
-const initialValues = { clients: "" }
+const initialValues = { customers: [""] }
 
 const Clients = () => {
-  const [values, setValues] = useState()
+  const [value, setValues] = useState()
   const [error, setError] = useState(null)
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
@@ -20,10 +20,13 @@ const Clients = () => {
           "/business/customer",
           localStorage.getItem("token")
         )
-        console.log(data)
+        console.log(data.customer)
         if (data.customer) {
-          setId(data.usp["_id"])
-          initialValues.clients = data.customer.clients
+          setId(data.customer["_id"])
+          // initialValues.clients = data.customer.customers
+          data.customer.customers.map(
+            (customer, index) => (initialValues.customers[index] = customer)
+          )
           setValues(initialValues)
         }
         setError(null)
@@ -36,13 +39,18 @@ const Clients = () => {
   }, [])
   function validate(values) {
     const errors = {}
+    for (let i = 0; i < values.length; i++) {
+      if (values.customers[i].length <= 0) {
+        errors.customers[i] = "Required"
+      }
+    }
     return errors
   }
   async function handleSubmit(data) {
     let resData
-    console.log(values)
+    console.log(data)
     try {
-      if (values) {
+      if (value) {
         resData = await patchData(
           "/business/customer",
           id,
@@ -59,7 +67,7 @@ const Clients = () => {
       setError(null)
       console.log(resData)
     } catch (err) {
-      setError(err.response)
+      setError(err.response.data.errors)
       console.log(err.response)
     }
     setClicked(true)
@@ -70,26 +78,45 @@ const Clients = () => {
         <Row>
           <Col sm={2}></Col>
           <Col sm={8}>
-            <FormikComponent
+            <Formik
               initialValues={initialValues}
               validate={validate}
-              handleSubmit={handleSubmit}
+              onSubmit={handleSubmit}
             >
-              <label htmlFor="clients">Your Clients</label>
-              <Field
-                type="text"
-                name="clients"
-                id="clients"
-                className="form-control"
-              />
-              <div>
-                <Button type="submit" className="w-md mt-3" color="primary">
-                  Submit
-                </Button>{" "}
-                <Button className="mt-3">Go to Next Section</Button>
-              </div>
-              {/* {!error && clicked && <Redirect to="targetMarket" />} */}
-            </FormikComponent>
+              {({ values }) => (
+                <Form>
+                  <label>Your Clients: </label>
+                  <FieldArray name="customers">
+                    {({ push }) => (
+                      <div>
+                        {values.customers.map((customer, index) => (
+                          <div key={index}>
+                            <Field
+                              name={`customers[${index}]`}
+                              className="form-control"
+                            />
+                            <br />
+                            <ErrorMessage
+                              name={`customers[${index}]`}
+                              component="div"
+                              style={{ color: "red" }}
+                            />
+                          </div>
+                        ))}
+                        {error && <p style={{ color: "red" }}>{error}</p>}
+                        <Button color="secondary" onClick={() => push("")}>
+                          Add More Clients
+                        </Button>
+                        <Button color="primary" className="m-2" type="submit">
+                          Submit
+                        </Button>
+                        {!error && clicked && <Redirect to="uniqueSelling" />}
+                      </div>
+                    )}
+                  </FieldArray>
+                </Form>
+              )}
+            </Formik>
           </Col>
           <Col sm={2}></Col>
         </Row>
