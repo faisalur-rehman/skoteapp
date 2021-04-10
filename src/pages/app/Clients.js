@@ -4,6 +4,7 @@ import FormikComponent from "./Formik"
 import { Row, Col, Button } from "reactstrap"
 import { Redirect } from "react-router-dom"
 import { formGetData, formPostData, patchData } from "./ApiRequest"
+import { set } from "lodash"
 
 const initialValues = { customers: [""] }
 
@@ -12,6 +13,7 @@ const Clients = () => {
   const [error, setError] = useState(null)
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -23,7 +25,6 @@ const Clients = () => {
         console.log(data.customer)
         if (data.customer) {
           setId(data.customer["_id"])
-          // initialValues.clients = data.customer.customers
           data.customer.customers.map(
             (customer, index) => (initialValues.customers[index] = customer)
           )
@@ -65,12 +66,13 @@ const Clients = () => {
         )
       }
       setError(null)
+      setSubmitted(true)
       console.log(resData)
     } catch (err) {
       setError(err.response.data.errors)
       console.log(err.response)
+      setSubmitted(false)
     }
-    setClicked(true)
   }
   return (
     <div className="page-content">
@@ -110,10 +112,17 @@ const Clients = () => {
                         <Button color="primary" className="m-2" type="submit">
                           Submit
                         </Button>
-                        {/* {!error && clicked && <Redirect to="uniqueSelling" />} */}
+                        {!error && clicked && (
+                          <Redirect to="/websitesYouLike" />
+                        )}
                       </div>
                     )}
                   </FieldArray>
+                  {submitted && (
+                    <Button color="success" onClick={() => setClicked(true)}>
+                      Next Section
+                    </Button>
+                  )}
                 </Form>
               )}
             </Formik>
