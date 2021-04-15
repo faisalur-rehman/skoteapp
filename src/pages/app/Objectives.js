@@ -32,8 +32,8 @@ const WebsiteContent = () => {
         console.log(initialValues)
         setError(null)
       } catch (err) {
-        console.log(err.response)
-        setError(err.response)
+        console.log(err.response.data.message)
+        setError(err.response.data.message)
       }
     }
     fetchData()
@@ -46,6 +46,9 @@ const WebsiteContent = () => {
     }
     if (!values.success) {
       errors.success = "Required"
+    }
+    if (error) {
+      errors.serverError = error
     }
     return errors
   }
@@ -110,6 +113,13 @@ const WebsiteContent = () => {
                 component="div"
                 style={{ color: "red" }}
               />
+
+              {error && (
+                <p style={{ color: "red" }}>
+                  {error}. Please check the Web Development checkbox in
+                  CheckList form section in order to submit this form.
+                </p>
+              )}
 
               <div>
                 <Button type="submit" className="w-md mt-2" color="primary">
