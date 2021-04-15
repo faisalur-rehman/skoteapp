@@ -1,7 +1,8 @@
-import React from "react"
+import React, { useState } from "react"
 import { Field, ErrorMessage } from "formik"
 import FormikComponent from "./Formik"
 import { Row, Col, Button } from "reactstrap"
+import { Redirect } from "react-router-dom"
 
 const initialValues = {
   style: "",
@@ -9,9 +10,11 @@ const initialValues = {
 }
 
 const WebsiteContent = () => {
-  const handleSubmit = data => {
-    console.log(data)
-  }
+  const [value, setValues] = useState()
+  const [error, setError] = useState(null)
+  const [id, setId] = useState()
+  const [clicked, setClicked] = useState(false)
+
   const validate = values => {
     const errors = {}
     if (!values.style) {
@@ -22,6 +25,33 @@ const WebsiteContent = () => {
     }
     return errors
   }
+
+  async function handleSubmit(data) {
+    let resData
+    console.log(data)
+    try {
+      if (value) {
+        resData = await patchData(
+          "/business/style",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/business/style",
+          data,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+      console.log(resData)
+    } catch (err) {
+      setError(err.response.data.errors)
+      console.log(err.response)
+    }
+  }
+
   return (
     <div className="page-content">
       <div className="container">
@@ -55,6 +85,7 @@ const WebsiteContent = () => {
                 <Button type="submit" className="w-md mt-2" color="primary">
                   Submit
                 </Button>
+                {!error && clicked && <Redirect to="websiteContent" />}
               </div>
             </FormikComponent>
           </Col>

@@ -22,6 +22,7 @@ export async function formPostData(endpoint, data, token) {
     }
   )
 }
+
 export async function formGetData(endpoint, token) {
   return api.get(`${endpoint}`, {
     headers: {

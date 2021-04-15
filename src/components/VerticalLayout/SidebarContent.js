@@ -143,12 +143,6 @@ const SidebarContent = props => {
                 <span>{props.t("Business Info")}</span>
               </Link>
               <ul className="sub-menu" aria-expanded="false">
-                {/* <li>
-                  <Link to="/account">{props.t("Account Verification")}</Link>
-                </li>
-                <li>
-                  <Link to="/aboutForm">{props.t("About Form")}</Link>
-                </li> */}
                 <li>
                   <Link to="/businessInfo">{props.t("Introduction")}</Link>
                 </li>
@@ -165,24 +159,6 @@ const SidebarContent = props => {
                   <Link to="/uniqueSelling">{props.t("UniqueSelling")}</Link>
                 </li>
               </ul>
-            </li>
-            <li>
-              <Link to="/companyDetail">
-                <i className="bx bx-store"></i>
-                <span>{props.t("Company Detail")}</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/account">
-                <i className="bx bx-store"></i>
-                <span>{props.t("Account Verification")}</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/aboutForm">
-                <i className="bx bx-store"></i>
-                <span>{props.t("About Form")}</span>
-              </Link>
             </li>
             <li>
               <Link to="/#" className="has-arrow waves-effect">
@@ -210,6 +186,51 @@ const SidebarContent = props => {
                   <Link to="/websiteContent">{props.t("Website Content")}</Link>
                 </li>
               </ul>
+            </li>
+            <li>
+              <Link to="/#" className="has-arrow waves-effect">
+                <i className="bx bx-store"></i>
+                <span>{props.t("Services")}</span>
+              </Link>
+              <ul className="sub-menu" aria-expanded="false">
+                <li>
+                  <Link to="/#" className="has-arrow waves-effect">
+                    <span>{props.t("Website Goals")}</span>
+                  </Link>
+                  <ul className="sub-menu" aria-expanded="false">
+                    <li>
+                      <Link to="/websiteGoals">{props.t("Objectives")}</Link>
+                    </li>
+                    <li>
+                      <Link to="/checkList">{props.t("Goals")}</Link>
+                    </li>
+                    <li>
+                      <Link to="/callToAction">{props.t("Achievement")}</Link>
+                    </li>
+                    <li>
+                      <Link to="/callToAction">{props.t("Success")}</Link>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <Link to="/companyDetail">
+                <i className="bx bx-store"></i>
+                <span>{props.t("Company Detail")}</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/account">
+                <i className="bx bx-store"></i>
+                <span>{props.t("Account Verification")}</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/aboutForm">
+                <i className="bx bx-store"></i>
+                <span>{props.t("About Form")}</span>
+              </Link>
             </li>
           </ul>
         </div>

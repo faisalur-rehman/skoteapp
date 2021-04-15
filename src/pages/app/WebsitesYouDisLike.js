@@ -1,11 +1,45 @@
-import React from "react"
+import React, { useState } from "react"
 import { Formik, Field, FieldArray, Form } from "formik"
 import { Button, Row, Col } from "reactstrap"
+import { Redirect } from "react-router-dom"
 
 const WebsitesYouLike = () => {
-  function handleSubmit(data) {
-    console.log(data)
+  const [value, setValues] = useState()
+  const [error, setError] = useState(null)
+  const [id, setId] = useState()
+  const [clicked, setClicked] = useState(false)
+
+  const validate = () => {
+    const errors = {}
+    return errors
   }
+
+  async function handleSubmit(data) {
+    let resData
+    console.log(data)
+    try {
+      if (value) {
+        resData = await patchData(
+          "/business/dislike",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/business/dislike",
+          data,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+      console.log(resData)
+    } catch (err) {
+      setError(err.response.data.errors)
+      console.log(err.response)
+    }
+  }
+
   return (
     <div className="page-content">
       <div className="container">
@@ -40,6 +74,7 @@ const WebsitesYouLike = () => {
                           <Button color="primary" className="m-2" type="submit">
                             Submit
                           </Button>
+                          {!error && clicked && <Redirect to="websiteColor" />}
                         </div>
                       )
                     }}

@@ -3,67 +3,72 @@ import { Row, Col, Button } from "reactstrap"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 
+const initialValues = {
+  services: [],
+}
+
 const CheckList = () => {
   const [error, setError] = useState(null)
-  const [values, setValues] = useState()
+  const [value, setValues] = useState()
   const [id, setId] = useState()
 
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       try {
-  //         const { data } = await formGetData(
-  //           "/about",
-  //           localStorage.getItem("token")
-  //         )
-  //         setId(data.about["_id"])
-  //         initialValues.name = data.about.name
-  //         initialValues.role = data.about.role
-  //         setValues(initialValues)
-  //         setError(null)
-  //       } catch (error) {
-  //         console.log(error)
-  //         setError(error.response)
-  //       }
-  //     }
-  //     fetchData()
-  //   }, [])
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/services/checklist",
+          localStorage.getItem("token")
+        )
+        console.log(data.checkList)
+        if (data.checkList) {
+          setId(data.checkList["_id"])
+          data.checkList.services.map(service =>
+            initialValues.services.push(service)
+          )
+          setValues(initialValues)
+        }
+        console.log(initialValues.services)
+        setError(null)
+      } catch (error) {
+        console.log(error)
+        setError(error.response)
+      }
+    }
+    fetchData()
+  }, [])
 
   function validate(values) {
     const errors = {}
-    if (values.action.length < 3) {
-      errors.action = "Minimum of 3 characters are required"
+    if (values.services.length < 1) {
+      errors.services = "You have to select atleast one service"
     }
-    if (!values.siteMap) {
-      errors.siteMap = "Required"
-    }
-    if (values.advancedFeatures.length < 3) {
-      errors.advancedFeatures = "Minimum of 3 characters are required"
-    }
+
     return errors
   }
   async function handleSubmit(data) {
+    console.log(data)
     let resData
-    // try {
-    //   if (values) {
-    //     resData = await patchData(
-    //       "/aout",
-    //       id,
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   } else {
-    //     resData = await formPostData(
-    //       "/aout",
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   }
-    //   setError(null)
-    //   console.log(resData)
-    // } catch (error) {
-    //   setError(error.response)
-    //   console.log(error.response)
-    // }
+    try {
+      if (value) {
+        resData = await patchData(
+          "/services/checklist",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/services/checklist",
+          data,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+      console.log(resData)
+    } catch (error) {
+      setError(error.response)
+      console.log(error.response)
+    }
     console.log(data)
   }
   return (
@@ -73,10 +78,8 @@ const CheckList = () => {
           <Col sm={2}></Col>
           <Col sm={8}>
             <Formik
-              initialValues={{
-                checked: [],
-              }}
-              //   validate={validate}
+              initialValues={initialValues}
+              validate={validate}
               onSubmit={handleSubmit}
             >
               {({ values }) => (
@@ -84,37 +87,68 @@ const CheckList = () => {
                   <p>CheckList</p>
                   <div role="group" aria-labelledby="checkbox-group">
                     <label>
-                      <Field type="checkbox" name="checked" value="One" />{" "}
+                      <Field
+                        type="checkbox"
+                        name="services"
+                        value="web_development"
+                      />{" "}
                       Website Development
                     </label>
                     <br />
                     <label>
-                      <Field type="checkbox" name="checked" value="Two" /> Paid
-                      Advertising
+                      <Field
+                        type="checkbox"
+                        name="services"
+                        value="paid_advertising"
+                      />{" "}
+                      Paid Advertising
                     </label>
                     <br />
                     <label>
-                      <Field type="checkbox" name="checked" value="Three" />{" "}
+                      <Field
+                        type="checkbox"
+                        name="services"
+                        value="social_media_marketing"
+                      />{" "}
                       Social Media Marketing
                     </label>
                     <br />
                     <label>
-                      <Field type="checkbox" name="checked" value="four" /> Logo
-                      Creation
+                      <Field
+                        type="checkbox"
+                        name="services"
+                        value="logo_creation"
+                      />{" "}
+                      Logo Creation
                     </label>
                     <br />
                     <label>
-                      <Field type="checkbox" name="checked" value="five" />{" "}
+                      <Field
+                        type="checkbox"
+                        name="services"
+                        value="graphic_designing"
+                      />{" "}
                       Graphic Design
                     </label>
                     <br />
                     <label>
-                      <Field type="checkbox" name="checked" value="six" />{" "}
+                      <Field
+                        type="checkbox"
+                        name="services"
+                        value="productivity_and_automation"
+                      />{" "}
                       Productivity and Automation
                     </label>
+                    <ErrorMessage
+                      component="div"
+                      style={{ color: "red" }}
+                      name="services"
+                    />
                   </div>
 
-                  <button type="submit">Submit</button>
+                  <Button type="submit" color="primary">
+                    Submit
+                  </Button>
                 </Form>
               )}
             </Formik>

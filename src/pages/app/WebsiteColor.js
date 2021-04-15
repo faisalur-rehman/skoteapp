@@ -1,10 +1,17 @@
-import React from "react"
+import React, { useState } from "react"
 import { Formik, Field, Form, ErrorMessage } from "formik"
 import FormikComponent from "./Formik"
 import { Row, Col, Button } from "reactstrap"
+import { Redirect } from "react-router-dom"
 
 const initialValues = { sellingPoint: "", strength: "", whyYou: "" }
+
 const WebsiteColor = () => {
+  const [value, setValues] = useState()
+  const [error, setError] = useState(null)
+  const [id, setId] = useState()
+  const [clicked, setClicked] = useState(false)
+
   function validate(values) {
     const errors = {}
     if (!values.picked) {
@@ -15,9 +22,33 @@ const WebsiteColor = () => {
     }
     return errors
   }
-  function handleSubmit(data) {
+
+  async function handleSubmit(data) {
+    let resData
     console.log(data)
+    try {
+      if (value) {
+        resData = await patchData(
+          "/business/style",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/business/style",
+          data,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+      console.log(resData)
+    } catch (err) {
+      setError(err.response.data.errors)
+      console.log(err.response)
+    }
   }
+
   return (
     <div className="page-content">
       <div className="container">
@@ -71,6 +102,7 @@ const WebsiteColor = () => {
                     <Button type="submit" className="w-md mt-3" color="primary">
                       Submit
                     </Button>
+                    {!error && clicked && <Redirect to="websiteStyle" />}
                   </div>
                 </Form>
               )}
