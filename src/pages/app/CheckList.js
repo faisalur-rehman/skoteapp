@@ -26,8 +26,8 @@ const CheckList = () => {
             initialValues.services.push(service)
           )
           setValues(initialValues)
+          console.log(initialValues)
         }
-        console.log(initialValues.services)
         setError(null)
       } catch (error) {
         console.log(error)
