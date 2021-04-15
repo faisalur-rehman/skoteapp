@@ -27,11 +27,9 @@ const Recoverpw = () => {
     try {
       const resData = await postData("/auth/password-forget", data)
       setError(null)
-      console.log(resData)
       setSuccess(resData.data.message)
     } catch (err) {
       setError(err.response.data.name)
-      console.log(err.response)
     }
     setClicked(true)
   }

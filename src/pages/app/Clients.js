@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { Formik, Form, FieldArray, Field, ErrorMessage } from "formik"
-import FormikComponent from "./Formik"
 import { Row, Col, Button } from "reactstrap"
 import { Redirect } from "react-router-dom"
 import { formGetData, formPostData, patchData } from "./ApiRequest"
-import { set } from "lodash"
 
 const initialValues = { customers: [""] }
 
@@ -22,7 +20,6 @@ const Clients = () => {
           "/business/customer",
           localStorage.getItem("token")
         )
-        console.log(data.customer)
         if (data.customer) {
           setId(data.customer["_id"])
           data.customer.customers.map(
@@ -32,7 +29,6 @@ const Clients = () => {
         }
         setError(null)
       } catch (err) {
-        console.log(err.response)
         setError(err.response)
       }
     }
@@ -49,7 +45,6 @@ const Clients = () => {
   }
   async function handleSubmit(data) {
     let resData
-    console.log(data)
     try {
       if (value) {
         resData = await patchData(
@@ -67,10 +62,8 @@ const Clients = () => {
       }
       setError(null)
       setSubmitted(true)
-      console.log(resData)
     } catch (err) {
       setError(err.response.data.errors)
-      console.log(err.response)
       setSubmitted(false)
     }
   }

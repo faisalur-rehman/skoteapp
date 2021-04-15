@@ -47,9 +47,7 @@ const WebsiteContent = () => {
     if (!values.success) {
       errors.success = "Required"
     }
-    if (error) {
-      errors.serverError = error
-    }
+
     return errors
   }
 

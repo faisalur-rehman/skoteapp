@@ -25,7 +25,6 @@ const CompanyDetail = () => {
           localStorage.getItem("token")
         )
         setId(data.company._id)
-        console.log(data)
         initialValues.logo = data.company.logo
         initialValues.bus_name = data.company.bus_name
         initialValues.bus_email = data.company.bus_email
@@ -33,10 +32,8 @@ const CompanyDetail = () => {
         initialValues.bus_address = data.company.bus_address
         initialValues.website_link = data.company.website_link
         setValues(initialValues)
-        console.log(initialValues)
       } catch (error) {
         setErrors()
-        console.log(error)
       }
     }
     fetchData()
@@ -83,10 +80,8 @@ const CompanyDetail = () => {
         )
       }
       setErrors(null)
-      console.log(resData)
     } catch (error) {
       setErrors(error.response.data.errors[0])
-      console.log(error.response)
     }
   }
   return (

@@ -20,7 +20,6 @@ const TargetMarket = () => {
           "/business/market",
           localStorage.getItem("token")
         )
-        console.log(data)
         if (data.targetMarket) {
           setId(data.targetMarket["_id"])
           initialValues.niche_market = data.targetMarket.niche_market
@@ -29,7 +28,6 @@ const TargetMarket = () => {
         }
         setError(null)
       } catch (err) {
-        console.log(err)
         setError(err.response)
       }
     }
@@ -47,7 +45,6 @@ const TargetMarket = () => {
   }
   async function handleSubmit(data) {
     let resData
-    console.log(values)
     try {
       if (values) {
         resData = await patchData(
@@ -64,10 +61,8 @@ const TargetMarket = () => {
         )
       }
       setError(null)
-      console.log(resData)
     } catch (err) {
       setError(err.response)
-      console.log(err.response)
     }
     setClicked(true)
   }

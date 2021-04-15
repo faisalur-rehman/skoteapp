@@ -26,14 +26,12 @@ const BusinessInfo = () => {
           data.introduction.products.map(
             (product, index) => (initialValues.products[index] = product)
           )
-          // initialValues.webAddress2 = data.competitor.web_addresses[1]
-          // initialValues.webAddress3 = data.competitor.web_addresses[2]
+
           setValues(initialValues)
         }
         setError(null)
       } catch (err) {
         setError(err.response)
-        // console.log(err.response)
       }
     }
     fetchData()
@@ -82,11 +80,8 @@ const BusinessInfo = () => {
         )
       }
       setError(null)
-
-      // console.log(resData)
     } catch (err) {
       setError(err.response.data.errors[0])
-      // console.log(err.response.data.errors)
     }
     setClicked(true)
   }

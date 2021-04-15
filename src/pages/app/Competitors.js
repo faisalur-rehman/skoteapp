@@ -25,7 +25,6 @@ const Competitors = () => {
           "/business/competitor",
           localStorage.getItem("token")
         )
-        console.log(data.competitor)
         if (data.competitor !== null) {
           setId(data.competitor["_id"])
           initialValues.description = data.competitor.description
@@ -56,13 +55,10 @@ const Competitors = () => {
     initialValues.web_addresses.push(data.webAddress3)
 
     let { description, web_addresses } = initialValues
-    console.log(description, data.description)
-    console.log("Web Address", initialValues.web_addresses)
     let newData = {
       description: data.description,
       web_addresses,
     }
-    console.log("new data", newData)
     try {
       if (value) {
         resData = await patchData(
@@ -83,7 +79,6 @@ const Competitors = () => {
     } catch (err) {
       setError(err.response.data.errors[0])
       initialValues.web_addresses = []
-      console.log(err.response)
     }
     setClicked(true)
   }

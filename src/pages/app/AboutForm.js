@@ -27,7 +27,6 @@ const AboutForm = () => {
         setValues(initialValues)
         setError(null)
       } catch (error) {
-        console.log(error)
         setError(error.response)
       }
     }
@@ -62,10 +61,8 @@ const AboutForm = () => {
         )
       }
       setError(null)
-      console.log(resData)
     } catch (error) {
       setError(error.response)
-      console.log(error.response)
     }
   }
   return (

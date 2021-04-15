@@ -19,18 +19,15 @@ const CheckList = () => {
           "/services/checklist",
           localStorage.getItem("token")
         )
-        console.log(data.checkList)
         if (data.checkList) {
           setId(data.checkList["_id"])
           data.checkList.services.map(service =>
             initialValues.services.push(service)
           )
           setValues(initialValues)
-          console.log(initialValues)
         }
         setError(null)
       } catch (error) {
-        console.log(error)
         setError(error.response)
       }
     }
@@ -46,7 +43,6 @@ const CheckList = () => {
     return errors
   }
   async function handleSubmit(data) {
-    console.log(data)
     let resData
     try {
       if (value) {
@@ -64,12 +60,9 @@ const CheckList = () => {
         )
       }
       setError(null)
-      console.log(resData)
     } catch (error) {
       setError(error.response)
-      console.log(error.response)
     }
-    console.log(data)
   }
   return (
     <div className="page-content">

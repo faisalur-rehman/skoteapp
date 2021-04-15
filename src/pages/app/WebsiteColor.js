@@ -4,7 +4,10 @@ import FormikComponent from "./Formik"
 import { Row, Col, Button } from "reactstrap"
 import { Redirect } from "react-router-dom"
 
-const initialValues = { sellingPoint: "", strength: "", whyYou: "" }
+const initialValues = {
+  picked: "",
+  color: "",
+}
 
 const WebsiteColor = () => {
   const [value, setValues] = useState()
@@ -56,10 +59,7 @@ const WebsiteColor = () => {
           <Col sm={2}></Col>
           <Col sm={8}>
             <Formik
-              initialValues={{
-                picked: "",
-                color: "",
-              }}
+              initialValues={initialValues}
               validate={validate}
               onSubmit={handleSubmit}
             >

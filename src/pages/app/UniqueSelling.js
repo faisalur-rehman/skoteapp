@@ -19,7 +19,6 @@ const UniqueSelling = () => {
           "/business/usp",
           localStorage.getItem("token")
         )
-        console.log(data)
         if (data.usp) {
           setId(data.usp["_id"])
           initialValues.description = data.usp.description
@@ -29,7 +28,6 @@ const UniqueSelling = () => {
         }
         setError(null)
       } catch (err) {
-        console.log(err)
         setError(err.response)
       }
     }
@@ -50,7 +48,6 @@ const UniqueSelling = () => {
   }
   async function handleSubmit(data) {
     let resData
-    console.log(values)
     try {
       if (values) {
         resData = await patchData(
@@ -67,10 +64,8 @@ const UniqueSelling = () => {
         )
       }
       setError(null)
-      console.log(resData)
     } catch (err) {
       setError(err.response)
-      console.log(err.response)
     }
     setClicked(true)
   }

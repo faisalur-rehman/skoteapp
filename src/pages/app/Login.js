@@ -17,10 +17,8 @@ const Login = () => {
       const resData = await postData("/auth/login", data)
       setError(null)
       localStorage.setItem("token", resData.data.token)
-      // console.log(resData.data.token)
     } catch (err) {
       setError(err.response.data.name)
-      // console.log(err.response.data.name)
     }
     setClicked(true)
   }
@@ -119,20 +117,6 @@ const Login = () => {
                                 style={{ color: "red" }}
                               />
                             </div>
-
-                            {/* <div className="form-check">
-                              <input
-                                type="checkbox"
-                                className="form-check-input"
-                                id="customControlInline"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="customControlInline"
-                              >
-                                Remember me
-                              </label>
-                            </div> */}
 
                             <div className="mt-3 d-grid">
                               <button
