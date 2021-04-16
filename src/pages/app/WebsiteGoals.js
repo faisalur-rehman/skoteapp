@@ -3,6 +3,11 @@ import { Row, Col, Button } from "reactstrap"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 
+const initialValues = {
+  goal: "",
+  otherGoal: "",
+}
+
 const AboutForm = () => {
   const [error, setError] = useState(null)
   const [values, setValues] = useState()
@@ -30,14 +35,12 @@ const AboutForm = () => {
 
   function validate(values) {
     const errors = {}
-    if (!values.objectives) {
-      errors.objectives = "Required"
+
+    if (!values.goal) {
+      errors.goal = "Required"
     }
-    if (!values.goals) {
-      errors.goals = "Required"
-    }
-    if (!values.otherGoals) {
-      errors.otherGoals = "Required"
+    if (!values.otherGoal) {
+      errors.otherGoal = "Required"
     }
     return errors
   }
@@ -73,30 +76,18 @@ const AboutForm = () => {
           <Col sm={2}></Col>
           <Col sm={8}>
             <Formik
-              initialValues={{
-                objectives: "",
-                goals: "",
-                otherGoals: "",
-              }}
+              initialValues={initialValues}
               validate={validate}
               onSubmit={handleSubmit}
             >
               {({ values }) => (
                 <Form>
-                  <label htmlFor="name">Objectives* : </label>
-                  <Field name="objectives" className="form-control" />
-                  <ErrorMessage
-                    name="objectives"
-                    component="div"
-                    style={{ color: "red" }}
-                  />
-                  <br />
                   <label htmlFor="role">Goals: </label>
                   <br />
                   <label>
                     <Field
                       type="radio"
-                      name="goals"
+                      name="goal"
                       value="Promote a brand and image"
                     />
                     Promote a brand and image
@@ -105,7 +96,7 @@ const AboutForm = () => {
                   <label>
                     <Field
                       type="radio"
-                      name="goals"
+                      name="goal"
                       value="Promote a product range"
                     />
                     Promote a product range
@@ -115,8 +106,8 @@ const AboutForm = () => {
                   <label>
                     <Field
                       type="radio"
-                      name="goals"
-                      value="Promote a brand and image"
+                      name="goal"
+                      value="Improve access information"
                     />
                     Improve access information
                   </label>
@@ -124,8 +115,8 @@ const AboutForm = () => {
                   <label>
                     <Field
                       type="radio"
-                      name="goals"
-                      value="Promote a product range"
+                      name="goal"
+                      value="Create a web presence"
                     />
                     Create a web presence
                   </label>
@@ -134,34 +125,34 @@ const AboutForm = () => {
                   <label>
                     <Field
                       type="radio"
-                      name="goals"
-                      value="Promote a product range"
+                      name="goal"
+                      value="Increase sales lead"
                     />
                     Increase sales lead
                   </label>
                   <br />
                   <label>
-                    <Field type="radio" name="goals" value="other" />
+                    <Field type="radio" name="goal" value="other" />
                     Other
                   </label>
-                  {values.goals === "other" && (
+                  {values.goal === "other" && (
                     <div>
                       <p>Please specify</p>
                       <Field
                         type="text"
-                        name="otherGoals"
+                        name="otherGoal"
                         className="form-control"
                       />
                       <br />
                       <ErrorMessage
-                        name="otherGoals"
+                        name="otherGoal"
                         component="div"
                         style={{ color: "red" }}
                       />
                     </div>
                   )}
                   <ErrorMessage
-                    name="goals"
+                    name="goal"
                     component="div"
                     style={{ color: "red" }}
                   />

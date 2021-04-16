@@ -201,11 +201,23 @@ const SidebarContent = props => {
                     <li>
                       <Link to="/websiteGoals">{props.t("Goals")}</Link>
                     </li>
+
+                    <li>
+                      <Link to="/checklist">{props.t("CheckList")}</Link>
+                    </li>
                     <li>
                       <Link to="/objectives">{props.t("Objectives")}</Link>
                     </li>
                     <li>
-                      <Link to="/checklist">{props.t("CheckList")}</Link>
+                      <Link to="/sitemap">{props.t("Sitemap")}</Link>
+                    </li>
+                    <li>
+                      <Link to="/advancedFeatures">
+                        {props.t("Advance Features")}
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/callToAction">{props.t("Action")}</Link>
                     </li>
                   </ul>
                 </li>

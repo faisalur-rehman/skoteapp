@@ -29,6 +29,8 @@ import WebsiteGoals from "pages/app/WebsiteGoals"
 import CallToAction from "pages/app/CallToAction"
 import CheckList from "pages/app/CheckList"
 import Objectives from "pages/app/Objectives"
+import Sitemap from "pages/app/Sitemap"
+import AdvancedFeatures from "pages/app/AdvancedFeatures"
 
 export const publicRoutes = [
   { path: "/login", component: Login },
@@ -61,6 +63,8 @@ const userRoutes = [
   { path: "/callToAction", component: CallToAction },
   { path: "/checkList", component: CheckList },
   { path: "/objectives", component: Objectives },
+  { path: "/sitemap", component: Sitemap },
+  { path: "/advancedFeatures", component: AdvancedFeatures },
 
   // this route should be at the end of all other routes
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },

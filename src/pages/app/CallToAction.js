@@ -3,6 +3,10 @@ import { Row, Col, Button } from "reactstrap"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 
+const initialValues = {
+  action: "",
+}
+
 const AboutForm = () => {
   const [error, setError] = useState(null)
   const [values, setValues] = useState()
@@ -33,12 +37,7 @@ const AboutForm = () => {
     if (values.action.length < 3) {
       errors.action = "Minimum of 3 characters are required"
     }
-    if (!values.siteMap) {
-      errors.siteMap = "Required"
-    }
-    if (values.advancedFeatures.length < 3) {
-      errors.advancedFeatures = "Minimum of 3 characters are required"
-    }
+
     return errors
   }
   async function handleSubmit(data) {
@@ -73,11 +72,7 @@ const AboutForm = () => {
           <Col sm={2}></Col>
           <Col sm={8}>
             <Formik
-              initialValues={{
-                action: "",
-                siteMap: "",
-                advancedFeatures: "",
-              }}
+              initialValues={initialValues}
               validate={validate}
               onSubmit={handleSubmit}
             >
@@ -91,22 +86,7 @@ const AboutForm = () => {
                     component="div"
                     style={{ color: "red" }}
                   />
-                  <br />
-                  <label htmlFor="name">SiteMap* : </label>
-                  <Field name="siteMap" className="form-control" />
-                  <ErrorMessage
-                    name="siteMap"
-                    component="div"
-                    style={{ color: "red" }}
-                  />
-                  <br /> <label htmlFor="name">Advanced Features* : </label>
-                  <Field name="advancedFeatures" className="form-control" />
-                  <ErrorMessage
-                    name="advancedFeatures"
-                    component="div"
-                    style={{ color: "red" }}
-                  />
-                  <br />
+
                   <div>
                     <Button type="submit" className="w-md mt-3" color="primary">
                       Submit
