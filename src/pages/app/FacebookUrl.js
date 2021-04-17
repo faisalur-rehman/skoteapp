@@ -11,7 +11,7 @@ const initialValues = {
   last: "",
 }
 
-const WebsiteContent = () => {
+const FacebookUrl = () => {
   const [value, setValues] = useState()
   const [error, setError] = useState(null)
   const [id, setId] = useState()
@@ -148,4 +148,4 @@ const WebsiteContent = () => {
   )
 }
 
-export default WebsiteContent
+export default FacebookUrl

@@ -4,10 +4,10 @@ import FormikComponent from "./Formik"
 import { Row, Col, Button } from "reactstrap"
 
 const initialValues = {
-  diffAccount: "",
+  adAccount: "",
 }
 
-const AccessAccount = () => {
+const AdAccount = () => {
   const [value, setValues] = useState()
   const [error, setError] = useState(null)
   const [id, setId] = useState()
@@ -16,8 +16,8 @@ const AccessAccount = () => {
 
   const validate = values => {
     const errors = {}
-    if (!values.diffAccount) {
-      errors.diffAccount = "Required"
+    if (!values.adAccount) {
+      errors.adAccount = "Required"
     }
     return errors
   }
@@ -62,23 +62,26 @@ const AccessAccount = () => {
               handleSubmit={handleSubmit}
               validate={validate}
             >
-              <p>
-                Would you like to use a different way for Sicuro Group to access
-                your account?
-              </p>
+              <p>Do you have an Ad account ID?</p>
 
               <label>
-                <Field type="radio" name="diffAccount" value="Yes" />
-                Yes
+                <Field type="radio" name="adAccount" value="Yes" />
+                Yes I have an ad account number
               </label>
               <br />
               <label>
-                <Field type="radio" name="diffAccount" value="No" />
+                <Field type="radio" name="adAccount" value="NotSure" />
+                I’m not sure
+              </label>
+              <br />
+
+              <label>
+                <Field type="radio" name="adAccount" value="No" />
                 No
               </label>
               <br />
               <ErrorMessage
-                name="diffAccount"
+                name="adAccount"
                 component="div"
                 style={{ color: "red" }}
               />
@@ -102,4 +105,4 @@ const AccessAccount = () => {
   )
 }
 
-export default AccessAccount
+export default AdAccount
