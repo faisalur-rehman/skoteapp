@@ -35,6 +35,7 @@ import Services from "pages/app/Services"
 import ProvidingService from "pages/app/ProvidingService"
 import PACompetitors from "pages/app/PACompetitors"
 import PAClients from "pages/app/PAClients"
+import PAGoals from "pages/app/PAGoals"
 
 export const publicRoutes = [
   { path: "/login", component: Login },
@@ -69,11 +70,13 @@ const userRoutes = [
   { path: "/objectives", component: Objectives },
   { path: "/sitemap", component: Sitemap },
   { path: "/advancedFeatures", component: AdvancedFeatures },
+
+  //Paid Advertising Module
   { path: "/services", component: Services },
   { path: "/providingService", component: ProvidingService },
-
   { path: "/paCompetitors", component: PACompetitors },
   { path: "/paClients", component: PAClients },
+  { path: "/paGoals", component: PAGoals },
 
   // this route should be at the end of all other routes
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
