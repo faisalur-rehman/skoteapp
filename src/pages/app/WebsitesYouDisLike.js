@@ -3,6 +3,10 @@ import { Formik, Field, FieldArray, Form } from "formik"
 import { Button, Row, Col } from "reactstrap"
 import { Redirect } from "react-router-dom"
 
+const initialValues = {
+  websites: [""],
+}
+
 const WebsitesYouLike = () => {
   const [value, setValues] = useState()
   const [error, setError] = useState(null)
@@ -17,6 +21,11 @@ const WebsitesYouLike = () => {
   async function handleSubmit(data) {
     let resData
     console.log(data)
+    let websites = []
+    data.websites.map((website, index) =>
+      websites.push(data[`website${index}`])
+    )
+    console.log(websites)
     try {
       if (value) {
         resData = await patchData(
@@ -46,7 +55,11 @@ const WebsitesYouLike = () => {
         <Row>
           <Col sm={2}></Col>
           <Col sm={8}>
-            <Formik initialValues={{ websites: [""] }} onSubmit={handleSubmit}>
+            <Formik
+              initialValues={initialValues}
+              validate={validate}
+              onSubmit={handleSubmit}
+            >
               {() => (
                 <Form>
                   <label htmlFor="websites">

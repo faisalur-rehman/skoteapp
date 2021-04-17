@@ -21,6 +21,11 @@ const WebsitesYouLike = () => {
   async function handleSubmit(data) {
     let resData
     console.log(data)
+    let websites = []
+    data.websites.map((website, index) =>
+      websites.push(data[`website${index}`])
+    )
+    console.log(websites)
     try {
       if (value) {
         resData = await patchData(

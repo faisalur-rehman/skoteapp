@@ -31,6 +31,9 @@ import CheckList from "pages/app/CheckList"
 import Objectives from "pages/app/Objectives"
 import Sitemap from "pages/app/Sitemap"
 import AdvancedFeatures from "pages/app/AdvancedFeatures"
+import Services from "pages/app/Services"
+import ProvidingService from "pages/app/ProvidingService"
+import PACompetitors from "pages/app/PACompetitors"
 
 export const publicRoutes = [
   { path: "/login", component: Login },
@@ -65,6 +68,10 @@ const userRoutes = [
   { path: "/objectives", component: Objectives },
   { path: "/sitemap", component: Sitemap },
   { path: "/advancedFeatures", component: AdvancedFeatures },
+  { path: "/services", component: Services },
+  { path: "/providingService", component: ProvidingService },
+
+  { path: "/paCompetitors", component: PACompetitors },
 
   // this route should be at the end of all other routes
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
