@@ -6,10 +6,10 @@ import { Redirect } from "react-router-dom"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 
 const initialValues = {
-  cantTalk: "",
+  comments: "",
 }
 
-const CantTalkAbout = () => {
+const Comments = () => {
   const [value, setValues] = useState()
   const [error, setError] = useState(null)
   const [id, setId] = useState()
@@ -41,8 +41,8 @@ const CantTalkAbout = () => {
 
   const validate = values => {
     const errors = {}
-    if (values.cantTalk.length < 3) {
-      errors.cantTalk = "Atleast 3 characters are required"
+    if (values.comments.length < 5) {
+      errors.comments = "Atleast 5 characters are required"
     }
     return errors
   }
@@ -86,14 +86,16 @@ const CantTalkAbout = () => {
               handleSubmit={handleSubmit}
               validate={validate}
             >
-              <p>What can't we talk about?</p>
+              <p>
+                Do you have any other comments or feedback regarding posting?
+              </p>
               <Field
-                name="cantTalk"
+                name="comments"
                 className="form-control"
-                placeholder="Please specify what we can’t post"
+                placeholder="Your comments"
               />
               <ErrorMessage
-                name="cantTalk"
+                name="comments"
                 component="div"
                 style={{ color: "red" }}
               />
@@ -119,4 +121,4 @@ const CantTalkAbout = () => {
   )
 }
 
-export default CantTalkAbout
+export default Comments
