@@ -103,7 +103,7 @@ const Posting = () => {
               onSubmit={handleSubmit}
             >
               {({ values }) => (
-                <>
+                <Form>
                   <p>What tone of voice would you like?</p>
                   <Field
                     name="tone"
@@ -194,7 +194,7 @@ const Posting = () => {
                     </Button>
                     {/* {!error && clicked && <Redirect to="advancedFeatures" />} */}
                   </div>
-                </>
+                </Form>
               )}
             </Formik>
           </Col>

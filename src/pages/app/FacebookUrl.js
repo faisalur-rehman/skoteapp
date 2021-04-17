@@ -43,12 +43,12 @@ const FacebookUrl = () => {
 
   const validate = values => {
     const errors = {}
-    if (values.indication.length < 3) {
-      errors.indication = "Atleast 3 characters are required"
-    }
-    if (values.outline.length < 3) {
-      errors.outline = "Atleast 3 characters are required"
-    }
+    // if (values.indication.length < 3) {
+    //   errors.indication = "Atleast 3 characters are required"
+    // }
+    // if (values.outline.length < 3) {
+    //   errors.outline = "Atleast 3 characters are required"
+    // }
 
     return errors
   }
