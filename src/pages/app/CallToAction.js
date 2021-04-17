@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Row, Col, Button } from "reactstrap"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
+import { Redirect } from "react-router-dom"
 
 const initialValues = {
   action: "",
@@ -11,6 +12,8 @@ const AboutForm = () => {
   const [error, setError] = useState(null)
   const [values, setValues] = useState()
   const [id, setId] = useState()
+  const [submitted, setSubmitted] = useState(false)
+  const [clicked, setClicked] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -60,12 +63,13 @@ const AboutForm = () => {
         )
       }
       setError(null)
+      setSubmitted(true)
       console.log(resData)
     } catch (error) {
       setError(error.response)
+      setSubmitted(false)
       console.log(error.response)
     }
-    console.log(data)
   }
   return (
     <div className="page-content">
@@ -94,6 +98,16 @@ const AboutForm = () => {
                       Submit
                     </Button>
                   </div>
+                  {submitted && (
+                    <Button
+                      className="mt-3"
+                      color="success"
+                      onClick={() => setClicked(true)}
+                    >
+                      Next Section
+                    </Button>
+                  )}
+                  {!error && clicked && <Redirect to="/websitesYouLike" />}
                 </Form>
               )}
             </Formik>

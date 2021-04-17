@@ -76,6 +76,7 @@ const WebsiteContent = () => {
       setError(err.response)
       console.log(err.response)
     }
+    setClicked(true)
   }
 
   return (
@@ -124,7 +125,7 @@ const WebsiteContent = () => {
                 <Button type="submit" className="w-md mt-2" color="primary">
                   Submit
                 </Button>
-                {!error && clicked && <Redirect to="websiteContent" />}
+                {!error && clicked && <Redirect to="advancedFeatures" />}
               </div>
             </FormikComponent>
           </Col>

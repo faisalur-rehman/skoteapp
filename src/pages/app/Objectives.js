@@ -41,11 +41,11 @@ const WebsiteContent = () => {
 
   const validate = values => {
     const errors = {}
-    if (!values.achievement) {
-      errors.achievement = "Required"
+    if (values.achievement.length < 3) {
+      errors.achievement = "Atleast 3 characters are required"
     }
-    if (!values.success) {
-      errors.success = "Required"
+    if (values.success.length < 3) {
+      errors.success = "Atleast 3 characters are required"
     }
 
     return errors
@@ -75,6 +75,7 @@ const WebsiteContent = () => {
       setError(err.response)
       console.log(err.response)
     }
+    setClicked(true)
   }
 
   return (
@@ -123,7 +124,7 @@ const WebsiteContent = () => {
                 <Button type="submit" className="w-md mt-2" color="primary">
                   Submit
                 </Button>
-                {!error && clicked && <Redirect to="websiteContent" />}
+                {!error && clicked && <Redirect to="sitemap" />}
               </div>
             </FormikComponent>
           </Col>
