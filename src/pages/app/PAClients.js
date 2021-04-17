@@ -6,7 +6,7 @@ import { formGetData, formPostData, patchData } from "./ApiRequest"
 
 const initialValues = { customers: [""] }
 
-const Clients = () => {
+const PAClients = () => {
   const [value, setValues] = useState()
   const [error, setError] = useState(null)
   const [id, setId] = useState()
@@ -129,4 +129,4 @@ const Clients = () => {
   )
 }
 
-export default Clients
+export default PAClients

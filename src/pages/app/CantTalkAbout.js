@@ -6,10 +6,10 @@ import { Redirect } from "react-router-dom"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 
 const initialValues = {
-  providingService: "",
+  tone: "",
 }
 
-const ProvidingService = () => {
+const CantTalkAbout = () => {
   const [value, setValues] = useState()
   const [error, setError] = useState(null)
   const [id, setId] = useState()
@@ -41,8 +41,8 @@ const ProvidingService = () => {
 
   const validate = values => {
     const errors = {}
-    if (values.providingService.length < 3) {
-      errors.providingService = "Atleast 3 characters are required"
+    if (values.tone.length < 3) {
+      errors.tone = "Atleast 3 characters are required"
     }
     return errors
   }
@@ -86,14 +86,14 @@ const ProvidingService = () => {
               handleSubmit={handleSubmit}
               validate={validate}
             >
-              <p>What city/country do you provide your services?</p>
+              <p>What can't we talk about?</p>
               <Field
-                name="providingService"
+                name="tone"
                 className="form-control"
-                placeholder="city/country"
+                placeholder="Please specify what we can’t post"
               />
               <ErrorMessage
-                name="providingService"
+                name="tone"
                 component="div"
                 style={{ color: "red" }}
               />
@@ -119,4 +119,4 @@ const ProvidingService = () => {
   )
 }
 
-export default ProvidingService
+export default CantTalkAbout

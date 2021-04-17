@@ -38,6 +38,7 @@ import PAClients from "pages/app/PAClients"
 import PAGoals from "pages/app/PAGoals"
 import PATargetMarket from "pages/app/PATargetMarket"
 import Posting from "pages/app/Posting"
+import CantTalkAbout from "pages/app/CantTalkAbout"
 
 export const publicRoutes = [
   { path: "/login", component: Login },
@@ -85,6 +86,7 @@ const userRoutes = [
   //Social Media Management
 
   { path: "/posting", component: Posting },
+  { path: "/cantTalkAbout", component: CantTalkAbout },
 
   // this route should be at the end of all other routes
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },

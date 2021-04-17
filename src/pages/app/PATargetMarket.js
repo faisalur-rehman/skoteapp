@@ -7,7 +7,7 @@ import { formGetData, formPostData, patchData } from "./ApiRequest"
 
 const initialValues = { niche_market: "", target_audience: "" }
 
-const TargetMarket = () => {
+const PATargetMarket = () => {
   const [values, setValues] = useState()
   const [error, setError] = useState(null)
   const [id, setId] = useState()
@@ -117,4 +117,4 @@ const TargetMarket = () => {
   )
 }
 
-export default TargetMarket
+export default PATargetMarket

@@ -12,7 +12,7 @@ const initialValues = {
   webAddress2: "",
   webAddress3: "",
 }
-const Competitors = () => {
+const PACompetitors = () => {
   const [value, setValues] = useState()
   const [error, setError] = useState(null)
   const [id, setId] = useState()
@@ -128,4 +128,4 @@ const Competitors = () => {
   )
 }
 
-export default Competitors
+export default PACompetitors
