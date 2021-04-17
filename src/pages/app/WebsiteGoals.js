@@ -13,25 +13,38 @@ const AboutForm = () => {
   const [values, setValues] = useState()
   const [id, setId] = useState()
 
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       try {
-  //         const { data } = await formGetData(
-  //           "/about",
-  //           localStorage.getItem("token")
-  //         )
-  //         setId(data.about["_id"])
-  //         initialValues.name = data.about.name
-  //         initialValues.role = data.about.role
-  //         setValues(initialValues)
-  //         setError(null)
-  //       } catch (error) {
-  //         console.log(error)
-  //         setError(error.response)
-  //       }
-  //     }
-  //     fetchData()
-  //   }, [])
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/services/wg-goal",
+          localStorage.getItem("token")
+        )
+        console.log(data.goal)
+        if (data.goal) {
+          setId(data.goal["_id"])
+          if (
+            data.goal.goal === "Promote a brand and image" ||
+            data.goal.goal === "Promote a product range" ||
+            data.goal.goal === "Improve access information" ||
+            data.goal.goal === "Create a web presence" ||
+            data.goal.goal === "Increase sales lead"
+          ) {
+            initialValues.goal = data.goal.goal
+          } else {
+            initialValues.goal = "other"
+            initialValues.otherGoal = data.goal.goal
+          }
+          setValues(initialValues)
+        }
+        setError(null)
+      } catch (error) {
+        console.log(error)
+        setError(error.response)
+      }
+    }
+    fetchData()
+  }, [])
 
   function validate(values) {
     const errors = {}
@@ -39,35 +52,44 @@ const AboutForm = () => {
     if (!values.goal) {
       errors.goal = "Required"
     }
-    if (!values.otherGoal) {
+    if (!values.otherGoal && values.goal === "other") {
       errors.otherGoal = "Required"
     }
     return errors
   }
   async function handleSubmit(data) {
-    let resData
-    // try {
-    //   if (values) {
-    //     resData = await patchData(
-    //       "/aout",
-    //       id,
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   } else {
-    //     resData = await formPostData(
-    //       "/aout",
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   }
-    //   setError(null)
-    //   console.log(resData)
-    // } catch (error) {
-    //   setError(error.response)
-    //   console.log(error.response)
-    // }
+    let newData = {
+      goal: "",
+    }
     console.log(data)
+    if (data.goal !== "other") {
+      newData.goal = data.goal
+    } else {
+      newData.goal = data.otherGoal
+    }
+    console.log(newData)
+    let resData
+    try {
+      if (values) {
+        resData = await patchData(
+          "/services/wg-goal",
+          id,
+          newData,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/services/wg-goal",
+          newData,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+      console.log(resData)
+    } catch (error) {
+      setError(error.response)
+      console.log(error.response)
+    }
   }
   return (
     <div className="page-content">

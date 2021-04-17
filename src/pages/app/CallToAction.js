@@ -42,27 +42,27 @@ const AboutForm = () => {
   }
   async function handleSubmit(data) {
     let resData
-    // try {
-    //   if (values) {
-    //     resData = await patchData(
-    //       "/aout",
-    //       id,
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   } else {
-    //     resData = await formPostData(
-    //       "/aout",
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   }
-    //   setError(null)
-    //   console.log(resData)
-    // } catch (error) {
-    //   setError(error.response)
-    //   console.log(error.response)
-    // }
+    try {
+      if (values) {
+        resData = await patchData(
+          "/services/wg-action",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/services/wg-action",
+          data,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+      console.log(resData)
+    } catch (error) {
+      setError(error.response)
+      console.log(error.response)
+    }
     console.log(data)
   }
   return (

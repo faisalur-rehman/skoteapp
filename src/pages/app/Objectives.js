@@ -32,8 +32,8 @@ const WebsiteContent = () => {
         console.log(initialValues)
         setError(null)
       } catch (err) {
-        console.log(err.response.data.message)
-        setError(err.response.data.message)
+        //console.log(err.response.data.message)
+        //setError(err.response.data.message)
       }
     }
     fetchData()

@@ -57,14 +57,14 @@ const WebsiteContent = () => {
     try {
       if (value) {
         resData = await patchData(
-          "/services/wg-objective",
+          "/services/sitemap",
           id,
           data,
           localStorage.getItem("token")
         )
       } else {
         resData = await formPostData(
-          "/services/wg-objective",
+          "/services/sitemap",
           data,
           localStorage.getItem("token")
         )
