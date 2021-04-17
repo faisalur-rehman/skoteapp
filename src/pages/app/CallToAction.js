@@ -12,25 +12,27 @@ const AboutForm = () => {
   const [values, setValues] = useState()
   const [id, setId] = useState()
 
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       try {
-  //         const { data } = await formGetData(
-  //           "/about",
-  //           localStorage.getItem("token")
-  //         )
-  //         setId(data.about["_id"])
-  //         initialValues.name = data.about.name
-  //         initialValues.role = data.about.role
-  //         setValues(initialValues)
-  //         setError(null)
-  //       } catch (error) {
-  //         console.log(error)
-  //         setError(error.response)
-  //       }
-  //     }
-  //     fetchData()
-  //   }, [])
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/services/wg-action",
+          localStorage.getItem("token")
+        )
+        console.log(data.action)
+        if (data.action) {
+          setId(data.action["_id"])
+          initialValues.action = data.action.action
+          setValues(initialValues)
+        }
+        setError(null)
+      } catch (error) {
+        console.log(error)
+        setError(error.response)
+      }
+    }
+    fetchData()
+  }, [])
 
   function validate(values) {
     const errors = {}
