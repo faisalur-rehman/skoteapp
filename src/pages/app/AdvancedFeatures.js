@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 
 const initialValues = {
-  extra_feature: "",
+  feature: "",
 }
 
 const WebsiteContent = () => {
@@ -15,33 +15,33 @@ const WebsiteContent = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
 
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       try {
-  //         const { data } = await formGetData(
-  //           "/services/wg-objective",
-  //           localStorage.getItem("token")
-  //         )
-  //         if (data) {
-  //           setId(data.objective["_id"])
-  //           initialValues.indication = data.objective.indication
-  //           initialValues.success = data.objective.success
-  //           setValues(initialValues)
-  //         }
-  //         console.log(initialValues)
-  //         setError(null)
-  //       } catch (err) {
-  //         console.log(err.response.data.message)
-  //         setError(err.response.data.message)
-  //       }
-  //     }
-  //     fetchData()
-  //   }, [])
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/services/wg-advanced-feature",
+          localStorage.getItem("token")
+        )
+        console.log(data.feature)
+        if (data.feature) {
+          setId(data.feature["_id"])
+          initialValues.feature = data.feature.feature
+          setValues(initialValues)
+        }
+        console.log(initialValues)
+        setError(null)
+      } catch (err) {
+        console.log(err.response.data.message)
+        setError(err.response.data.message)
+      }
+    }
+    fetchData()
+  }, [])
 
   const validate = values => {
     const errors = {}
-    if (!values.extra_feature) {
-      errors.extra_feature = "Required"
+    if (!values.feature) {
+      errors.feature = "Required"
     }
     return errors
   }
@@ -52,14 +52,14 @@ const WebsiteContent = () => {
     try {
       if (value) {
         resData = await patchData(
-          "/services/advanced-features",
+          "/services/wg-advanced-feature",
           id,
           data,
           localStorage.getItem("token")
         )
       } else {
         resData = await formPostData(
-          "/services/advanced-features",
+          "/services/wg-advanced-feature",
           data,
           localStorage.getItem("token")
         )
@@ -86,12 +86,12 @@ const WebsiteContent = () => {
             >
               <p>Advanced Feature:</p>
               <Field
-                name="extra_feature"
+                name="feature"
                 className="form-control"
                 placeholder="Advanced Feature"
               />
               <ErrorMessage
-                name="extra_feature"
+                name="feature"
                 component="div"
                 style={{ color: "red" }}
               />
