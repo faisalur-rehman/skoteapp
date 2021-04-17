@@ -34,6 +34,7 @@ import AdvancedFeatures from "pages/app/AdvancedFeatures"
 import Services from "pages/app/Services"
 import ProvidingService from "pages/app/ProvidingService"
 import PACompetitors from "pages/app/PACompetitors"
+import PAClients from "pages/app/PAClients"
 
 export const publicRoutes = [
   { path: "/login", component: Login },
@@ -72,6 +73,7 @@ const userRoutes = [
   { path: "/providingService", component: ProvidingService },
 
   { path: "/paCompetitors", component: PACompetitors },
+  { path: "/paClients", component: PAClients },
 
   // this route should be at the end of all other routes
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
