@@ -3,6 +3,8 @@ import { Formik, Field, FieldArray, ErrorMessage, Form } from "formik"
 import { Button, Row, Col } from "reactstrap"
 import { Redirect } from "react-router-dom"
 
+const initialValues = { websites: [""] }
+
 const WebsitesYouLike = () => {
   const [value, setValues] = useState()
   const [error, setError] = useState(null)
@@ -50,7 +52,7 @@ const WebsitesYouLike = () => {
 
           <Col sm={8}>
             <Formik
-              initialValues={{ websites: [""] }}
+              initialValues={initialValues}
               validate={validate}
               onSubmit={handleSubmit}
             >

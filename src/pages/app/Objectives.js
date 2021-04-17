@@ -32,8 +32,8 @@ const WebsiteContent = () => {
         console.log(initialValues)
         setError(null)
       } catch (err) {
-        //console.log(err.response.data.message)
-        //setError(err.response.data.message)
+        //console.log(err.response.data.errors[0])
+        //setError(err.response.data.errors[0])
       }
     }
     fetchData()
@@ -41,11 +41,11 @@ const WebsiteContent = () => {
 
   const validate = values => {
     const errors = {}
-    if (values.achievement.length < 3) {
-      errors.achievement = "Atleast 3 characters are required"
+    if (values.achievement.length < 5) {
+      errors.achievement = "Atleast 5 characters are required"
     }
-    if (values.success.length < 3) {
-      errors.success = "Atleast 3 characters are required"
+    if (values.success.length < 5) {
+      errors.success = "Atleast 5 characters are required"
     }
 
     return errors
@@ -72,7 +72,7 @@ const WebsiteContent = () => {
       setError(null)
       console.log(resData)
     } catch (err) {
-      setError(err.response)
+      setError(err.response.data.errors[0])
       console.log(err.response)
     }
     setClicked(true)
