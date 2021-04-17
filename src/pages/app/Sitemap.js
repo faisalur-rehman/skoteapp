@@ -16,36 +16,37 @@ const WebsiteContent = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
 
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       try {
-  //         const { data } = await formGetData(
-  //           "/services/wg-objective",
-  //           localStorage.getItem("token")
-  //         )
-  //         if (data) {
-  //           setId(data.objective["_id"])
-  //           initialValues.indication = data.objective.indication
-  //           initialValues.success = data.objective.success
-  //           setValues(initialValues)
-  //         }
-  //         console.log(initialValues)
-  //         setError(null)
-  //       } catch (err) {
-  //         console.log(err.response.data.message)
-  //         setError(err.response.data.message)
-  //       }
-  //     }
-  //     fetchData()
-  //   }, [])
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/services/wg-sitemap",
+          localStorage.getItem("token")
+        )
+        console.log(data.sitemap)
+        if (data.sitemap) {
+          setId(data.sitemap["_id"])
+          initialValues.indication = data.sitemap.indication
+          initialValues.outline = data.sitemap.outline
+          setValues(initialValues)
+        }
+        console.log(initialValues)
+        setError(null)
+      } catch (err) {
+        console.log(err.response.data.message)
+        setError(err.response.data.message)
+      }
+    }
+    fetchData()
+  }, [])
 
   const validate = values => {
     const errors = {}
-    if (!values.indication) {
-      errors.indication = "Required"
+    if (values.indication.length < 3) {
+      errors.indication = "Atleast 3 characters are required"
     }
-    if (!values.outline) {
-      errors.outline = "Required"
+    if (values.outline.length < 3) {
+      errors.outline = "Atleast 3 characters are required"
     }
 
     return errors
@@ -57,14 +58,14 @@ const WebsiteContent = () => {
     try {
       if (value) {
         resData = await patchData(
-          "/services/sitemap",
+          "/services/wg-sitemap",
           id,
           data,
           localStorage.getItem("token")
         )
       } else {
         resData = await formPostData(
-          "/services/sitemap",
+          "/services/wg-sitemap",
           data,
           localStorage.getItem("token")
         )
