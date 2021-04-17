@@ -40,6 +40,9 @@ import PATargetMarket from "pages/app/PATargetMarket"
 import Posting from "pages/app/Posting"
 import CantTalkAbout from "pages/app/CantTalkAbout"
 import Comments from "pages/app/Comments"
+import SocialAccount from "pages/app/SocialAccounts"
+import FacebookUrl from "pages/app/FacebookUrl"
+import AccessAccount from "pages/app/AccessAccount"
 
 export const publicRoutes = [
   { path: "/login", component: Login },
@@ -87,8 +90,11 @@ const userRoutes = [
   //Social Media Management
 
   { path: "/posting", component: Posting },
-  { path: "/cantTalkAbout", component: CantTalkAbout },
-  { path: "/comments", component: Comments },
+  // { path: "/cantTalkAbout", component: CantTalkAbout },
+  // { path: "/comments", component: Comments },
+  { path: "/socialAccounts", component: SocialAccount },
+  { path: "/fbUrl", component: FacebookUrl },
+  { path: "/accessAccount", component: AccessAccount },
 
   // this route should be at the end of all other routes
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },

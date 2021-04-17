@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Field, ErrorMessage } from "formik"
+import { Formik, Form, Field, ErrorMessage } from "formik"
 import FormikComponent from "./Formik"
 import { Row, Col, Button } from "reactstrap"
 import { Redirect } from "react-router-dom"
@@ -7,6 +7,10 @@ import { formPostData, formGetData, patchData } from "./ApiRequest"
 
 const initialValues = {
   tone: "",
+  cantTalk: "",
+  comments: "",
+  picked: "",
+  website: "",
 }
 
 const Posting = () => {
@@ -44,10 +48,22 @@ const Posting = () => {
     if (values.tone.length < 3) {
       errors.tone = "Atleast 3 characters are required"
     }
+    if (values.cantTalk.length < 3) {
+      errors.cantTalk = "Atleast 3 characters are required"
+    }
+    if (values.comments.length < 5) {
+      errors.comments = "Atleast 5 characters are required"
+    }
+    if (!values.picked) {
+      errors.picked = "Required"
+    }
+    if (!values.website) {
+      errors.website = "Required"
+    }
     return errors
   }
 
-  async function handleSubmit(data) {
+  function handleSubmit(data) {
     let resData
     console.log(data)
     // try {
@@ -81,36 +97,106 @@ const Posting = () => {
           <Col sm={2}></Col>
 
           <Col sm={8}>
-            <FormikComponent
+            <Formik
               initialValues={initialValues}
-              handleSubmit={handleSubmit}
               validate={validate}
+              onSubmit={handleSubmit}
             >
-              <p>What tone of voice would you like?</p>
-              <Field
-                name="tone"
-                className="form-control"
-                placeholder="E.g. playful, fun, professional"
-              />
-              <ErrorMessage
-                name="tone"
-                component="div"
-                style={{ color: "red" }}
-              />
-              {/* {error && (
+              {({ values }) => (
+                <>
+                  <p>What tone of voice would you like?</p>
+                  <Field
+                    name="tone"
+                    className="form-control"
+                    placeholder="E.g. playful, fun, professional"
+                  />
+                  <ErrorMessage
+                    name="tone"
+                    component="div"
+                    style={{ color: "red" }}
+                  />
+                  <br />
+                  <p>What can't we talk about?</p>
+                  <Field
+                    name="cantTalk"
+                    className="form-control"
+                    placeholder="Please specify what we can’t post"
+                  />
+                  <ErrorMessage
+                    name="cantTalk"
+                    component="div"
+                    style={{ color: "red" }}
+                  />
+                  <br />
+                  <p id="my-radio-group">
+                    Are there websites that we can use for articles/blog
+                    content?
+                  </p>
+
+                  <label>
+                    <Field type="radio" name="picked" value="Yes" />
+                    Yes
+                  </label>
+                  <br />
+                  <label>
+                    <Field type="radio" name="picked" value="No" />
+                    No
+                  </label>
+                  <br />
+                  <ErrorMessage
+                    name="picked"
+                    component="div"
+                    style={{ color: "red" }}
+                  />
+                  {values.picked === "Yes" && (
+                    <div>
+                      <p>Website:</p>
+                      <Field
+                        type="text"
+                        name="website"
+                        className="form-control"
+                      />
+                      <br />
+                      <ErrorMessage
+                        name="website"
+                        component="div"
+                        style={{ color: "red" }}
+                      />
+                    </div>
+                  )}
+                  <br />
+                  <p>
+                    Do you have any other comments or feedback regarding
+                    posting?
+                  </p>
+                  <Field
+                    name="comments"
+                    className="form-control"
+                    placeholder="Your comments"
+                  />
+                  <ErrorMessage
+                    name="comments"
+                    component="div"
+                    style={{ color: "red" }}
+                  />
+                  <br />
+
+                  {/* {error && (
                 <p style={{ color: "red" }}>
                   {error}. Please check the Web Development checkbox in
                   CheckList form section in order to submit this form.
                 </p>
               )} */}
 
-              <div>
-                <Button type="submit" className="w-md mt-2" color="primary">
-                  Submit
-                </Button>
-                {/* {!error && clicked && <Redirect to="advancedFeatures" />} */}
-              </div>
-            </FormikComponent>
+                  <div>
+                    <Button type="submit" className="w-md mt-2" color="primary">
+                      Submit
+                    </Button>
+                    {/* {!error && clicked && <Redirect to="advancedFeatures" />} */}
+                  </div>
+                </>
+              )}
+            </Formik>
           </Col>
           <Col sm={2}></Col>
         </Row>
