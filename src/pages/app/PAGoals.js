@@ -15,38 +15,38 @@ const PAGoals = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
 
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       try {
-  //         const { data } = await formGetData(
-  //           "/services/wg-goal",
-  //           localStorage.getItem("token")
-  //         )
-  //         console.log(data.goal)
-  //         if (data.goal) {
-  //           setId(data.goal["_id"])
-  //           if (
-  //             data.goal.goal === "Promote a brand and image" ||
-  //             data.goal.goal === "Promote a product range" ||
-  //             data.goal.goal === "Improve access information" ||
-  //             data.goal.goal === "Create a web presence" ||
-  //             data.goal.goal === "Increase sales lead"
-  //           ) {
-  //             initialValues.goal = data.goal.goal
-  //           } else {
-  //             initialValues.goal = "other"
-  //             initialValues.otherGoal = data.goal.goal
-  //           }
-  //           setValues(initialValues)
-  //         }
-  //         setError(null)
-  //       } catch (error) {
-  //         console.log(error)
-  //         setError(error.response)
-  //       }
-  //     }
-  //     fetchData()
-  //   }, [])
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/services/advertise/offer-goal",
+          localStorage.getItem("token")
+        )
+        console.log(data)
+        if (data.payload) {
+          setId(data.payload["_id"])
+          if (
+            data.payload.goal === "Promote a brand and image" ||
+            data.payload.goal === "Promote a product range" ||
+            data.payload.goal === "Improve access information" ||
+            data.payload.goal === "Create a web presence" ||
+            data.payload.goal === "Increase sales lead"
+          ) {
+            initialValues.goal = data.payload.goal
+          } else {
+            initialValues.goal = "other"
+            initialValues.otherGoal = data.payload.goal
+          }
+          setValues(initialValues)
+        }
+        setError(null)
+      } catch (error) {
+        console.log(error)
+        setError(error.response)
+      }
+    }
+    fetchData()
+  }, [])
 
   function validate(values) {
     const errors = {}
@@ -64,35 +64,35 @@ const PAGoals = () => {
       goal: "",
     }
     console.log(data)
-    // if (data.goal !== "other") {
-    //   newData.goal = data.goal
-    // } else {
-    //   newData.goal = data.otherGoal
-    // }
-    // console.log(newData)
-    // let resData
-    // try {
-    //   if (values) {
-    //     resData = await patchData(
-    //       "/services/wg-goal",
-    //       id,
-    //       newData,
-    //       localStorage.getItem("token")
-    //     )
-    //   } else {
-    //     resData = await formPostData(
-    //       "/services/wg-goal",
-    //       newData,
-    //       localStorage.getItem("token")
-    //     )
-    //   }
-    //   setError(null)
-    //   console.log(resData)
-    // } catch (error) {
-    //   setError(error.response)
-    //   console.log(error.response)
-    // }
-    // setClicked(true)
+    if (data.goal !== "other") {
+      newData.goal = data.goal
+    } else {
+      newData.goal = data.otherGoal
+    }
+    console.log(newData)
+    let resData
+    try {
+      if (values) {
+        resData = await patchData(
+          "/services/advertise/offer-goal",
+          id,
+          newData,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/services/advertise/offer-goal",
+          newData,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+      console.log(resData)
+    } catch (error) {
+      setError(error.response)
+      console.log(error.response)
+    }
+    setClicked(true)
   }
   return (
     <div className="page-content">
@@ -186,7 +186,7 @@ const PAGoals = () => {
                       Submit
                     </Button>
                   </div>
-                  {!error && clicked && <Redirect to="objectives" />}
+                  {/* {!error && clicked && <Redirect to="objectives" />} */}
                 </Form>
               )}
             </Formik>
