@@ -1,8 +1,9 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Field, ErrorMessage } from "formik"
 import FormikComponent from "./Formik"
 import { Row, Col, Button } from "reactstrap"
 import { Redirect } from "react-router-dom"
+import { formPostData, formGetData, patchData } from "./ApiRequest"
 
 const initialValues = {
   style: "",
@@ -14,6 +15,31 @@ const WebsiteContent = () => {
   const [error, setError] = useState(null)
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/services/design/style",
+          localStorage.getItem("token")
+        )
+        console.log(data.style)
+        if (data.style) {
+          setId(data.style["_id"])
+
+          initialValues.style = data.style.style
+          initialValues.perceive = data.style.perceive
+
+          setValues(initialValues)
+          setError(null)
+        }
+        console.log(initialValues)
+      } catch (error) {
+        setError(error.response)
+      }
+    }
+    fetchData()
+  }, [])
 
   const validate = values => {
     const errors = {}
@@ -32,14 +58,14 @@ const WebsiteContent = () => {
     try {
       if (value) {
         resData = await patchData(
-          "/business/style",
+          "/services/design/style",
           id,
           data,
           localStorage.getItem("token")
         )
       } else {
         resData = await formPostData(
-          "/business/style",
+          "/services/design/style",
           data,
           localStorage.getItem("token")
         )
