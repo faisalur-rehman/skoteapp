@@ -7,7 +7,7 @@ import { Redirect } from "react-router-dom"
 
 const initialValues = {
   description: "",
-  web_addresses: [],
+  websites: [],
   webAddress1: "",
   webAddress2: "",
   webAddress3: "",
@@ -18,28 +18,29 @@ const PACompetitors = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
 
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       try {
-  //         const { data } = await formGetData(
-  //           "/business/competitor",
-  //           localStorage.getItem("token")
-  //         )
-  //         if (data.competitor !== null) {
-  //           setId(data.competitor["_id"])
-  //           initialValues.description = data.competitor.description
-  //           initialValues.webAddress1 = data.competitor.web_addresses[0]
-  //           initialValues.webAddress2 = data.competitor.web_addresses[1]
-  //           initialValues.webAddress3 = data.competitor.web_addresses[2]
-  //           setValues(initialValues)
-  //         }
-  //         setError(null)
-  //       } catch (err) {
-  //         setError(err.response)
-  //       }
-  //     }
-  //     fetchData()
-  //   }, [])
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/services/advertise/offer-competitor",
+          localStorage.getItem("token")
+        )
+        console.log(data)
+        if (data.competitor) {
+          setId(data.competitor["_id"])
+          initialValues.description = data.competitor.description
+          initialValues.webAddress1 = data.competitor.websites[0]
+          initialValues.webAddress2 = data.competitor.websites[1]
+          initialValues.webAddress3 = data.competitor.websites[2]
+          setValues(initialValues)
+        }
+        setError(null)
+      } catch (err) {
+        setError(err.response)
+      }
+    }
+    fetchData()
+  }, [])
   function validate(values) {
     const errors = {}
     if (values.description.length < 3) {
@@ -48,38 +49,39 @@ const PACompetitors = () => {
     return errors
   }
   async function handleSubmit(data) {
-    // console.log("form data", data)
-    // let resData
-    // initialValues.web_addresses.push(data.webAddress1)
-    // initialValues.web_addresses.push(data.webAddress2)
-    // initialValues.web_addresses.push(data.webAddress3)
-    // let { description, web_addresses } = initialValues
-    // let newData = {
-    //   description: data.description,
-    //   web_addresses,
-    // }
-    // try {
-    //   if (value) {
-    //     resData = await patchData(
-    //       "/business/competitor",
-    //       id,
-    //       newData,
-    //       localStorage.getItem("token")
-    //     )
-    //   } else {
-    //     resData = await formPostData(
-    //       "/business/competitor",
-    //       newData,
-    //       localStorage.getItem("token")
-    //     )
-    //   }
-    //   setError(null)
-    //   initialValues.web_addresses = []
-    // } catch (err) {
-    //   setError(err.response.data.errors[0])
-    //   initialValues.web_addresses = []
-    // }
-    // setClicked(true)
+    console.log("form data", data)
+    let resData
+    initialValues.websites.push(data.webAddress1)
+    initialValues.websites.push(data.webAddress2)
+    initialValues.websites.push(data.webAddress3)
+    let { description, websites } = initialValues
+    let newData = {
+      description: data.description,
+      websites,
+    }
+    try {
+      if (value) {
+        resData = await patchData(
+          "/services/advertise/offer-competitor",
+          id,
+          newData,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/services/advertise/offer-competitor",
+          newData,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+      initialValues.web_addresses = []
+    } catch (err) {
+      setError(err.response.data.errors[0])
+      console.log(err.response)
+      initialValues.web_addresses = []
+    }
+    setClicked(true)
   }
   return (
     <div className="page-content">
@@ -118,7 +120,7 @@ const PACompetitors = () => {
                   Submit
                 </Button>
               </div>
-              {!error && clicked && <Redirect to="targetMarket" />}
+              {/* {!error && clicked && <Redirect to="targetMarket" />} */}
             </FormikComponent>
           </Col>
           <Col sm={2}></Col>
