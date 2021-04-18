@@ -1,12 +1,13 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Formik, Field, Form, ErrorMessage } from "formik"
 import FormikComponent from "./Formik"
 import { Row, Col, Button } from "reactstrap"
+import { formPostData, formGetData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
 
 const initialValues = {
-  picked: "",
-  color: "",
+  preference: "",
+  hasPreference: "",
 }
 
 const WebsiteColor = () => {
@@ -15,13 +16,38 @@ const WebsiteColor = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/services/design/color",
+          localStorage.getItem("token")
+        )
+        console.log(data.style)
+        if (data.style) {
+          setId(data.style["_id"])
+
+          initialValues.style = data.style.style
+          initialValues.perceive = data.style.perceive
+
+          setValues(initialValues)
+          setError(null)
+        }
+        console.log(initialValues)
+      } catch (error) {
+        setError(error.response)
+      }
+    }
+    fetchData()
+  }, [])
+
   function validate(values) {
     const errors = {}
-    if (!values.picked) {
-      errors.picked = "Required"
+    console.log(values)
+    if (!values.hasPreference) {
+      errors.hasPreference = "Required"
     }
-    if (!values.color) {
-      errors.color = "Required"
+    if (values.hasPreference) {
     }
     return errors
   }
@@ -32,14 +58,14 @@ const WebsiteColor = () => {
     try {
       if (value) {
         resData = await patchData(
-          "/business/style",
+          "/services/design/color",
           id,
           data,
           localStorage.getItem("token")
         )
       } else {
         resData = await formPostData(
-          "/business/style",
+          "/services/design/color",
           data,
           localStorage.getItem("token")
         )
@@ -68,12 +94,12 @@ const WebsiteColor = () => {
                   <p id="my-radio-group">Your color preference</p>
 
                   <label>
-                    <Field type="radio" name="picked" value="Yes" />
+                    <Field type="radio" name="hasPreference" value={true} />
                     Yes
                   </label>
                   <br />
                   <label>
-                    <Field type="radio" name="picked" value="No" />
+                    <Field type="radio" name="hasPreference" value={false} />
                     No
                   </label>
                   <br />
@@ -87,12 +113,12 @@ const WebsiteColor = () => {
                       <p>Your color Preference</p>
                       <Field
                         type="text"
-                        name="color"
+                        name="hasPreference"
                         className="form-control"
                       />
                       <br />
                       <ErrorMessage
-                        name="color"
+                        name="hasPreference"
                         component="div"
                         style={{ color: "red" }}
                       />
