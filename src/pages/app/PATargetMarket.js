@@ -13,26 +13,28 @@ const PATargetMarket = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
 
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       try {
-  //         const { data } = await formGetData(
-  //           "/business/market",
-  //           localStorage.getItem("token")
-  //         )
-  //         if (data.targetMarket) {
-  //           setId(data.targetMarket["_id"])
-  //           initialValues.niche_market = data.targetMarket.niche_market
-  //           initialValues.target_audience = data.targetMarket.target_audience
-  //           setValues(initialValues)
-  //         }
-  //         setError(null)
-  //       } catch (err) {
-  //         setError(err.response)
-  //       }
-  //     }
-  //     fetchData()
-  //   }, [])
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/services/advertise/offer-target",
+          localStorage.getItem("token")
+        )
+        console.log(data)
+        if (data.payload) {
+          setId(data.payload["_id"])
+          initialValues.niche_market = data.payload.niche_market
+          initialValues.target_audience = data.payload.target_audience
+          setValues(initialValues)
+        }
+        setError(null)
+      } catch (err) {
+        setError(err.response)
+        console.log(err.response)
+      }
+    }
+    fetchData()
+  }, [])
   function validate(values) {
     const errors = {}
     if (values.target_audience.length < 3) {
@@ -46,26 +48,27 @@ const PATargetMarket = () => {
   async function handleSubmit(data) {
     let resData
     console.log(data)
-    // try {
-    //   if (values) {
-    //     resData = await patchData(
-    //       "/business/market",
-    //       id,
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   } else {
-    //     resData = await formPostData(
-    //       "/business/market",
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   }
-    //   setError(null)
-    // } catch (err) {
-    //   setError(err.response)
-    // }
-    // setClicked(true)
+    try {
+      if (values) {
+        resData = await patchData(
+          "/services/advertise/offer-target",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/services/advertise/offer-target",
+          data,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+    } catch (err) {
+      setError(err.response)
+      console.log(err.response)
+    }
+    setClicked(true)
   }
   return (
     <div className="page-content">
@@ -107,7 +110,7 @@ const PATargetMarket = () => {
                   Submit
                 </Button>
               </div>
-              {!error && clicked && <Redirect to="clients" />}
+              {/* {!error && clicked && <Redirect to="clients" />} */}
             </FormikComponent>
           </Col>
           <Col sm={2}></Col>
