@@ -45,6 +45,7 @@ import FacebookUrl from "pages/app/FacebookUrl"
 import AccessAccount from "pages/app/AccessAccount"
 import AdAccount from "pages/app/AdAccount"
 import LogoDesign from "pages/app/LogoDesign"
+import WebInfo from "pages/app/WebInfo"
 
 export const publicRoutes = [
   { path: "/login", component: Login },
@@ -98,6 +99,8 @@ const userRoutes = [
   { path: "/fbUrl", component: FacebookUrl },
   { path: "/accessAccount", component: AccessAccount },
   { path: "/adAccount", component: AdAccount },
+  { path: "/webInfo", component: WebInfo },
+
   { path: "/logoDesign", component: LogoDesign },
 
   // this route should be at the end of all other routes
