@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Formik, Field, FieldArray, Form } from "formik"
 import { Button, Row, Col } from "reactstrap"
 import { Redirect } from "react-router-dom"
@@ -14,6 +14,31 @@ const WebsitesYouLike = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/services/design/dislike",
+          localStorage.getItem("token")
+        )
+        console.log(data.dislike)
+        if (data.dislike) {
+          setId(data.dislike["_id"])
+          data.dislike.websites.map((website, index) => {
+            initialValues[`website${index}`] = website
+            initialValues.websites[index] = website
+          })
+          setValues(initialValues)
+          setError(null)
+        }
+        console.log(initialValues)
+      } catch (error) {
+        setError(error.response)
+      }
+    }
+    fetchData()
+  }, [])
+
   const validate = () => {
     const errors = {}
     return errors
@@ -27,25 +52,28 @@ const WebsitesYouLike = () => {
       websites.push(data[`website${index}`])
     )
     console.log(websites)
+    let newData = {
+      websites,
+    }
     try {
       if (value) {
         resData = await patchData(
-          "/design/dislike",
+          "/services/design/dislike",
           id,
-          data,
+          newData,
           localStorage.getItem("token")
         )
       } else {
         resData = await formPostData(
-          "/design/dislike",
-          data,
+          "/services/design/dislike",
+          newData,
           localStorage.getItem("token")
         )
       }
       setError(null)
       console.log(resData)
     } catch (err) {
-      setError(err.response.data.errors)
+      setError(err.response.data.errors[0])
       console.log(err.response)
     }
   }
@@ -82,6 +110,8 @@ const WebsitesYouLike = () => {
                               className="form-control"
                             />
                           ))}
+                          {error && <p style={{ color: "red" }}>{error}</p>}
+
                           <Button color="secondary" onClick={() => push("")}>
                             Add Website
                           </Button>
