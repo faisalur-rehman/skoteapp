@@ -17,29 +17,29 @@ const FacebookUrl = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
 
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       try {
-  //         const { data } = await formGetData(
-  //           "/services/wg-sitemap",
-  //           localStorage.getItem("token")
-  //         )
-  //         console.log(data.sitemap)
-  //         if (data.sitemap) {
-  //           setId(data.sitemap["_id"])
-  //           initialValues.indication = data.sitemap.indication
-  //           initialValues.outline = data.sitemap.outline
-  //           setValues(initialValues)
-  //         }
-  //         console.log(initialValues)
-  //         setError(null)
-  //       } catch (err) {
-  //         console.log(err.response.data.message)
-  //         setError(err.response.data.message)
-  //       }
-  //     }
-  //     fetchData()
-  //   }, [])
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/services/social-media/fb-credential",
+          localStorage.getItem("token")
+        )
+        console.log(data.payload)
+        if (data.payload) {
+          setId(data.payload["_id"])
+          initialValues.credential = data.payload.credential
+          initialValues.first = data.payload.first
+          initialValues.last = data.payload.last
+          setValues(initialValues)
+        }
+        setError(null)
+      } catch (err) {
+        console.log(err.response.data.message)
+        setError(err.response.data.message)
+      }
+    }
+    fetchData()
+  }, [])
 
   const validate = values => {
     const errors = {}
@@ -56,28 +56,28 @@ const FacebookUrl = () => {
   async function handleSubmit(data) {
     let resData
     console.log(data)
-    // try {
-    //   if (value) {
-    //     resData = await patchData(
-    //       "/services/wg-sitemap",
-    //       id,
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   } else {
-    //     resData = await formPostData(
-    //       "/services/wg-sitemap",
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   }
-    //   setError(null)
-    //   console.log(resData)
-    // } catch (err) {
-    //   setError(err.response)
-    //   console.log(err.response)
-    // }
-    // setClicked(true)
+    try {
+      if (value) {
+        resData = await patchData(
+          "/services/social-media/fb-credential",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/services/social-media/fb-credential",
+          data,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+      console.log(resData)
+    } catch (err) {
+      setError(err.response)
+      console.log(err.response)
+    }
+    setClicked(true)
   }
 
   return (
