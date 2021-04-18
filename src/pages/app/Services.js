@@ -14,27 +14,29 @@ const CheckList = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
 
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       try {
-  //         const { data } = await formGetData(
-  //           "/services/checklist",
-  //           localStorage.getItem("token")
-  //         )
-  //         if (data.checkList) {
-  //           setId(data.checkList["_id"])
-  //           data.checkList.services.map(service =>
-  //             initialValues.services.push(service)
-  //           )
-  //           setValues(initialValues)
-  //         }
-  //         setError(null)
-  //       } catch (error) {
-  //         setError(error.response)
-  //       }
-  //     }
-  //     fetchData()
-  //   }, [])
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/services/advertise/service",
+          localStorage.getItem("token")
+        )
+        console.log(data.payload)
+        if (data.payload) {
+          setId(data.payload["_id"])
+          data.payload.services.map(
+            (service, index) => (initialValues.services[index] = service)
+          )
+          setValues(initialValues)
+        }
+        setError(null)
+      } catch (err) {
+        setError(err.response)
+        console.log(err.response)
+      }
+    }
+    fetchData()
+  }, [])
 
   function validate(values) {
     const errors = {}
@@ -47,26 +49,27 @@ const CheckList = () => {
   async function handleSubmit(data) {
     let resData
     console.log(data)
-    // try {
-    //   if (value) {
-    //     resData = await patchData(
-    //       "/services/checklist",
-    //       id,
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   } else {
-    //     resData = await formPostData(
-    //       "/services/checklist",
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   }
-    //   setError(null)
-    // } catch (error) {
-    //   setError(error.response)
-    // }
-    // setClicked(true)
+    try {
+      if (value) {
+        resData = await patchData(
+          "/services/advertise/service",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/services/advertise/service",
+          data,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+    } catch (err) {
+      setError(err.response)
+      console.log(err.response)
+    }
+    setClicked(true)
   }
   return (
     <div className="page-content">
