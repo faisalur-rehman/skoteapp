@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { Formik, Field, FieldArray, Form } from "formik"
 import { Button, Row, Col } from "reactstrap"
 import { Redirect } from "react-router-dom"
+import { formPostData, formGetData, patchData } from "./ApiRequest"
 
 const initialValues = {
   websites: [""],
@@ -29,14 +30,14 @@ const WebsitesYouLike = () => {
     try {
       if (value) {
         resData = await patchData(
-          "/business/dislike",
+          "/design/dislike",
           id,
           data,
           localStorage.getItem("token")
         )
       } else {
         resData = await formPostData(
-          "/business/dislike",
+          "/design/dislike",
           data,
           localStorage.getItem("token")
         )

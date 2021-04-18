@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Formik, Field, FieldArray, ErrorMessage, Form } from "formik"
 import { Button, Row, Col } from "reactstrap"
 import { Redirect } from "react-router-dom"
+import { formPostData, formGetData, patchData } from "./ApiRequest"
 
 const initialValues = { websites: [""] }
 
@@ -10,6 +11,32 @@ const WebsitesYouLike = () => {
   const [error, setError] = useState(null)
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/services/design/like",
+          localStorage.getItem("token")
+        )
+        console.log(data.like)
+        if (data.like) {
+          setId(data.like["_id"])
+          data.like.websites.map((website, index) => {
+            initialValues[`website${index}`] = website
+            initialValues.websites[index] = website
+          })
+          setValues(initialValues)
+          setError(null)
+        }
+        console.log(initialValues)
+      } catch (error) {
+        setError(error.response)
+      }
+    }
+    fetchData()
+  }, [])
+
   function validate(values) {
     const errors = {}
     if (values.websites.length < 3) {
@@ -25,26 +52,27 @@ const WebsitesYouLike = () => {
     data.websites.map((website, index) =>
       websites.push(data[`website${index}`])
     )
-    console.log(websites)
+    let newData = {
+      websites,
+    }
+    console.log(websites, newData)
     try {
       if (value) {
         resData = await patchData(
-          "/business/websitesYouLike",
+          "/services/design/like",
           id,
-          data,
+          newData,
           localStorage.getItem("token")
         )
       } else {
         resData = await formPostData(
-          "/business/websitesYouLike",
-          data,
+          "/services/design/like",
+          newData,
           localStorage.getItem("token")
         )
       }
       setError(null)
-      console.log(resData)
     } catch (err) {
-      // setError(err.response.data.errors)
       setError(err.response.data.errors[0])
       console.log(err.response)
     }
@@ -79,7 +107,6 @@ const WebsitesYouLike = () => {
                               <Field
                                 name={`website${index}`}
                                 type="text"
-                                key={index}
                                 className="form-control"
                               />
                             </div>
