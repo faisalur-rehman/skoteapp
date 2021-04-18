@@ -23,12 +23,16 @@ const WebsiteColor = () => {
           "/services/design/color",
           localStorage.getItem("token")
         )
-        console.log(data.style)
-        if (data.style) {
-          setId(data.style["_id"])
-
-          initialValues.style = data.style.style
-          initialValues.perceive = data.style.perceive
+        console.log(data.color)
+        if (data.color) {
+          setId(data.color["_id"])
+          if (data.color.hasPreference) {
+            initialValues.hasPreference = "true"
+            initialValues.preference = data.color.preference
+          } else {
+            initialValues.hasPreference = "false"
+            initialValues.preference = ""
+          }
 
           setValues(initialValues)
           setError(null)
@@ -47,7 +51,8 @@ const WebsiteColor = () => {
     if (!values.hasPreference) {
       errors.hasPreference = "Required"
     }
-    if (values.hasPreference) {
+    if (values.hasPreference === "true" && !values.preference) {
+      errors.preference = "Required"
     }
     return errors
   }
@@ -55,6 +60,12 @@ const WebsiteColor = () => {
   async function handleSubmit(data) {
     let resData
     console.log(data)
+    if (data.hasPreference === "true") {
+      data.hasPreference = true
+    } else {
+      data.hasPreference = false
+      data.preference = ""
+    }
     try {
       if (value) {
         resData = await patchData(
@@ -72,6 +83,11 @@ const WebsiteColor = () => {
       }
       setError(null)
       console.log(resData)
+      if (data.hasPreference) {
+        data.hasPreference = "true"
+      } else {
+        data.hasPreference = "false"
+      }
     } catch (err) {
       setError(err.response.data.errors)
       console.log(err.response)
@@ -94,31 +110,31 @@ const WebsiteColor = () => {
                   <p id="my-radio-group">Your color preference</p>
 
                   <label>
-                    <Field type="radio" name="hasPreference" value={true} />
+                    <Field type="radio" name="hasPreference" value="true" />
                     Yes
                   </label>
                   <br />
                   <label>
-                    <Field type="radio" name="hasPreference" value={false} />
+                    <Field type="radio" name="hasPreference" value="false" />
                     No
                   </label>
                   <br />
                   <ErrorMessage
-                    name="picked"
+                    name="hasPreference"
                     component="div"
                     style={{ color: "red" }}
                   />
-                  {values.picked === "Yes" && (
+                  {values.hasPreference === "true" && (
                     <div>
                       <p>Your color Preference</p>
                       <Field
                         type="text"
-                        name="hasPreference"
+                        name="preference"
                         className="form-control"
                       />
                       <br />
                       <ErrorMessage
-                        name="hasPreference"
+                        name="preference"
                         component="div"
                         style={{ color: "red" }}
                       />
