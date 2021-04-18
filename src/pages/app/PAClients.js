@@ -13,27 +13,29 @@ const PAClients = () => {
   const [clicked, setClicked] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       try {
-  //         const { data } = await formGetData(
-  //           "/business/customer",
-  //           localStorage.getItem("token")
-  //         )
-  //         if (data.customer) {
-  //           setId(data.customer["_id"])
-  //           data.customer.customers.map(
-  //             (customer, index) => (initialValues.customers[index] = customer)
-  //           )
-  //           setValues(initialValues)
-  //         }
-  //         setError(null)
-  //       } catch (err) {
-  //         setError(err.response)
-  //       }
-  //     }
-  //     fetchData()
-  //   }, [])
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/services/advertise/offer-customer",
+          localStorage.getItem("token")
+        )
+        console.log(data)
+        if (data.payload) {
+          setId(data.payload["_id"])
+          data.payload.customers.map(
+            (customer, index) => (initialValues.customers[index] = customer)
+          )
+          setValues(initialValues)
+        }
+        setError(null)
+      } catch (err) {
+        setError(err.response)
+        console.log(err.response)
+      }
+    }
+    fetchData()
+  }, [])
 
   function validate(values) {
     const errors = {}
@@ -47,27 +49,28 @@ const PAClients = () => {
   async function handleSubmit(data) {
     let resData
     console.log(data)
-    // try {
-    //   if (value) {
-    //     resData = await patchData(
-    //       "/business/customer",
-    //       id,
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   } else {
-    //     resData = await formPostData(
-    //       "/business/customer",
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   }
-    //   setError(null)
-    //   setSubmitted(true)
-    // } catch (err) {
-    //   setError(err.response.data.errors)
-    //   setSubmitted(false)
-    // }
+    try {
+      if (value) {
+        resData = await patchData(
+          "/services/advertise/offer-customer",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/services/advertise/offer-customer",
+          data,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+      setSubmitted(true)
+    } catch (err) {
+      setError(err.response.data.errors)
+      setSubmitted(false)
+      console.log(err.response)
+    }
   }
   return (
     <div className="page-content">
