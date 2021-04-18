@@ -6,10 +6,10 @@ import { Redirect } from "react-router-dom"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 
 const initialValues = {
-  tone: "",
-  cantTalk: "",
-  comments: "",
-  picked: "",
+  voice_tone: "",
+  no_post_specification: "",
+  feedback: "",
+  is_found: "",
   website: "",
 }
 
@@ -19,43 +19,52 @@ const Posting = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
 
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       try {
-  //         const { data } = await formGetData(
-  //           "/services/wg-sitemap",
-  //           localStorage.getItem("token")
-  //         )
-  //         console.log(data.sitemap)
-  //         if (data.sitemap) {
-  //           setId(data.sitemap["_id"])
-  //           initialValues.indication = data.sitemap.indication
-  //           initialValues.outline = data.sitemap.outline
-  //           setValues(initialValues)
-  //         }
-  //         console.log(initialValues)
-  //         setError(null)
-  //       } catch (err) {
-  //         console.log(err.response.data.message)
-  //         setError(err.response.data.message)
-  //       }
-  //     }
-  //     fetchData()
-  //   }, [])
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/services/social-media/post",
+          localStorage.getItem("token")
+        )
+        console.log(data.payload)
+        if (data.payload) {
+          setId(data.payload["_id"])
+          initialValues.feedback = data.payload.feedback
+          initialValues.voice_tone = data.payload.voice_tone
+          if (data.payload.is_found) {
+            initialValues.is_found = "true"
+            initialValues.website = data.payload.website
+          } else {
+            initialValues.is_found = "false"
+            initialValues.website = ""
+          }
+          initialValues.no_post_specification =
+            data.payload.no_post_specification
+
+          setValues(initialValues)
+        }
+        setError(null)
+      } catch (err) {
+        console.log(err.response)
+        // setError(err.response.data.message)
+      }
+    }
+    fetchData()
+  }, [])
 
   const validate = values => {
     const errors = {}
-    if (values.tone.length < 3) {
-      errors.tone = "Atleast 3 characters are required"
+    if (values.voice_tone.length < 3) {
+      errors.voice_tone = "Atleast 3 characters are required"
     }
-    if (values.cantTalk.length < 3) {
-      errors.cantTalk = "Atleast 3 characters are required"
+    if (values.no_post_specification.length < 3) {
+      errors.no_post_specification = "Atleast 3 characters are required"
     }
-    if (values.comments.length < 5) {
-      errors.comments = "Atleast 5 characters are required"
+    if (values.feedback.length < 5) {
+      errors.feedback = "Atleast 5 characters are required"
     }
-    if (!values.picked) {
-      errors.picked = "Required"
+    if (!values.is_found) {
+      errors.is_found = "Required"
     }
     if (!values.website) {
       errors.website = "Required"
@@ -63,31 +72,41 @@ const Posting = () => {
     return errors
   }
 
-  function handleSubmit(data) {
+  async function handleSubmit(data) {
     let resData
     console.log(data)
-    // try {
-    //   if (value) {
-    //     resData = await patchData(
-    //       "/services/wg-sitemap",
-    //       id,
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   } else {
-    //     resData = await formPostData(
-    //       "/services/wg-sitemap",
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   }
-    //   setError(null)
-    //   console.log(resData)
-    // } catch (err) {
-    //   setError(err.response)
-    //   console.log(err.response)
-    // }
-    // setClicked(true)
+    if (data.is_found === "true") {
+      data.is_found = true
+    } else {
+      data.is_found = false
+    }
+    try {
+      if (value) {
+        resData = await patchData(
+          "/services/social-media/post",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/services/social-media/post",
+          data,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+      if (data.is_found) {
+        data.is_found = "true"
+      } else {
+        data.is_found = "false"
+      }
+      console.log(resData)
+    } catch (err) {
+      // setError(err.response)
+      console.log(err.response)
+    }
+    setClicked(true)
   }
 
   return (
@@ -106,24 +125,24 @@ const Posting = () => {
                 <Form>
                   <p>What tone of voice would you like?</p>
                   <Field
-                    name="tone"
+                    name="voice_tone"
                     className="form-control"
                     placeholder="E.g. playful, fun, professional"
                   />
                   <ErrorMessage
-                    name="tone"
+                    name="voice_tone"
                     component="div"
                     style={{ color: "red" }}
                   />
                   <br />
                   <p>What can't we talk about?</p>
                   <Field
-                    name="cantTalk"
+                    name="no_post_specification"
                     className="form-control"
                     placeholder="Please specify what we can’t post"
                   />
                   <ErrorMessage
-                    name="cantTalk"
+                    name="no_post_specification"
                     component="div"
                     style={{ color: "red" }}
                   />
@@ -134,12 +153,12 @@ const Posting = () => {
                   </p>
 
                   <label>
-                    <Field type="radio" name="picked" value="Yes" />
+                    <Field type="radio" name="is_found" value="true" />
                     Yes
                   </label>
                   <br />
                   <label>
-                    <Field type="radio" name="picked" value="No" />
+                    <Field type="radio" name="is_found" value="false" />
                     No
                   </label>
                   <br />
@@ -148,7 +167,7 @@ const Posting = () => {
                     component="div"
                     style={{ color: "red" }}
                   />
-                  {values.picked === "Yes" && (
+                  {/* {values.is_found === "true" && (
                     <div>
                       <p>Website:</p>
                       <Field
@@ -163,19 +182,19 @@ const Posting = () => {
                         style={{ color: "red" }}
                       />
                     </div>
-                  )}
+                  )} */}
                   <br />
                   <p>
                     Do you have any other comments or feedback regarding
                     posting?
                   </p>
                   <Field
-                    name="comments"
+                    name="feedback"
                     className="form-control"
                     placeholder="Your comments"
                   />
                   <ErrorMessage
-                    name="comments"
+                    name="feedback"
                     component="div"
                     style={{ color: "red" }}
                   />
@@ -187,6 +206,12 @@ const Posting = () => {
                   CheckList form section in order to submit this form.
                 </p>
               )} */}
+                  {error && (
+                    <span style={{ color: "red" }}>
+                      {error}.First enroll in social media marketing in the
+                      Checklist section
+                    </span>
+                  )}
 
                   <div>
                     <Button type="submit" className="w-md mt-2" color="primary">
