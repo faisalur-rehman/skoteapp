@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 
 const initialValues = {
-  providingService: "",
+  region: "",
 }
 
 const ProvidingService = () => {
@@ -15,34 +15,32 @@ const ProvidingService = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
 
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       try {
-  //         const { data } = await formGetData(
-  //           "/services/wg-sitemap",
-  //           localStorage.getItem("token")
-  //         )
-  //         console.log(data.sitemap)
-  //         if (data.sitemap) {
-  //           setId(data.sitemap["_id"])
-  //           initialValues.indication = data.sitemap.indication
-  //           initialValues.outline = data.sitemap.outline
-  //           setValues(initialValues)
-  //         }
-  //         console.log(initialValues)
-  //         setError(null)
-  //       } catch (err) {
-  //         console.log(err.response.data.message)
-  //         setError(err.response.data.message)
-  //       }
-  //     }
-  //     fetchData()
-  //   }, [])
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/services/advertise/offer-info",
+          localStorage.getItem("token")
+        )
+        if (data.payload) {
+          setId(data.payload["_id"])
+          initialValues.region = data.payload.region
+          setValues(initialValues)
+        }
+        console.log(initialValues)
+        setError(null)
+      } catch (err) {
+        console.log(err.response)
+        setError(err.response)
+      }
+    }
+    fetchData()
+  }, [])
 
   const validate = values => {
     const errors = {}
-    if (values.providingService.length < 3) {
-      errors.providingService = "Atleast 3 characters are required"
+    if (values.region.length < 3) {
+      errors.region = "Atleast 3 characters are required"
     }
     return errors
   }
@@ -50,28 +48,28 @@ const ProvidingService = () => {
   async function handleSubmit(data) {
     let resData
     console.log(data)
-    // try {
-    //   if (value) {
-    //     resData = await patchData(
-    //       "/services/wg-sitemap",
-    //       id,
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   } else {
-    //     resData = await formPostData(
-    //       "/services/wg-sitemap",
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   }
-    //   setError(null)
-    //   console.log(resData)
-    // } catch (err) {
-    //   setError(err.response)
-    //   console.log(err.response)
-    // }
-    // setClicked(true)
+    try {
+      if (value) {
+        resData = await patchData(
+          "/services/advertise/offer-info",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/services/advertise/offer-info",
+          data,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+      console.log(resData)
+    } catch (err) {
+      setError(err.response)
+      console.log(err.response)
+    }
+    setClicked(true)
   }
 
   return (
@@ -88,12 +86,12 @@ const ProvidingService = () => {
             >
               <p>What city/country do you provide your services?</p>
               <Field
-                name="providingService"
+                name="region"
                 className="form-control"
                 placeholder="city/country"
               />
               <ErrorMessage
-                name="providingService"
+                name="region"
                 component="div"
                 style={{ color: "red" }}
               />
