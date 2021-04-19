@@ -107,7 +107,7 @@ const AboutForm = () => {
                       Next Section
                     </Button>
                   )}
-                  {!error && clicked && <Redirect to="/websitesYouLike" />}
+                  {!error && clicked && <Redirect to="/services" />}
                 </Form>
               )}
             </Formik>

@@ -53,6 +53,7 @@ const Register = () => {
       const resData = await postData("/auth/register", data)
       setError(null)
       setTimeout(() => setRedirect(true), 3000)
+      console.log(resData)
     } catch (err) {
       setError(err.response.data.name)
     }

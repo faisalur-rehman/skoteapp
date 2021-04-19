@@ -143,11 +143,12 @@ const AccessAccount = () => {
                 </Button>
               </div>
             </FormikComponent>
-            {/* {submitted && (
+            {submitted && (
               <Button color="success" onClick={() => setClicked(true)}>
                 Next Section
               </Button>
-            )} */}
+            )}
+            {!error && clicked && <Redirect to="webInfo" />}
           </Col>
           <Col sm={2}></Col>
         </Row>

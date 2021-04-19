@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Field, ErrorMessage } from "formik"
 import FormikComponent from "./Formik"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
+import { Redirect } from "react-router-dom"
 
 import { Row, Col, Button } from "reactstrap"
 
@@ -90,6 +91,7 @@ const AccessAccount = () => {
       console.log(err.response)
       setSubmitted(false)
     }
+    setClicked(true)
   }
 
   return (
@@ -164,6 +166,8 @@ const AccessAccount = () => {
                 </Button>
               </div>
             </FormikComponent>
+            {!error && clicked && <Redirect to="webInfo" />}
+
             {/* {submitted && (
               <Button color="success" onClick={() => setClicked(true)}>
                 Next Section

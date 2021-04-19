@@ -224,6 +224,58 @@ const SidebarContent = props => {
               </ul>
             </li>
             <li>
+              <Link to="/#" className="has-arrow waves-effect">
+                <i className="bx bx-store"></i>
+                <span>{props.t("Paid Advertising")}</span>
+              </Link>
+              <ul className="sub-menu" aria-expanded="false">
+                <li>
+                  <Link to="/services">{props.t("Services")}</Link>
+                </li>
+                <li>
+                  <Link to="/providingService">
+                    {props.t("Provide Services to")}
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/paCompetitors">{props.t("Competitors")}</Link>
+                </li>
+                <li>
+                  <Link to="/paClients">{props.t("Clients")}</Link>
+                </li>
+                <li>
+                  <Link to="/paGoals">{props.t("Goals")}</Link>
+                </li>
+                <li>
+                  <Link to="/paTargetMarket">{props.t("Target Market")}</Link>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <Link to="/#" className="has-arrow waves-effect">
+                <i className="bx bx-store"></i>
+                <span>{props.t("Social Media Management")}</span>
+              </Link>
+              <ul className="sub-menu" aria-expanded="false">
+                <li>
+                  <Link to="/posting">{props.t("Posting")}</Link>
+                </li>
+                <li>
+                  <Link to="/socialAccounts">{props.t("Social Accounts")}</Link>
+                </li>
+                <li>
+                  <Link to="/fbUrl">{props.t("Facebook URL")}</Link>
+                </li>
+                <li>
+                  <Link to="/accessAccount">{props.t("Access Account")}</Link>
+                </li>
+
+                <li>
+                  <Link to="/webInfo">{props.t("Your Website")}</Link>
+                </li>
+              </ul>
+            </li>
+            <li>
               <Link to="/companyDetail">
                 <i className="bx bx-store"></i>
                 <span>{props.t("Company Detail")}</span>

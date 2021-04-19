@@ -3,6 +3,7 @@ import { Field, ErrorMessage } from "formik"
 import FormikComponent from "./Formik"
 import { Row, Col, Button } from "reactstrap"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
+import { Redirect } from "react-router-dom"
 
 const initialValues = {
   has_content_ready: "",
@@ -170,6 +171,7 @@ const WebsiteContent = () => {
                 Next Section
               </Button>
             )}
+            {!error && clicked && <Redirect to="checklist" />}
           </Col>
           <Col sm={2}></Col>
         </Row>

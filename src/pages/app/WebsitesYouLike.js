@@ -29,9 +29,10 @@ const WebsitesYouLike = () => {
           setValues(initialValues)
           setError(null)
         }
-        console.log(initialValues)
+        // console.log(initialValues)
       } catch (error) {
-        setError(error.response)
+        console.log(error.response)
+        setError(error.response.data.message)
       }
     }
     fetchData()
@@ -76,6 +77,7 @@ const WebsitesYouLike = () => {
       setError(err.response.data.errors[0])
       console.log(err.response)
     }
+    setClicked(true)
   }
   return (
     <div className="page-content">

@@ -41,6 +41,13 @@ export async function patchData(endpoint, id, data, token) {
     }
   )
 }
+export async function getUsers(endpoint, token) {
+  return api.get(`${endpoint}`, {
+    headers: {
+      "x-auth-token": token,
+    },
+  })
+}
 export async function deleteData(endpoint, id, token) {
   return api.patch(`${endpoint}/${id}`, {
     headers: {

@@ -1,5 +1,6 @@
 import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
+import { getUsers } from "../app/ApiRequest"
 import MetaTags from "react-meta-tags"
 import {
   Container,
@@ -8,6 +9,8 @@ import {
   Button,
   Card,
   CardBody,
+  CardTitle,
+  Badge,
   Input,
   Modal,
   ModalHeader,
@@ -31,6 +34,7 @@ import SocialSource from "./SocialSource"
 import ActivityComp from "./ActivityComp"
 import TopCities from "./TopCities"
 import LatestTranaction from "./LatestTranaction"
+import axios from "axios"
 
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb"
@@ -39,6 +43,22 @@ import Breadcrumbs from "../../components/Common/Breadcrumb"
 import { withTranslation } from "react-i18next"
 
 const Dashboard = props => {
+  const [users, setUsers] = useState([])
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await getUsers("/user", localStorage.getItem("token"))
+        console.log(data)
+        setUsers(() => [...data.users])
+        console.log(users)
+      } catch (error) {
+        console.log(error.response)
+        // setError(error.response)
+      }
+    }
+    fetchData()
+  }, [])
+
   const [modal, setmodal] = useState(false)
   const [subscribemodal, setSubscribemodal] = useState(false)
 
@@ -75,9 +95,8 @@ const Dashboard = props => {
           {/* Render Breadcrumb */}
           <Breadcrumbs
             title={props.t("Dashboards")}
-            breadcrumbItem={props.t("Dashboard")}
+            breadcrumbItem={props.t("Dashboard updated")}
           />
-
           <Row>
             <Col xl="12">
               <Row>
@@ -110,6 +129,43 @@ const Dashboard = props => {
               </Row>
             </Col>
           </Row>
+          <Card>
+            <CardBody>
+              <CardTitle className="mb-4">All Users</CardTitle>
+              <div className="table-responsive">
+                <table className="table align-middle table-nowrap mb-0">
+                  <thead className="table-light">
+                    <tr>
+                      <th className="align-middle">Name</th>
+                      <th className="align-middle">Company</th>
+                      <th className="align-middle">Email</th>
+                      <th className="align-middle">View Details</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {users &&
+                      users.map((user, key) => (
+                        <tr key={"_tr_" + key}>
+                          <td>{user.name}</td>
+                          <td>{user.company}</td>
+                          <td>{user.email}</td>
+                          <td>
+                            <Button
+                              type="button"
+                              color="primary"
+                              size="sm"
+                              className="btn-rounded waves-effect waves-light"
+                            >
+                              View Details
+                            </Button>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+            </CardBody>
+          </Card>
         </Container>
       </div>
     </React.Fragment>

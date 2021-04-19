@@ -92,6 +92,7 @@ const WebsiteColor = () => {
       setError(err.response.data.errors)
       console.log(err.response)
     }
+    setClicked(true)
   }
 
   return (

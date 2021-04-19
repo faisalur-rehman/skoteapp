@@ -36,6 +36,9 @@ const ProfileMenu = props => {
       }
     }
   }, [props.success])
+  function handleLogout() {
+    localStorage.removeItem("token")
+  }
 
   return (
     <React.Fragment>
@@ -79,9 +82,7 @@ const ProfileMenu = props => {
           <div className="dropdown-divider" />
           <Link to="/login" className="dropdown-item">
             <i className="bx bx-power-off font-size-16 align-middle me-1 text-danger" />
-            <span onClick={() => localStorage.removeItem("token")}>
-              {props.t("Logout")}
-            </span>
+            <span onClick={handleLogout}>{props.t("Logout")}</span>
           </Link>
         </DropdownMenu>
       </Dropdown>

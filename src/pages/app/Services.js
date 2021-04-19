@@ -114,7 +114,7 @@ const CheckList = () => {
                   <Button type="submit" color="primary">
                     Submit
                   </Button>
-                  {/* {!error && clicked && <Redirect to="websiteGoals" />} */}
+                  {!error && clicked && <Redirect to="providingService" />}
                 </Form>
               )}
             </Formik>

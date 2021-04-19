@@ -76,6 +76,7 @@ const WebsitesYouLike = () => {
       setError(err.response.data.errors[0])
       console.log(err.response)
     }
+    setClicked(true)
   }
 
   return (
