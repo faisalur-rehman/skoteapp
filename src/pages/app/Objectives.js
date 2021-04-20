@@ -10,7 +10,7 @@ const initialValues = {
   success: "",
 }
 
-const WebsiteContent = () => {
+const Objectives = () => {
   const [value, setValues] = useState()
   const [error, setError] = useState(null)
   const [id, setId] = useState()
@@ -135,4 +135,4 @@ const WebsiteContent = () => {
   )
 }
 
-export default WebsiteContent
+export default Objectives

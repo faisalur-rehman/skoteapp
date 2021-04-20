@@ -19,7 +19,7 @@ import {
   Media,
   Table,
 } from "reactstrap"
-import { Link } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 
 //import Charts
 import StackedColumnChart from "./StackedColumnChart"
@@ -28,13 +28,6 @@ import modalimage1 from "../../assets/images/product/img-7.png"
 import modalimage2 from "../../assets/images/product/img-4.png"
 
 // Pages Components
-import WelcomeComp from "./WelcomeComp"
-import MonthlyEarning from "./MonthlyEarning"
-import SocialSource from "./SocialSource"
-import ActivityComp from "./ActivityComp"
-import TopCities from "./TopCities"
-import LatestTranaction from "./LatestTranaction"
-import axios from "axios"
 
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb"
@@ -44,6 +37,8 @@ import { withTranslation } from "react-i18next"
 
 const Dashboard = props => {
   const [users, setUsers] = useState([])
+  const [clicked, setClicked] = useState(false)
+  const [index, setIndex] = useState()
   useEffect(() => {
     async function fetchData() {
       try {
@@ -58,6 +53,11 @@ const Dashboard = props => {
     }
     fetchData()
   }, [])
+  function handleClick(index) {
+    console.log(index)
+    setClicked(true)
+    setIndex(index)
+  }
 
   const [modal, setmodal] = useState(false)
   const [subscribemodal, setSubscribemodal] = useState(false)
@@ -77,12 +77,6 @@ const Dashboard = props => {
     { title: "Year", linkto: "#", isActive: true },
   ]
 
-  useEffect(() => {
-    setTimeout(() => {
-      setSubscribemodal(true)
-    }, 2000)
-  }, [])
-
   return (
     <React.Fragment>
       <div className="page-content">
@@ -95,7 +89,7 @@ const Dashboard = props => {
           {/* Render Breadcrumb */}
           <Breadcrumbs
             title={props.t("Dashboards")}
-            breadcrumbItem={props.t("Dashboard updated")}
+            breadcrumbItem={props.t("Dashboard")}
           />
           <Row>
             <Col xl="12">
@@ -151,13 +145,21 @@ const Dashboard = props => {
                           <td>{user.email}</td>
                           <td>
                             <Button
-                              type="button"
                               color="primary"
                               size="sm"
                               className="btn-rounded waves-effect waves-light"
+                              onClick={() => handleClick(key)}
                             >
                               View Details
                             </Button>
+                            {clicked && (
+                              <Redirect
+                                to={{
+                                  pathname: "/singleRecord",
+                                  state: { id: users[index]._id },
+                                }}
+                              />
+                            )}
                           </td>
                         </tr>
                       ))}

@@ -276,6 +276,20 @@ const SidebarContent = props => {
               </ul>
             </li>
             <li>
+              <Link to="/#" className="has-arrow waves-effect">
+                <i className="bx bx-store"></i>
+                <span>{props.t("Logo Design")}</span>
+              </Link>
+              <ul className="sub-menu" aria-expanded="false">
+                <li>
+                  <Link to="/logoDesign">{props.t("Logo Design")}</Link>
+                </li>
+                <li>
+                  <Link to="/socialAccounts">{props.t("Social Accounts")}</Link>
+                </li>
+              </ul>
+            </li>
+            <li>
               <Link to="/companyDetail">
                 <i className="bx bx-store"></i>
                 <span>{props.t("Company Detail")}</span>

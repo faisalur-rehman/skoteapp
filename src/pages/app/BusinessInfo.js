@@ -31,7 +31,7 @@ const BusinessInfo = () => {
         }
         setError(null)
       } catch (err) {
-        setError(err.response)
+        // setError(err.response)
       }
     }
     fetchData()

@@ -55,3 +55,10 @@ export async function deleteData(endpoint, id, token) {
     },
   })
 }
+export async function getUserDataForAdmin(endpoint, token) {
+  return api.get(`${endpoint}`, {
+    headers: {
+      "x-auth-token": token,
+    },
+  })
+}

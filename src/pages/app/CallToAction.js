@@ -8,7 +8,7 @@ const initialValues = {
   action: "",
 }
 
-const AboutForm = () => {
+const CallToAction = () => {
   const [error, setError] = useState(null)
   const [values, setValues] = useState()
   const [id, setId] = useState()
@@ -119,4 +119,4 @@ const AboutForm = () => {
   )
 }
 
-export default AboutForm
+export default CallToAction

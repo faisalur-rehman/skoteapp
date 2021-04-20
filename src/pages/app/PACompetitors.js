@@ -36,7 +36,7 @@ const PACompetitors = () => {
         }
         setError(null)
       } catch (err) {
-        setError(err.response)
+        // setError(err.response.data.message)
       }
     }
     fetchData()
@@ -120,7 +120,7 @@ const PACompetitors = () => {
                   Submit
                 </Button>
               </div>
-              {/* {!error && clicked && <Redirect to="targetMarket" />} */}
+              {!error && clicked && <Redirect to="paClients" />}
             </FormikComponent>
           </Col>
           <Col sm={2}></Col>

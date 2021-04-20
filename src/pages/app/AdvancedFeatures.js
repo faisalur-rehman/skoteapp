@@ -9,7 +9,7 @@ const initialValues = {
   feature: "",
 }
 
-const WebsiteContent = () => {
+const AdvancedFeatures = () => {
   const [value, setValues] = useState()
   const [error, setError] = useState(null)
   const [id, setId] = useState()
@@ -119,4 +119,4 @@ const WebsiteContent = () => {
   )
 }
 
-export default WebsiteContent
+export default AdvancedFeatures

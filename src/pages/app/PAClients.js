@@ -30,7 +30,7 @@ const PAClients = () => {
         }
         setError(null)
       } catch (err) {
-        setError(err.response)
+        // setError(err.response)
         console.log(err.response)
       }
     }

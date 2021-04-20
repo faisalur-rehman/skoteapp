@@ -10,7 +10,7 @@ const initialValues = {
   perceive: "",
 }
 
-const WebsiteContent = () => {
+const WebsiteStyle = () => {
   const [value, setValues] = useState()
   const [error, setError] = useState(null)
   const [id, setId] = useState()
@@ -35,7 +35,7 @@ const WebsiteContent = () => {
         }
         console.log(initialValues)
       } catch (error) {
-        setError(error.response)
+        // setError(error.response)
       }
     }
     fetchData()
@@ -123,4 +123,4 @@ const WebsiteContent = () => {
   )
 }
 
-export default WebsiteContent
+export default WebsiteStyle

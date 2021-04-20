@@ -9,7 +9,7 @@ const initialValues = {
   otherGoal: "",
 }
 
-const AboutForm = () => {
+const WebsiteGoals = () => {
   const [error, setError] = useState(null)
   const [values, setValues] = useState()
   const [id, setId] = useState()
@@ -198,4 +198,4 @@ const AboutForm = () => {
   )
 }
 
-export default AboutForm
+export default WebsiteGoals

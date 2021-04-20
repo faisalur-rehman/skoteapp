@@ -8,7 +8,7 @@ const initialValues = {
   websites: [""],
 }
 
-const WebsitesYouLike = () => {
+const WebsitesYouDisLike = () => {
   const [value, setValues] = useState()
   const [error, setError] = useState(null)
   const [id, setId] = useState()
@@ -33,7 +33,7 @@ const WebsitesYouLike = () => {
         }
         console.log(initialValues)
       } catch (error) {
-        setError(error.response)
+        // setError(error.response)
       }
     }
     fetchData()
@@ -135,4 +135,4 @@ const WebsitesYouLike = () => {
   )
 }
 
-export default WebsitesYouLike
+export default WebsitesYouDisLike

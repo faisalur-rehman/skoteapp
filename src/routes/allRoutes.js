@@ -46,6 +46,7 @@ import AccessAccount from "pages/app/AccessAccount"
 import AdAccount from "pages/app/AdAccount"
 import LogoDesign from "pages/app/LogoDesign"
 import WebInfo from "pages/app/WebInfo"
+import SingleRecord from "pages/app/SingleRecord"
 
 export const publicRoutes = [
   { path: "/login", component: Login },
@@ -102,6 +103,8 @@ const userRoutes = [
   { path: "/webInfo", component: WebInfo },
 
   { path: "/logoDesign", component: LogoDesign },
+
+  { path: "/singleRecord", component: SingleRecord },
 
   // this route should be at the end of all other routes
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },

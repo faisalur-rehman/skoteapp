@@ -5,7 +5,13 @@ import { Row, Col, Button } from "reactstrap"
 import { formGetData, formPostData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
 
-const initialValues = { text: "", tagline: "", style: "" }
+const initialValues = {
+  exact_text: "",
+  tagline: "",
+  style: "",
+  color_preference: "",
+  has_color_preference: "",
+}
 const LogoDesign = () => {
   const [values, setValues] = useState()
   const [error, setError] = useState(null)
@@ -35,8 +41,8 @@ const LogoDesign = () => {
   //   }, [])
   function validate(values) {
     const errors = {}
-    if (!values.text) {
-      errors.text = "Required"
+    if (!values.exact_text) {
+      errors.exact_text = "Required"
     }
     if (!values.tagline) {
       errors.tagline = "Required"
@@ -44,31 +50,38 @@ const LogoDesign = () => {
     if (!values.style) {
       errors.style = "Required"
     }
+    if (!values.has_color_preference) {
+      errors.has_color_preference = "Required"
+    }
+    if (values.hasPreference === "true" && !values.color_preference) {
+      errors.color_preference = "Required"
+    }
     return errors
   }
   async function handleSubmit(data) {
     let resData
     console.log(data)
-    // try {
-    //   if (values) {
-    //     resData = await patchData(
-    //       "/business/usp",
-    //       id,
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   } else {
-    //     resData = await formPostData(
-    //       "/business/usp",
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   }
-    //   setError(null)
-    // } catch (err) {
-    //   setError(err.response)
-    // }
-    // setClicked(true)
+    try {
+      if (values) {
+        resData = await patchData(
+          "/service/logo-design",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/service/logo-design",
+          data,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+    } catch (err) {
+      setError(err.response)
+      console.log(err.response)
+    }
+    setClicked(true)
   }
   return (
     <div className="page-content">
@@ -88,11 +101,11 @@ const LogoDesign = () => {
                   </label>
                   <Field
                     id="description"
-                    name="text"
+                    name="exact_text"
                     className="form-control"
                   />
                   <ErrorMessage
-                    name="text"
+                    name="exact_text"
                     component="div"
                     style={{ color: "red" }}
                   />
@@ -111,6 +124,47 @@ const LogoDesign = () => {
                     component="div"
                     style={{ color: "red" }}
                   />
+                  <p id="my-radio-group">Your color preference</p>
+
+                  <label>
+                    <Field
+                      type="radio"
+                      name="has_color_preference"
+                      value="true"
+                    />
+                    Yes
+                  </label>
+                  <br />
+                  <label>
+                    <Field
+                      type="radio"
+                      name="has_color_preference"
+                      value="false"
+                    />
+                    No
+                  </label>
+                  <br />
+                  <ErrorMessage
+                    name="hasPreference"
+                    component="div"
+                    style={{ color: "red" }}
+                  />
+                  {values.hasPreference === "true" && (
+                    <div>
+                      <p>Your color Preference</p>
+                      <Field
+                        type="text"
+                        name="color_preference"
+                        className="form-control"
+                      />
+                      <br />
+                      <ErrorMessage
+                        name="color_preference"
+                        component="div"
+                        style={{ color: "red" }}
+                      />
+                    </div>
+                  )}
 
                   <br />
 

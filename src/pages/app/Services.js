@@ -31,7 +31,7 @@ const CheckList = () => {
         }
         setError(null)
       } catch (err) {
-        setError(err.response)
+        setError(err.response.data.message)
         console.log(err.response)
       }
     }
@@ -66,7 +66,7 @@ const CheckList = () => {
       }
       setError(null)
     } catch (err) {
-      setError(err.response)
+      setError(err.response.data.message)
       console.log(err.response)
     }
     setClicked(true)
@@ -110,7 +110,12 @@ const CheckList = () => {
                       name="services"
                     />
                   </div>
-
+                  {error && (
+                    <p style={{ color: "red" }}>
+                      {error}.Go to Checklist form in Services Section and check
+                      Paid Advertising in order to proceed.
+                    </p>
+                  )}
                   <Button type="submit" color="primary">
                     Submit
                   </Button>

@@ -43,7 +43,7 @@ const WebsiteContent = () => {
         }
         console.log(initialValues)
       } catch (error) {
-        setError(error.response)
+        // setError(error.response)
       }
     }
     fetchData()

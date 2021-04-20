@@ -106,7 +106,7 @@ const ProvidingService = () => {
                 <Button type="submit" className="w-md mt-2" color="primary">
                   Submit
                 </Button>
-                {!error && clicked && <Redirect to="accessAccount" />}
+                {!error && clicked && <Redirect to="paCompetitors" />}
               </div>
             </FormikComponent>
           </Col>
