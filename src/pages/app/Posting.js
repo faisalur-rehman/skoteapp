@@ -10,7 +10,7 @@ const initialValues = {
   no_post_specification: "",
   feedback: "",
   is_found: "",
-  website: "",
+  // website: "",
 }
 
 const Posting = () => {
@@ -30,7 +30,7 @@ const Posting = () => {
           "/services/social-media/post",
           localStorage.getItem("token")
         )
-        console.log(data.payload)
+        console.log(data)
         if (data.payload) {
           setId(data.payload["_id"])
           initialValues.feedback = data.payload.feedback
@@ -56,7 +56,7 @@ const Posting = () => {
     fetchData()
   }, [])
 
-  const validate = values => {
+  function validate(values) {
     const errors = {}
     if (values.voice_tone.length < 3) {
       errors.voice_tone = "Atleast 3 characters are required"
@@ -70,9 +70,9 @@ const Posting = () => {
     if (!values.is_found) {
       errors.is_found = "Required"
     }
-    if (!values.website) {
-      errors.website = "Required"
-    }
+    // if (!values.website) {
+    //   errors.website = "Required"
+    // }
     return errors
   }
 
@@ -120,98 +120,86 @@ const Posting = () => {
           <Col sm={2}></Col>
 
           <Col sm={8}>
-            <Formik
+            <FormikComponent
               initialValues={initialValues}
-              validate={validate}
-              onSubmit={handleSubmit}
+              handleSubmit={handleSubmit}
+              // validate={validate}
             >
-              {({ values }) => (
-                <Form>
-                  <p>What tone of voice would you like?</p>
-                  <Field
-                    name="voice_tone"
-                    className="form-control"
-                    placeholder="E.g. playful, fun, professional"
-                  />
-                  <ErrorMessage
-                    name="voice_tone"
-                    component="div"
-                    style={{ color: "red" }}
-                  />
-                  <br />
-                  <p>What can't we talk about?</p>
-                  <Field
-                    name="no_post_specification"
-                    className="form-control"
-                    placeholder="Please specify what we can’t post"
-                  />
-                  <ErrorMessage
-                    name="no_post_specification"
-                    component="div"
-                    style={{ color: "red" }}
-                  />
-                  <br />
-                  <p id="my-radio-group">
-                    Are there websites that we can use for articles/blog
-                    content?
-                  </p>
+              <p>What tone of voice would you like?</p>
+              <Field
+                name="voice_tone"
+                className="form-control"
+                placeholder="E.g. playful, fun, professional"
+              />
+              <ErrorMessage
+                name="voice_tone"
+                component="div"
+                style={{ color: "red" }}
+              />
+              <br />
+              <p>What can't we talk about?</p>
+              <Field
+                name="no_post_specification"
+                className="form-control"
+                placeholder="Please specify what we can’t post"
+              />
+              <ErrorMessage
+                name="no_post_specification"
+                component="div"
+                style={{ color: "red" }}
+              />
+              <br />
+              <p id="my-radio-group">
+                Are there websites that we can use for articles/blog content?
+              </p>
 
-                  <label>
-                    <Field type="radio" name="is_found" value="true" />
-                    Yes
-                  </label>
-                  <br />
-                  <label>
-                    <Field type="radio" name="is_found" value="false" />
-                    No
-                  </label>
-                  <br />
-                  <ErrorMessage
-                    name="picked"
-                    component="div"
-                    style={{ color: "red" }}
-                  />
+              <label>
+                <Field type="radio" name="is_found" value="true" />
+                Yes
+              </label>
+              <br />
+              <label>
+                <Field type="radio" name="is_found" value="false" />
+                No
+              </label>
+              <br />
+              <ErrorMessage
+                name="picked"
+                component="div"
+                style={{ color: "red" }}
+              />
 
-                  <br />
-                  <p>
-                    Do you have any other comments or feedback regarding
-                    posting?
-                  </p>
-                  <Field
-                    name="feedback"
-                    className="form-control"
-                    placeholder="Your comments"
-                  />
-                  <ErrorMessage
-                    name="feedback"
-                    component="div"
-                    style={{ color: "red" }}
-                  />
-                  <br />
+              <br />
+              <p>
+                Do you have any other comments or feedback regarding posting?
+              </p>
+              <Field
+                name="feedback"
+                className="form-control"
+                placeholder="Your comments"
+              />
+              <ErrorMessage
+                name="feedback"
+                component="div"
+                style={{ color: "red" }}
+              />
+              <br />
 
-                  {/* {error && (
-                <p style={{ color: "red" }}>
-                  {error}. Please check the Web Development checkbox in
-                  CheckList form section in order to submit this form.
-                </p>
-              )} */}
-                  {error && (
-                    <span style={{ color: "red" }}>
-                      {error}.First enroll in social media marketing in the
-                      Checklist section
-                    </span>
-                  )}
-
-                  <div>
-                    <Button type="submit" className="w-md mt-2" color="primary">
-                      Submit
-                    </Button>
-                    {!error && clicked && <Redirect to="socialAccounts" />}
-                    {redirect && <Redirect to="login" />}
-                  </div>
-                </Form>
+              {error && (
+                <span style={{ color: "red" }}>
+                  {error}.First enroll in social media marketing in the
+                  Checklist section
+                </span>
               )}
-            </Formik>
+
+              <div>
+                <Button type="submit" className="w-md mt-2" color="primary">
+                  Submit
+                </Button>
+              </div>
+            </FormikComponent>
+            {!error && clicked && <Redirect to="socialAccounts" />}
+            {redirect && <Redirect to="login" />}
           </Col>
           <Col sm={2}></Col>
         </Row>
