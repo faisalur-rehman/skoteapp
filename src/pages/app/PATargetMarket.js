@@ -12,6 +12,7 @@ const PATargetMarket = () => {
   const [error, setError] = useState(null)
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -64,11 +65,13 @@ const PATargetMarket = () => {
         )
       }
       setError(null)
+      setSubmitted(true)
     } catch (err) {
+      setSubmitted(true)
+
       setError(err.response)
       console.log(err.response)
     }
-    setClicked(true)
   }
   return (
     <div className="page-content">
@@ -110,7 +113,12 @@ const PATargetMarket = () => {
                   Submit
                 </Button>
               </div>
-              {/* {!error && clicked && <Redirect to="clients" />} */}
+              {submitted && (
+                <Button color="success" onClick={() => setClicked(true)}>
+                  Next Section
+                </Button>
+              )}
+              {!error && clicked && <Redirect to="posting" />}
             </FormikComponent>
           </Col>
           <Col sm={2}></Col>

@@ -186,7 +186,7 @@ const PAGoals = () => {
                       Submit
                     </Button>
                   </div>
-                  {/* {!error && clicked && <Redirect to="objectives" />} */}
+                  {!error && clicked && <Redirect to="paTargetMarket" />}
                 </Form>
               )}
             </Formik>

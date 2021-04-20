@@ -11,7 +11,6 @@ const PAClients = () => {
   const [error, setError] = useState(null)
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -65,12 +64,11 @@ const PAClients = () => {
         )
       }
       setError(null)
-      setSubmitted(true)
     } catch (err) {
       setError(err.response.data.errors)
-      setSubmitted(false)
       console.log(err.response)
     }
+    setClicked(true)
   }
   return (
     <div className="page-content">
@@ -110,17 +108,10 @@ const PAClients = () => {
                         <Button color="primary" className="m-2" type="submit">
                           Submit
                         </Button>
-                        {!error && clicked && (
-                          <Redirect to="/websitesYouLike" />
-                        )}
+                        {!error && clicked && <Redirect to="/paGoals" />}
                       </div>
                     )}
                   </FieldArray>
-                  {submitted && (
-                    <Button color="success" onClick={() => setClicked(true)}>
-                      Next Section
-                    </Button>
-                  )}
                 </Form>
               )}
             </Formik>

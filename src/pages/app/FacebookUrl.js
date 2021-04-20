@@ -137,7 +137,7 @@ const FacebookUrl = () => {
                 <Button type="submit" className="w-md mt-2" color="primary">
                   Submit
                 </Button>
-                {/* {!error && clicked && <Redirect to="advancedFeatures" />} */}
+                {!error && clicked && <Redirect to="accessAccount" />}
               </div>
             </FormikComponent>
           </Col>

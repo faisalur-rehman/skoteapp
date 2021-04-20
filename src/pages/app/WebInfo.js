@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Field, ErrorMessage } from "formik"
 import FormikComponent from "./Formik"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
-
+import { Redirect } from "react-router-dom"
 import { Row, Col, Button } from "reactstrap"
 
 const initialValues = {
@@ -148,7 +148,7 @@ const AccessAccount = () => {
                 Next Section
               </Button>
             )}
-            {!error && clicked && <Redirect to="webInfo" />}
+            {!error && clicked && <Redirect to="logoDesign" />}
           </Col>
           <Col sm={2}></Col>
         </Row>

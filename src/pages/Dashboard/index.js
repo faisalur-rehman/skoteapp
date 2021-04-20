@@ -59,9 +59,6 @@ const Dashboard = props => {
     setIndex(index)
   }
 
-  const [modal, setmodal] = useState(false)
-  const [subscribemodal, setSubscribemodal] = useState(false)
-
   const reports = [
     { title: "Orders", iconClass: "bx-copy-alt", description: "1,235" },
     { title: "Revenue", iconClass: "bx-archive-in", description: "$35, 723" },
@@ -123,51 +120,53 @@ const Dashboard = props => {
               </Row>
             </Col>
           </Row>
-          <Card>
-            <CardBody>
-              <CardTitle className="mb-4">All Users</CardTitle>
-              <div className="table-responsive">
-                <table className="table align-middle table-nowrap mb-0">
-                  <thead className="table-light">
-                    <tr>
-                      <th className="align-middle">Name</th>
-                      <th className="align-middle">Company</th>
-                      <th className="align-middle">Email</th>
-                      <th className="align-middle">View Details</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {users &&
-                      users.map((user, key) => (
-                        <tr key={"_tr_" + key}>
-                          <td>{user.name}</td>
-                          <td>{user.company}</td>
-                          <td>{user.email}</td>
-                          <td>
-                            <Button
-                              color="primary"
-                              size="sm"
-                              className="btn-rounded waves-effect waves-light"
-                              onClick={() => handleClick(key)}
-                            >
-                              View Details
-                            </Button>
-                            {clicked && (
-                              <Redirect
-                                to={{
-                                  pathname: "/singleRecord",
-                                  state: { id: users[index]._id },
-                                }}
-                              />
-                            )}
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
-              </div>
-            </CardBody>
-          </Card>
+          {users.length > 0 && (
+            <Card>
+              <CardBody>
+                <CardTitle className="mb-4">All Users</CardTitle>
+                <div className="table-responsive">
+                  <table className="table align-middle table-nowrap mb-0">
+                    <thead className="table-light">
+                      <tr>
+                        <th className="align-middle">Name</th>
+                        <th className="align-middle">Company</th>
+                        <th className="align-middle">Email</th>
+                        <th className="align-middle">View Details</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {users &&
+                        users.map((user, key) => (
+                          <tr key={"_tr_" + key}>
+                            <td>{user.name}</td>
+                            <td>{user.company}</td>
+                            <td>{user.email}</td>
+                            <td>
+                              <Button
+                                color="primary"
+                                size="sm"
+                                className="btn-rounded waves-effect waves-light"
+                                onClick={() => handleClick(key)}
+                              >
+                                View Details
+                              </Button>
+                              {clicked && (
+                                <Redirect
+                                  to={{
+                                    pathname: "/singleRecord",
+                                    state: { id: users[index]._id },
+                                  }}
+                                />
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardBody>
+            </Card>
+          )}
         </Container>
       </div>
     </React.Fragment>

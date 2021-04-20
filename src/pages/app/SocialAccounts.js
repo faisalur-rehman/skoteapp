@@ -135,7 +135,7 @@ const SocialAccount = () => {
                   <Button type="submit" color="primary">
                     Submit
                   </Button>
-                  {/* {!error && clicked && <Redirect to="websiteGoals" />} */}
+                  {!error && clicked && <Redirect to="fbUrl" />}
                 </Form>
               )}
             </Formik>

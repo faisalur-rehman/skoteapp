@@ -18,27 +18,35 @@ const LogoDesign = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
 
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       try {
-  //         const { data } = await formGetData(
-  //           "/business/usp",
-  //           localStorage.getItem("token")
-  //         )
-  //         if (data.usp) {
-  //           setId(data.usp["_id"])
-  //           initialValues.description = data.usp.description
-  //           initialValues.strength = data.usp.strength
-  //           initialValues.reason_to_choose = data.usp.reason_to_choose
-  //           setValues(initialValues)
-  //         }
-  //         setError(null)
-  //       } catch (err) {
-  //         setError(err.response)
-  //       }
-  //     }
-  //     fetchData()
-  //   }, [])
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/services/logo-design/detail",
+          localStorage.getItem("token")
+        )
+        console.log(data)
+        if (data.payload) {
+          setId(data.payload["_id"])
+          initialValues.exact_text = data.payload.exact_text
+          initialValues.tagline = data.payload.tagline
+          initialValues.style = data.payload.style
+          if (data.payload.has_color_preference) {
+            initialValues.has_color_preference = "true"
+            initialValues.color_preference = data.payload.color_preference
+          } else {
+            initialValues.has_color_preference = "false"
+            initialValues.color_preference = ""
+          }
+          setValues(initialValues)
+        }
+        setError(null)
+      } catch (err) {
+        // setError(err.response.data.message)
+      }
+    }
+    fetchData()
+  }, [])
   function validate(values) {
     const errors = {}
     if (!values.exact_text) {
@@ -53,7 +61,7 @@ const LogoDesign = () => {
     if (!values.has_color_preference) {
       errors.has_color_preference = "Required"
     }
-    if (values.hasPreference === "true" && !values.color_preference) {
+    if (values.has_color_preference === "true" && !values.color_preference) {
       errors.color_preference = "Required"
     }
     return errors
@@ -64,21 +72,21 @@ const LogoDesign = () => {
     try {
       if (values) {
         resData = await patchData(
-          "/service/logo-design",
+          "/services/logo-design/detail",
           id,
           data,
           localStorage.getItem("token")
         )
       } else {
         resData = await formPostData(
-          "/service/logo-design",
+          "/services/logo-design/detail",
           data,
           localStorage.getItem("token")
         )
       }
       setError(null)
     } catch (err) {
-      setError(err.response)
+      setError(err.response.data.message)
       console.log(err.response)
     }
     setClicked(true)
@@ -149,7 +157,7 @@ const LogoDesign = () => {
                     component="div"
                     style={{ color: "red" }}
                   />
-                  {values.hasPreference === "true" && (
+                  {values.has_color_preference === "true" && (
                     <div>
                       <p>Your color Preference</p>
                       <Field
@@ -182,7 +190,12 @@ const LogoDesign = () => {
                     component="div"
                     style={{ color: "red" }}
                   />
-
+                  {error && (
+                    <p style={{ color: "red" }}>
+                      {error}. Please mark the logo creation as checked in
+                      Checklist form of Service section.
+                    </p>
+                  )}
                   <div>
                     <Button type="submit" className="w-md mt-3" color="primary">
                       Submit

@@ -167,22 +167,7 @@ const Posting = () => {
                     component="div"
                     style={{ color: "red" }}
                   />
-                  {/* {values.is_found === "true" && (
-                    <div>
-                      <p>Website:</p>
-                      <Field
-                        type="text"
-                        name="website"
-                        className="form-control"
-                      />
-                      <br />
-                      <ErrorMessage
-                        name="website"
-                        component="div"
-                        style={{ color: "red" }}
-                      />
-                    </div>
-                  )} */}
+
                   <br />
                   <p>
                     Do you have any other comments or feedback regarding
@@ -217,7 +202,7 @@ const Posting = () => {
                     <Button type="submit" className="w-md mt-2" color="primary">
                       Submit
                     </Button>
-                    {/* {!error && clicked && <Redirect to="advancedFeatures" />} */}
+                    {!error && clicked && <Redirect to="socialAccounts" />}
                   </div>
                 </Form>
               )}
