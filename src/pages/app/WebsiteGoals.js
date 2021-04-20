@@ -14,8 +14,12 @@ const WebsiteGoals = () => {
   const [values, setValues] = useState()
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
+  const [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
+    if (localStorage.getItem("token") === null) {
+      setRedirect(true)
+    }
     async function fetchData() {
       try {
         const { data } = await formGetData(
@@ -187,6 +191,7 @@ const WebsiteGoals = () => {
                     </Button>
                   </div>
                   {!error && clicked && <Redirect to="objectives" />}
+                  {redirect && <Redirect to="login" />}
                 </Form>
               )}
             </Formik>

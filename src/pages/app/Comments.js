@@ -111,6 +111,7 @@ const Comments = () => {
                   Submit
                 </Button>
                 {/* {!error && clicked && <Redirect to="advancedFeatures" />} */}
+                {redirect && <Redirect to="login" />}
               </div>
             </FormikComponent>
           </Col>

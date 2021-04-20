@@ -13,8 +13,12 @@ const PATargetMarket = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
+    if (localStorage.getItem("token") === null) {
+      setRedirect(true)
+    }
     async function fetchData() {
       try {
         const { data } = await formGetData(
@@ -119,6 +123,7 @@ const PATargetMarket = () => {
                 </Button>
               )}
               {!error && clicked && <Redirect to="posting" />}
+              {redirect && <Redirect to="login" />}
             </FormikComponent>
           </Col>
           <Col sm={2}></Col>

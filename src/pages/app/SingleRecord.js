@@ -39,6 +39,7 @@ import {
 const SingleRecord = props => {
   const [userDataKeys, setUserDataKeys] = useState([])
   const [userDataValues, setUserDataValues] = useState([])
+  const [redirect, setRedirect] = useState(false)
 
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
@@ -368,6 +369,8 @@ const SingleRecord = props => {
       className="page-content"
       style={{ display: "flex", justifyContent: "flex-start" }}
     >
+      {redirect && <Redirect to="login" />}
+
       <div style={{ height: "90vh" }}>
         <Dropdown isOpen={dropdownOpen1} toggle={toggle1}>
           <DropdownToggle caret>Business Info</DropdownToggle>

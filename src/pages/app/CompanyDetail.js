@@ -3,6 +3,7 @@ import { Field, ErrorMessage } from "formik"
 import FormikComponent from "./Formik"
 import { Row, Col, Button } from "reactstrap"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
+import { Redirect } from "react-router-dom"
 
 let initialValues = {
   logo: "",
@@ -16,8 +17,12 @@ const CompanyDetail = () => {
   const [errors, setErrors] = useState(null)
   const [values, setValues] = useState()
   const [id, setId] = useState()
+  const [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
+    if (localStorage.getItem("token") === null) {
+      setRedirect(true)
+    }
     async function fetchData() {
       try {
         const { data } = await formGetData(
@@ -172,6 +177,7 @@ const CompanyDetail = () => {
                   Submit
                 </Button>
               </div>
+              {redirect && <Redirect to="login" />}
             </FormikComponent>
           </Col>
           <Col sm={2}></Col>

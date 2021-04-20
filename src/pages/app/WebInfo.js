@@ -17,8 +17,12 @@ const AccessAccount = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
+    if (localStorage.getItem("token") === null) {
+      setRedirect(true)
+    }
     async function fetchData() {
       try {
         const { data } = await formGetData(
@@ -149,6 +153,7 @@ const AccessAccount = () => {
               </Button>
             )}
             {!error && clicked && <Redirect to="logoDesign" />}
+            {redirect && <Redirect to="login" />}
           </Col>
           <Col sm={2}></Col>
         </Row>

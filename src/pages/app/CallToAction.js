@@ -14,8 +14,12 @@ const CallToAction = () => {
   const [id, setId] = useState()
   const [submitted, setSubmitted] = useState(false)
   const [clicked, setClicked] = useState(false)
+  const [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
+    if (localStorage.getItem("token") === null) {
+      setRedirect(true)
+    }
     async function fetchData() {
       try {
         const { data } = await formGetData(
@@ -108,6 +112,7 @@ const CallToAction = () => {
                     </Button>
                   )}
                   {!error && clicked && <Redirect to="/services" />}
+                  {redirect && <Redirect to="login" />}
                 </Form>
               )}
             </Formik>

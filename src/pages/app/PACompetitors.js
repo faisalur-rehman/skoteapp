@@ -17,8 +17,12 @@ const PACompetitors = () => {
   const [error, setError] = useState(null)
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
+  const [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
+    if (localStorage.getItem("token") === null) {
+      setRedirect(true)
+    }
     async function fetchData() {
       try {
         const { data } = await formGetData(
@@ -121,6 +125,7 @@ const PACompetitors = () => {
                 </Button>
               </div>
               {!error && clicked && <Redirect to="paClients" />}
+              {redirect && <Redirect to="login" />}
             </FormikComponent>
           </Col>
           <Col sm={2}></Col>

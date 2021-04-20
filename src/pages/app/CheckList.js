@@ -13,8 +13,12 @@ const CheckList = () => {
   const [value, setValues] = useState()
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
+  const [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
+    if (localStorage.getItem("token") === null) {
+      setRedirect(true)
+    }
     async function fetchData() {
       try {
         const { data } = await formGetData(
@@ -146,6 +150,7 @@ const CheckList = () => {
                     Submit
                   </Button>
                   {!error && clicked && <Redirect to="websiteGoals" />}
+                  {redirect && <Redirect to="login" />}
                 </Form>
               )}
             </Formik>

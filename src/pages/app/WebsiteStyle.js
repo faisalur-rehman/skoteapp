@@ -15,8 +15,12 @@ const WebsiteStyle = () => {
   const [error, setError] = useState(null)
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
+  const [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
+    if (localStorage.getItem("token") === null) {
+      setRedirect(true)
+    }
     async function fetchData() {
       try {
         const { data } = await formGetData(
@@ -113,6 +117,7 @@ const WebsiteStyle = () => {
                   Submit
                 </Button>
                 {!error && clicked && <Redirect to="websiteContent" />}
+                {redirect && <Redirect to="login" />}
               </div>
             </FormikComponent>
           </Col>

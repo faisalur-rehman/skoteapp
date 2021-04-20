@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { Field, ErrorMessage } from "formik"
 import FormikComponent from "./Formik"
 import { Row, Col, Button } from "reactstrap"
+import { Redirect } from "react-router-dom"
 
 const initialValues = {
   adAccount: "",
@@ -13,6 +14,7 @@ const AdAccount = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [redirect, setRedirect] = useState(false)
 
   const validate = values => {
     const errors = {}
