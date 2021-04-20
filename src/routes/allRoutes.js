@@ -47,11 +47,13 @@ import AdAccount from "pages/app/AdAccount"
 import LogoDesign from "pages/app/LogoDesign"
 import WebInfo from "pages/app/WebInfo"
 import SingleRecord from "pages/app/SingleRecord"
+import VerifyEmail from "pages/app/VerifyEmail"
 
 export const publicRoutes = [
   { path: "/login", component: Login },
   { path: "/resetPassword", component: ForgotPassword },
   { path: "/register", component: Register },
+  { path: "/verifyEmail", component: VerifyEmail },
 ]
 
 const userRoutes = [

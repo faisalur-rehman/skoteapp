@@ -10,32 +10,36 @@ import {
   DropdownItem,
 } from "reactstrap"
 
-import { getUserDataForAdmin } from "./ApiRequest"
-
-import { Link } from "react-router-dom"
-import BusinessInfo from "./BusinessInfo"
-import Competitors from "./Competitors"
-import TargetMarket from "./TargetMarket"
-import UniqueSelling from "./UniqueSelling"
-import Clients from "./Clients"
-import WebsitesYouLike from "./WebsitesYouLike"
-import WebsiteColor from "./WebsiteColor"
-import WebsiteContent from "./WebsiteContent"
-import WebsitesYouDisLike from "./WebsitesYouDisLike"
-import WebsiteStyle from "./WebsiteStyle"
-import CheckList from "./CheckList"
-import WebsiteGoals from "./WebsiteGoals"
-import Objectives from "./Objectives"
-import Sitemap from "./Sitemap"
-import AdvancedFeatures from "./AdvancedFeatures"
-import CallToAction from "./CallToAction"
+import {
+  getUserDataIntroduction,
+  getUserDataCompetitor,
+  getUserDataMarket,
+  getUserDataUnique,
+  getUserDataClient,
+  getUserDataLike,
+  getUserDataColor,
+  getUserDataDisLike,
+  getUserDataStyle,
+  getUserDataContent,
+  getUserDataChecklist,
+  getUserDataGoals,
+  getUserDataObjectives,
+  getUserDataSitemap,
+  getUserDataAdvance,
+  getUserDataAction,
+  getUserDataService,
+  getUserDataProvide,
+  getUserDataPaCompetitor,
+  getUserDataPaClient,
+  getUserDataPaGoals,
+  getUserDataPosting,
+  getUserDataAccounts,
+} from "./ApiRequest"
 
 const SingleRecord = props => {
   const [userDataKeys, setUserDataKeys] = useState([])
   const [userDataValues, setUserDataValues] = useState([])
 
-  //   console.log(props)
-  //   const [endpoint, setEndpoint] = useState()
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
   const toggle = () => setDropdownOpen(prevState => !prevState)
@@ -56,19 +60,306 @@ const SingleRecord = props => {
 
   const toggle4 = () => setDropdownOpen4(prevState => !prevState)
 
-  async function getData(endpoint) {
-    console.log(`${endpoint}?id=${props.location.state.id}`)
+  async function getDataIntroduction(endpoint) {
     try {
-      const { data } = await getUserDataForAdmin(
+      const data = await getUserDataIntroduction(
+        `/business/introduction?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      setError(error.response)
+    }
+  }
+  async function getDataCompetitor(endpoint) {
+    try {
+      const data = await getUserDataCompetitor(
+        `/business/competitor?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+    }
+  }
+  async function getDataMarket(endpoint) {
+    try {
+      const data = await getUserDataMarket(
+        `/business/market?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+    }
+  }
+  async function getDataUnique(endpoint) {
+    try {
+      const data = await getUserDataUnique(
+        `/business/usp?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+    }
+  }
+
+  async function getDataClient(endpoint) {
+    try {
+      const data = await getUserDataClient(
         `${endpoint}?id=${props.location.state.id}`,
         localStorage.getItem("token")
       )
       console.log(data)
-      setUserDataKeys([...Object.keys(data[`${Object.keys(data)}`])])
-      setUserDataValues([...Object.values(data[`${Object.keys(data)}`])])
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
     } catch (error) {
+      // setError(error.response)
+    }
+  }
+  async function getDataLike(endpoint) {
+    try {
+      const data = await getUserDataLike(
+        `${endpoint}?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+    }
+  }
+  async function getDataDisLike(endpoint) {
+    try {
+      const data = await getUserDataDisLike(
+        `${endpoint}?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+    }
+  }
+  async function getDataColor(endpoint) {
+    try {
+      const data = await getUserDataColor(
+        `${endpoint}?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+    }
+  }
+  async function getDataStyle(endpoint) {
+    try {
+      const data = await getUserDataStyle(
+        `${endpoint}?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+    }
+  }
+  async function getDataContent(endpoint) {
+    try {
+      const data = await getUserDataContent(
+        `${endpoint}?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+    }
+  }
+  async function getDataChecklist(endpoint) {
+    try {
+      const data = await getUserDataChecklist(
+        `${endpoint}?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+    }
+  }
+  async function getDataGoals(endpoint) {
+    try {
+      const data = await getUserDataGoals(
+        `${endpoint}?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+    }
+  }
+  async function getDataObjectives(endpoint) {
+    try {
+      const data = await getUserDataObjectives(
+        `${endpoint}?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+    }
+  }
+  async function getDataSitemap(endpoint) {
+    try {
+      const data = await getUserDataSitemap(
+        `${endpoint}?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+    }
+  }
+  async function getDataAdvance(endpoint) {
+    try {
+      const data = await getUserDataAdvance(
+        `${endpoint}?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+    }
+  }
+  async function getDataAction(endpoint) {
+    try {
+      const data = await getUserDataAction(
+        `${endpoint}?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+    }
+  }
+  async function getDataService(endpoint) {
+    try {
+      const data = await getUserDataService(
+        `${endpoint}?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+    }
+  }
+  async function getDataProvide(endpoint) {
+    try {
+      const data = await getUserDataProvide(
+        `${endpoint}?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+    }
+  }
+  async function getDataPaCompetitor(endpoint) {
+    try {
+      const data = await getUserDataPaCompetitor(
+        `${endpoint}?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+    }
+  }
+  async function getDataPaClients(endpoint) {
+    try {
+      const data = await getUserDataPaClient(
+        `${endpoint}?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+    }
+  }
+  async function getDataPaGoals(endpoint) {
+    try {
+      const data = await getUserDataPaGoals(
+        `${endpoint}?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+    }
+  }
+  async function getDataPosting(endpoint) {
+    try {
+      const data = await getUserDataPosting(
+        `${endpoint}?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
       console.log(error.response)
-      //   setError(error.response)
+    }
+  }
+  async function getDataAccounts(endpoint) {
+    try {
+      const data = await getUserDataAccounts(
+        `${endpoint}?id=${props.location.state.id}`,
+        localStorage.getItem("token")
+      )
+      console.log(data)
+      setUserDataKeys([...Object.keys(data)])
+      setUserDataValues([...Object.values(data)])
+    } catch (error) {
+      // setError(error.response)
+      console.log(error.response)
     }
   }
 
@@ -81,19 +372,23 @@ const SingleRecord = props => {
         <Dropdown isOpen={dropdownOpen1} toggle={toggle1}>
           <DropdownToggle caret>Business Info</DropdownToggle>
           <DropdownMenu>
-            <DropdownItem onClick={() => getData("/business/introduction")}>
+            <DropdownItem
+              onClick={() => getDataIntroduction("/business/introduction")}
+            >
               Introduction
             </DropdownItem>
-            <DropdownItem onClick={() => getData("/business/competitor")}>
+            <DropdownItem
+              onClick={() => getDataCompetitor("/business/competitor")}
+            >
               Competitors
             </DropdownItem>
-            <DropdownItem onClick={() => getData("/business/market")}>
+            <DropdownItem onClick={() => getDataMarket("/business/market")}>
               Target Market
             </DropdownItem>
-            <DropdownItem onClick={() => getData("/business/usp")}>
+            <DropdownItem onClick={() => getDataUnique("/business/usp")}>
               Unique Selling
             </DropdownItem>
-            <DropdownItem onClick={() => getData("/business/customer")}>
+            <DropdownItem onClick={() => getDataClient("/business/customer")}>
               Clients
             </DropdownItem>
           </DropdownMenu>
@@ -102,19 +397,27 @@ const SingleRecord = props => {
         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
           <DropdownToggle caret>Design</DropdownToggle>
           <DropdownMenu>
-            <DropdownItem onClick={() => getData("/services/design/like")}>
+            <DropdownItem onClick={() => getDataLike("/services/design/like")}>
               Websites You LIke
             </DropdownItem>
-            <DropdownItem onClick={() => getData("/services/design/dislike")}>
+            <DropdownItem
+              onClick={() => getDataDisLike("/services/design/dislike")}
+            >
               Websites You DisLike
             </DropdownItem>
-            <DropdownItem onClick={() => getData("/services/design/color")}>
+            <DropdownItem
+              onClick={() => getDataColor("/services/design/color")}
+            >
               Websites Color
             </DropdownItem>
-            <DropdownItem onClick={() => getData("/services/design/style")}>
+            <DropdownItem
+              onClick={() => getDataStyle("/services/design/style")}
+            >
               Websites Style
             </DropdownItem>
-            <DropdownItem onClick={() => getData("/services/design/content")}>
+            <DropdownItem
+              onClick={() => getDataContent("/services/design/content")}
+            >
               Websites Content
             </DropdownItem>
           </DropdownMenu>
@@ -123,24 +426,30 @@ const SingleRecord = props => {
         <Dropdown isOpen={dropdownOpen2} toggle={toggle2}>
           <DropdownToggle caret>Services/Website Goals</DropdownToggle>
           <DropdownMenu>
-            <DropdownItem onClick={() => getData("/services/checklist")}>
+            <DropdownItem
+              onClick={() => getDataChecklist("/services/checklist")}
+            >
               CheckList
             </DropdownItem>
-            <DropdownItem onClick={() => getData("/services/wg-goal")}>
+            <DropdownItem onClick={() => getDataGoals("/services/wg-goal")}>
               Goals
             </DropdownItem>
-            <DropdownItem onClick={() => getData("/services/wg-objective")}>
+            <DropdownItem
+              onClick={() => getDataObjectives("/services/wg-objective")}
+            >
               Objectives
             </DropdownItem>
-            <DropdownItem onClick={() => getData("/services/wg-sitemap")}>
+            <DropdownItem
+              onClick={() => getDataSitemap("/services/wg-sitemap")}
+            >
               Sitemap
             </DropdownItem>
             <DropdownItem
-              onClick={() => getData("/services/wg-advanced-feature")}
+              onClick={() => getDataAdvance("/services/wg-advanced-feature")}
             >
               Advanced Features
             </DropdownItem>
-            <DropdownItem onClick={() => getData("/services/wg-action")}>
+            <DropdownItem onClick={() => getDataAction("/services/wg-action")}>
               Actions
             </DropdownItem>
           </DropdownMenu>
@@ -150,27 +459,31 @@ const SingleRecord = props => {
           <DropdownToggle caret>Paid Advertising</DropdownToggle>
           <DropdownMenu>
             <DropdownItem
-              onClick={() => getData("/services/advertise/service")}
+              onClick={() => getDataService("/services/advertise/service")}
             >
               Services
             </DropdownItem>
             <DropdownItem
-              onClick={() => getData("/services/advertise/offer-info")}
+              onClick={() => getDataProvide("/services/advertise/offer-info")}
             >
               Provide Services To
             </DropdownItem>
             <DropdownItem
-              onClick={() => getData("/services/advertise/offer-competitor")}
+              onClick={() =>
+                getDataPaCompetitor("/services/advertise/offer-competitor")
+              }
             >
               Competitors
             </DropdownItem>
             <DropdownItem
-              onClick={() => getData("/services/advertise/offer-customer")}
+              onClick={() =>
+                getDataPaClients("/services/advertise/offer-customer")
+              }
             >
               Clients
             </DropdownItem>
             <DropdownItem
-              onClick={() => getData("/services/advertise/offer-goal")}
+              onClick={() => getDataPaGoals("/services/advertise/offer-goal")}
             >
               Goals
             </DropdownItem>
@@ -181,12 +494,12 @@ const SingleRecord = props => {
           <DropdownToggle caret>Social Media Management</DropdownToggle>
           <DropdownMenu>
             <DropdownItem
-              onClick={() => getData("/services/social-media/post")}
+              onClick={() => getDataPosting("/services/social-media/post")}
             >
               Posting
             </DropdownItem>
             <DropdownItem
-              onClick={() => getData("/services/social-media/platform")}
+              onClick={() => getDataAccounts("/services/social-media/platform")}
             >
               Social Accounts
             </DropdownItem>
@@ -217,7 +530,13 @@ const SingleRecord = props => {
             {userDataKeys.map((key, index) => (
               <>
                 <p style={{ fontWeight: "bold" }}>{key}:</p>
-                <p>{userDataValues[index]}</p>
+                <ul>
+                  {typeof userDataValues[index] === "object" ? (
+                    userDataValues[index].map(value => <li>{value}</li>)
+                  ) : (
+                    <p>{userDataValues[index]}</p>
+                  )}
+                </ul>
               </>
             ))}
           </CardBody>
