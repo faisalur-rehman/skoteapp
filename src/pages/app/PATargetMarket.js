@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { Field, ErrorMessage } from "formik"
 import FormikComponent from "./Formik"
-import { Row, Col, Button } from "reactstrap"
+import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
+import profile from "../../assets/images/profile-img.png"
+
 import { Redirect } from "react-router-dom"
 import { formGetData, formPostData, patchData } from "./ApiRequest"
 
@@ -78,57 +80,91 @@ const PATargetMarket = () => {
     }
   }
   return (
-    <div className="page-content">
-      <div className="container">
-        <Row>
-          <Col sm={2}></Col>
-          <Col sm={8}>
-            <FormikComponent
-              initialValues={initialValues}
-              validate={validate}
-              handleSubmit={handleSubmit}
-            >
-              <label htmlFor="niche_market">Your Niche Market: </label>
-              <Field
-                name="niche_market"
-                id="niche_market"
-                className="form-control"
-              />
-              <ErrorMessage
-                component="div"
-                name="niche_market"
-                style={{ color: "red" }}
-              />
-              <br />
-              <label htmlFor="target_audience">Your target audience: </label>
-              <Field
-                name="target_audience"
-                id="target_audience"
-                className="form-control"
-              />
-              <ErrorMessage
-                component="div"
-                name="target_audience"
-                style={{ color: "red" }}
-              />
+    <div className="container">
+      <Row>
+        <Col>
+          <FormikComponent
+            initialValues={initialValues}
+            validate={validate}
+            handleSubmit={handleSubmit}
+          >
+            <div className="account-pages my-5 pt-sm-5">
+              <Container>
+                <Row className="justify-content-center">
+                  <Col md={8} lg={6} xl={5}>
+                    <Card className="overflow-hidden">
+                      <div className="bg-primary bg-soft">
+                        <Row>
+                          <Col xs={7}>
+                            <div className="text-primary p-4">
+                              <h5 className="text-primary">
+                                Paid Advertising Target Market!
+                              </h5>
+                            </div>
+                          </Col>
+                          <Col className="col-5 align-self-end">
+                            <img src={profile} alt="" className="img-fluid" />
+                          </Col>
+                        </Row>
+                      </div>
+                      <CardBody className="pt-0">
+                        <div className="p-2">
+                          <label htmlFor="niche_market">
+                            Your Niche Market:{" "}
+                          </label>
+                          <Field
+                            name="niche_market"
+                            id="niche_market"
+                            className="form-control"
+                          />
+                          <ErrorMessage
+                            component="div"
+                            name="niche_market"
+                            style={{ color: "red" }}
+                          />
+                          <br />
+                          <label htmlFor="target_audience">
+                            Your target audience:{" "}
+                          </label>
+                          <Field
+                            name="target_audience"
+                            id="target_audience"
+                            className="form-control"
+                          />
+                          <ErrorMessage
+                            component="div"
+                            name="target_audience"
+                            style={{ color: "red" }}
+                          />
 
-              <div>
-                <Button type="submit" className="w-md mt-3" color="primary">
-                  Submit
-                </Button>
-              </div>
-              {submitted && (
-                <Button color="success" onClick={() => setClicked(true)}>
-                  Next Section
-                </Button>
-              )}
-              {!error && clicked && <Redirect to="posting" />}
-              {redirect && <Redirect to="login" />}
-            </FormikComponent>
-          </Col>
-          <Col sm={2}></Col>
-        </Row>
-      </div>
+                          <div>
+                            <Button
+                              type="submit"
+                              className="w-md mt-3"
+                              color="primary"
+                            >
+                              Submit
+                            </Button>
+                          </div>
+                          {!error && clicked && <Redirect to="posting" />}
+                          {redirect && <Redirect to="login" />}
+                        </div>
+                      </CardBody>
+                    </Card>
+                    <div className="mt-5 text-center">
+                      <p>
+                        © {new Date().getFullYear()} Skote. Crafted with{" "}
+                        <i className="mdi mdi-heart text-danger" /> by
+                        9thDimension
+                      </p>
+                    </div>
+                  </Col>
+                </Row>
+              </Container>
+            </div>
+          </FormikComponent>
+        </Col>
+      </Row>
     </div>
   )
 }

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { Field, ErrorMessage } from "formik"
 import FormikComponent from "./Formik"
-import { Row, Col, Button } from "reactstrap"
+import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
+import profile from "../../assets/images/profile-img.png"
+
 import { formGetData, formPostData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
 
@@ -88,49 +90,84 @@ const PACompetitors = () => {
     setClicked(true)
   }
   return (
-    <div className="page-content">
-      <div className="container">
-        <Row>
-          <Col sm={2}></Col>
-          <Col sm={8}>
-            <FormikComponent
-              initialValues={initialValues}
-              validate={validate}
-              handleSubmit={handleSubmit}
-            >
-              <label htmlFor="competitor">Your Competitors: </label>
-              <Field
-                type="text"
-                name="description"
-                id="competitor"
-                className="form-control"
-              />
-              <br />
-              <ErrorMessage
-                component="div"
-                style={{ color: "red" }}
-                name="description"
-              />
-              <label>Three Website Adresses: </label>
-              <Field name="webAddress1" className="form-control" />
-              <br />
-              <Field name="webAddress2" className="form-control" />
-              <br />
-              <Field name="webAddress3" className="form-control" />
-              <br />
-              {error && <span style={{ color: "red" }}>{error}</span>}
-              <div>
-                <Button type="submit" color="primary" className="w-md mt-3">
-                  Submit
-                </Button>
-              </div>
-              {!error && clicked && <Redirect to="paClients" />}
-              {redirect && <Redirect to="login" />}
-            </FormikComponent>
-          </Col>
-          <Col sm={2}></Col>
-        </Row>
-      </div>
+    <div className="container">
+      <Row>
+        <Col>
+          <FormikComponent
+            initialValues={initialValues}
+            validate={validate}
+            handleSubmit={handleSubmit}
+          >
+            <div className="account-pages my-5 pt-sm-5">
+              <Container>
+                <Row className="justify-content-center">
+                  <Col md={8} lg={6} xl={5}>
+                    <Card className="overflow-hidden">
+                      <div className="bg-primary bg-soft">
+                        <Row>
+                          <Col xs={7}>
+                            <div className="text-primary p-4">
+                              <h5 className="text-primary">Competitors!</h5>
+                            </div>
+                          </Col>
+                          <Col className="col-5 align-self-end">
+                            <img src={profile} alt="" className="img-fluid" />
+                          </Col>
+                        </Row>
+                      </div>
+                      <CardBody className="pt-0">
+                        <div className="p-2">
+                          <label htmlFor="competitor">Your Competitors: </label>
+                          <Field
+                            type="text"
+                            name="description"
+                            id="competitor"
+                            className="form-control"
+                          />
+                          <br />
+                          <ErrorMessage
+                            component="div"
+                            style={{ color: "red" }}
+                            name="description"
+                          />
+                          <label>Three Website Adresses: </label>
+                          <Field name="webAddress1" className="form-control" />
+                          <br />
+                          <Field name="webAddress2" className="form-control" />
+                          <br />
+                          <Field name="webAddress3" className="form-control" />
+                          <br />
+                          {error && (
+                            <span style={{ color: "red" }}>{error}</span>
+                          )}
+                          <div>
+                            <Button
+                              type="submit"
+                              color="primary"
+                              className="w-md mt-3"
+                            >
+                              Submit
+                            </Button>
+                          </div>
+                          {!error && clicked && <Redirect to="targetMarket" />}
+                          {redirect && <Redirect to="login" />}
+                        </div>
+                      </CardBody>
+                    </Card>
+                    <div className="mt-5 text-center">
+                      <p>
+                        © {new Date().getFullYear()} Skote. Crafted with{" "}
+                        <i className="mdi mdi-heart text-danger" /> by
+                        9thDimension
+                      </p>
+                    </div>
+                  </Col>
+                </Row>
+              </Container>
+            </div>
+          </FormikComponent>
+        </Col>
+      </Row>
     </div>
   )
 }

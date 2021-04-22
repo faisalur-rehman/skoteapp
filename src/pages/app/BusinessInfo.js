@@ -94,10 +94,8 @@ const BusinessInfo = () => {
     setClicked(true)
   }
   return (
-    // <div className="page-content">
     <div className="container">
       <Row>
-        {/* <Col sm={2}></Col> */}
         <Col sm={12}>
           <Formik
             initialValues={initialValues}

@@ -67,6 +67,12 @@ export const publicRoutes = [
   { path: "/websiteStyle", component: WebsiteStyle },
   { path: "/websitesYouDisLike", component: WebsitesYouDisLike },
   { path: "/websiteGoals", component: WebsiteGoals },
+  { path: "/services", component: Services },
+  { path: "/providingService", component: ProvidingService },
+  { path: "/paCompetitors", component: PACompetitors },
+  { path: "/paClients", component: PAClients },
+  { path: "/paGoals", component: PAGoals },
+  { path: "/paTargetMarket", component: PATargetMarket },
 ]
 
 const userRoutes = [
@@ -90,12 +96,6 @@ const userRoutes = [
   { path: "/uploadLogo", component: UploadLogo },
 
   //Paid Advertising Module
-  { path: "/services", component: Services },
-  { path: "/providingService", component: ProvidingService },
-  { path: "/paCompetitors", component: PACompetitors },
-  { path: "/paClients", component: PAClients },
-  { path: "/paGoals", component: PAGoals },
-  { path: "/paTargetMarket", component: PATargetMarket },
 
   //Social Media Management
 
