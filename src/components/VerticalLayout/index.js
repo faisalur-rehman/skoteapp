@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types"
 import React, { Component } from "react"
 
 import { connect } from "react-redux"
@@ -79,12 +79,12 @@ class Layout extends Component {
         <div id="preloader">
           <div id="status">
             <div className="spinner-chase">
-              <div className="chase-dot"/>
-              <div className="chase-dot"/>
-              <div className="chase-dot"/>
-              <div className="chase-dot"/>
-              <div className="chase-dot"/>
-              <div className="chase-dot"/>
+              <div className="chase-dot" />
+              <div className="chase-dot" />
+              <div className="chase-dot" />
+              <div className="chase-dot" />
+              <div className="chase-dot" />
+              <div className="chase-dot" />
             </div>
           </div>
         </div>
@@ -117,7 +117,7 @@ Layout.propTypes = {
   leftSideBarType: PropTypes.any,
   location: PropTypes.object,
   showRightSidebar: PropTypes.any,
-  topbarTheme: PropTypes.any
+  topbarTheme: PropTypes.any,
 }
 
 const mapStatetoProps = state => {

@@ -48,12 +48,19 @@ import LogoDesign from "pages/app/LogoDesign"
 import WebInfo from "pages/app/WebInfo"
 import SingleRecord from "pages/app/SingleRecord"
 import VerifyEmail from "pages/app/VerifyEmail"
+import UploadLogo from "pages/app/UploadLogo"
+import FileManager from "pages/app/FileManager/index"
 
 export const publicRoutes = [
   { path: "/login", component: Login },
   { path: "/resetPassword", component: ForgotPassword },
   { path: "/register", component: Register },
   { path: "/verifyEmail", component: VerifyEmail },
+  { path: "/businessInfo", component: BusinessInfo },
+  { path: "/clients", component: Clients },
+  { path: "/competitors", component: Competitors },
+  { path: "/targetMarket", component: TargetMarket },
+  { path: "/uniqueSelling", component: UniqueSelling },
 ]
 
 const userRoutes = [
@@ -66,11 +73,7 @@ const userRoutes = [
 
   { path: "/aboutform", component: AboutForm },
   { path: "/account", component: AccountVerification },
-  { path: "/businessInfo", component: BusinessInfo },
-  { path: "/clients", component: Clients },
-  { path: "/competitors", component: Competitors },
-  { path: "/targetMarket", component: TargetMarket },
-  { path: "/uniqueSelling", component: UniqueSelling },
+
   { path: "/companyDetail", component: CompanyDetail },
   { path: "/websiteColor", component: WebsiteColor },
   { path: "/websiteContent", component: WebsiteContent },
@@ -84,6 +87,7 @@ const userRoutes = [
   { path: "/sitemap", component: Sitemap },
   { path: "/advancedFeatures", component: AdvancedFeatures },
   { path: "/posting", component: Posting },
+  { path: "/uploadLogo", component: UploadLogo },
 
   //Paid Advertising Module
   { path: "/services", component: Services },
@@ -107,6 +111,8 @@ const userRoutes = [
   { path: "/logoDesign", component: LogoDesign },
 
   { path: "/singleRecord", component: SingleRecord },
+
+  { path: "/apps-filemanager", component: FileManager },
 
   // this route should be at the end of all other routes
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },

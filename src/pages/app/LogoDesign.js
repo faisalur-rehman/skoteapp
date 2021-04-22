@@ -46,7 +46,7 @@ const LogoDesign = () => {
         }
         setError(null)
       } catch (err) {
-        setError(err.response.data.message)
+        // setError(err.response.data.message)
       }
     }
     fetchData()
@@ -90,7 +90,7 @@ const LogoDesign = () => {
       }
       setError(null)
     } catch (err) {
-      setError(err.response.data.message)
+      // setError(err.response.data.message)
       console.log(err.response)
     }
     setClicked(true)

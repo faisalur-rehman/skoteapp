@@ -242,7 +242,7 @@ const RightSidebar = props => {
                       id="leftsidebarThemelight"
                       name="leftsidebarTheme"
                       value="light"
-                      checked={props.leftSideBarTheme === "light"}
+                      checked={true}
                       onChange={e => {
                         if (e.target.checked) {
                           props.changeSidebarTheme(e.target.value)
@@ -257,7 +257,7 @@ const RightSidebar = props => {
                       id="leftsidebarThemedark"
                       name="leftsidebarTheme"
                       value="dark"
-                      checked={props.leftSideBarTheme === "dark"}
+                      checked={false}
                       onChange={e => {
                         if (e.target.checked) {
                           props.changeSidebarTheme(e.target.value)

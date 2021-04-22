@@ -323,9 +323,12 @@ export async function getUserDataPosting(endpoint, token) {
       "x-auth-token": token,
     },
   })
-  console.log(data.data)
+  console.log(data.data.payload)
   return {
-    POsting: data.data.payload.posting,
+    "Voice Tone": data.data.payload.voice_tone,
+    Feedback: data.data.payload.feedback,
+    "Can't Talk About": data.payload.no_post_specification,
+    "Websites for article/blog": data.payload.is_found,
   }
 }
 export async function getUserDataAccounts(endpoint, token) {
@@ -336,6 +339,49 @@ export async function getUserDataAccounts(endpoint, token) {
   })
   console.log(data.data)
   return {
-    POsting: data.data.payload.posting,
+    Platforms: data.data.payload.platforms,
+  }
+}
+
+export async function getUserDataFbUrl(endpoint, token) {
+  const data = await api.get(`${endpoint}`, {
+    headers: {
+      "x-auth-token": token,
+    },
+  })
+  console.log(data.data)
+  return {
+    Credential: data.data.payload.credential,
+    First: data.data.payload.first,
+    Last: data.data.payload.last,
+  }
+}
+
+export async function getUserDataAccessAccount(endpoint, token) {
+  const data = await api.get(`${endpoint}`, {
+    headers: {
+      "x-auth-token": token,
+    },
+  })
+  console.log(data.data)
+  return {
+    Info: data.data.payload.info,
+    "Have an Ad account ID?": data.data.payload.has_difference_access
+      ? "Yes"
+      : "No",
+  }
+}
+
+export async function getUserDataWeb(endpoint, token) {
+  const data = await api.get(`${endpoint}`, {
+    headers: {
+      "x-auth-token": token,
+    },
+  })
+  console.log(data.data)
+  return {
+    "Login Url": data.data.payload.login_url,
+    Password: data.data.payload.password,
+    Username: data.data.payload.username,
   }
 }

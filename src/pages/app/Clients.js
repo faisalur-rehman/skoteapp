@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { Formik, Form, FieldArray, Field, ErrorMessage } from "formik"
-import { Row, Col, Button } from "reactstrap"
+import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
+import profile from "../../assets/images/profile-img.png"
+
 import { Redirect } from "react-router-dom"
 import { formGetData, formPostData, patchData } from "./ApiRequest"
 
@@ -34,6 +36,7 @@ const Clients = () => {
         setError(null)
       } catch (err) {
         // setError(err.response)
+        console.log(err.response)
       }
     }
     fetchData()
@@ -64,70 +67,117 @@ const Clients = () => {
           localStorage.getItem("token")
         )
       }
+      console.log(resData)
       setError(null)
       setSubmitted(true)
     } catch (err) {
+      console.log(err.response)
       setError(err.response.data.errors)
       setSubmitted(false)
     }
   }
   return (
-    <div className="page-content">
-      <div className="container">
-        <Row>
-          <Col sm={2}></Col>
-          <Col sm={8}>
-            <Formik
-              initialValues={initialValues}
-              validate={validate}
-              onSubmit={handleSubmit}
-            >
-              {({ values }) => (
-                <Form>
-                  <label>Your Clients: </label>
-                  <FieldArray name="customers">
-                    {({ push }) => (
-                      <div>
-                        {values.customers.map((customer, index) => (
-                          <div key={index}>
-                            <Field
-                              name={`customers[${index}]`}
-                              className="form-control"
-                            />
-                            <br />
-                            <ErrorMessage
-                              name={`customers[${index}]`}
-                              component="div"
-                              style={{ color: "red" }}
-                            />
+    <div className="container">
+      <Row>
+        <Col>
+          <Formik
+            initialValues={initialValues}
+            validate={validate}
+            onSubmit={handleSubmit}
+          >
+            {({ values }) => (
+              <Form>
+                <div className="account-pages my-5 pt-sm-5">
+                  <Container>
+                    <Row className="justify-content-center">
+                      <Col md={8} lg={6} xl={5}>
+                        <Card className="overflow-hidden">
+                          <div className="bg-primary bg-soft">
+                            <Row>
+                              <Col xs={7}>
+                                <div className="text-primary p-4">
+                                  <h5 className="text-primary">Clients!</h5>
+                                </div>
+                              </Col>
+                              <Col className="col-5 align-self-end">
+                                <img
+                                  src={profile}
+                                  alt=""
+                                  className="img-fluid"
+                                />
+                              </Col>
+                            </Row>
                           </div>
-                        ))}
-                        {error && <p style={{ color: "red" }}>{error}</p>}
-                        <Button color="secondary" onClick={() => push("")}>
-                          Add More Clients
-                        </Button>
-                        <Button color="primary" className="m-2" type="submit">
-                          Submit
-                        </Button>
-                        {!error && clicked && (
-                          <Redirect to="/websitesYouLike" />
-                        )}
-                      </div>
-                    )}
-                  </FieldArray>
-                  {submitted && (
-                    <Button color="success" onClick={() => setClicked(true)}>
-                      Next Section
-                    </Button>
-                  )}
-                  {redirect && <Redirect to="login" />}
-                </Form>
-              )}
-            </Formik>
-          </Col>
-          <Col sm={2}></Col>
-        </Row>
-      </div>
+                          <CardBody className="pt-0">
+                            <div className="p-2">
+                              <label>Your Clients: </label>
+                              <FieldArray name="customers">
+                                {({ push }) => (
+                                  <div>
+                                    {values.customers.map((customer, index) => (
+                                      <div key={index}>
+                                        <Field
+                                          name={`customers[${index}]`}
+                                          className="form-control"
+                                        />
+                                        <br />
+                                        <ErrorMessage
+                                          name={`customers[${index}]`}
+                                          component="div"
+                                          style={{ color: "red" }}
+                                        />
+                                      </div>
+                                    ))}
+                                    {error && (
+                                      <p style={{ color: "red" }}>{error}</p>
+                                    )}
+                                    <Button
+                                      color="secondary"
+                                      onClick={() => push("")}
+                                    >
+                                      Add More Clients
+                                    </Button>
+                                    <Button
+                                      color="primary"
+                                      className="m-2"
+                                      type="submit"
+                                    >
+                                      Submit
+                                    </Button>
+                                    {!error && clicked && (
+                                      <Redirect to="/checklist" />
+                                    )}
+                                  </div>
+                                )}
+                              </FieldArray>
+                              {submitted && (
+                                <Button
+                                  color="success"
+                                  onClick={() => setClicked(true)}
+                                >
+                                  Next Section
+                                </Button>
+                              )}
+                              {redirect && <Redirect to="login" />}
+                            </div>
+                          </CardBody>
+                        </Card>
+                        <div className="mt-5 text-center">
+                          <p>
+                            © {new Date().getFullYear()} Skote. Crafted with{" "}
+                            <i className="mdi mdi-heart text-danger" /> by
+                            9thDimension
+                          </p>
+                        </div>
+                      </Col>
+                    </Row>
+                  </Container>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </Col>
+      </Row>
     </div>
   )
 }

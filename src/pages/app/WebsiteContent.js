@@ -175,7 +175,7 @@ const WebsiteContent = () => {
                 Next Section
               </Button>
             )}
-            {!error && clicked && <Redirect to="checklist" />}
+            {!error && clicked && <Redirect to="services" />}
             {redirect && <Redirect to="login" />}
           </Col>
           <Col sm={2}></Col>

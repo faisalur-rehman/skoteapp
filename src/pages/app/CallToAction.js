@@ -111,7 +111,7 @@ const CallToAction = () => {
                       Next Section
                     </Button>
                   )}
-                  {!error && clicked && <Redirect to="/services" />}
+                  {!error && clicked && <Redirect to="/websitesYouLike" />}
                   {redirect && <Redirect to="login" />}
                 </Form>
               )}

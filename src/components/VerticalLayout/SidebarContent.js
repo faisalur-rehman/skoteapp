@@ -95,47 +95,10 @@ const SidebarContent = props => {
             <li className="menu-title">{props.t("Apps")}</li>
 
             <li>
-              <Link to="/calendar" className=" waves-effect">
+              <Link to="/apps-filemanager" className=" waves-effect">
                 <i className="bx bx-calendar"></i>
-                <span>{props.t("Calendar")}</span>
+                <span>{props.t("File Manager")}</span>
               </Link>
-            </li>
-
-            <li>
-              <Link to="/#" className="has-arrow waves-effect">
-                <i className="bx bx-store"></i>
-                <span>{props.t("Ecommerce")}</span>
-              </Link>
-              <ul className="sub-menu" aria-expanded="false">
-                <li>
-                  <Link to="/ecommerce-products">{props.t("Products")}</Link>
-                </li>
-                <li>
-                  <Link to="/ecommerce-product-detail">
-                    {props.t("Product Detail")}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/ecommerce-orders">{props.t("Orders")}</Link>
-                </li>
-                <li>
-                  <Link to="/ecommerce-customers">{props.t("Customers")}</Link>
-                </li>
-                <li>
-                  <Link to="/ecommerce-cart">{props.t("Cart")}</Link>
-                </li>
-                <li>
-                  <Link to="/ecommerce-checkout">{props.t("Checkout")}</Link>
-                </li>
-                <li>
-                  <Link to="/ecommerce-shops">{props.t("Shops")}</Link>
-                </li>
-                <li>
-                  <Link to="/ecommerce-add-product">
-                    {props.t("Add Product")}
-                  </Link>
-                </li>
-              </ul>
             </li>
             <li>
               <Link to="/#" className="has-arrow waves-effect">
@@ -160,33 +123,7 @@ const SidebarContent = props => {
                 </li>
               </ul>
             </li>
-            <li>
-              <Link to="/#" className="has-arrow waves-effect">
-                <i className="bx bx-store"></i>
-                <span>{props.t("Design")}</span>
-              </Link>
-              <ul className="sub-menu" aria-expanded="false">
-                <li>
-                  <Link to="/websitesYouLike">
-                    {props.t("Websites You Like")}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/websitesYouDisLike">
-                    {props.t("Websites You DisLike")}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/websiteColor">{props.t("Website Color")}</Link>
-                </li>
-                <li>
-                  <Link to="/websiteStyle">{props.t("Web Style")}</Link>
-                </li>
-                <li>
-                  <Link to="/websiteContent">{props.t("Website Content")}</Link>
-                </li>
-              </ul>
-            </li>
+
             <li>
               <Link to="/#" className="has-arrow waves-effect">
                 <i className="bx bx-store"></i>
@@ -220,6 +157,33 @@ const SidebarContent = props => {
                       <Link to="/callToAction">{props.t("Action")}</Link>
                     </li>
                   </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <Link to="/#" className="has-arrow waves-effect">
+                <i className="bx bx-store"></i>
+                <span>{props.t("Design")}</span>
+              </Link>
+              <ul className="sub-menu" aria-expanded="false">
+                <li>
+                  <Link to="/websitesYouLike">
+                    {props.t("Websites You Like")}
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/websitesYouDisLike">
+                    {props.t("Websites You DisLike")}
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/websiteColor">{props.t("Website Color")}</Link>
+                </li>
+                <li>
+                  <Link to="/websiteStyle">{props.t("Web Style")}</Link>
+                </li>
+                <li>
+                  <Link to="/websiteContent">{props.t("Website Content")}</Link>
                 </li>
               </ul>
             </li>
@@ -283,6 +247,9 @@ const SidebarContent = props => {
               <ul className="sub-menu" aria-expanded="false">
                 <li>
                   <Link to="/logoDesign">{props.t("Logo Design")}</Link>
+                </li>
+                <li>
+                  <Link to="/uploadLogo">{props.t("Upload Logo")}</Link>
                 </li>
               </ul>
             </li>

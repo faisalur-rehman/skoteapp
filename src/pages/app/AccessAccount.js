@@ -81,20 +81,19 @@ const AccessAccount = () => {
           localStorage.getItem("token")
         )
       }
-      setError(null)
-      setSubmitted(true)
       if (data.has_difference_access) {
         data.has_difference_access = "true"
       } else {
         data.has_difference_access = "false"
       }
+      setError(null)
       console.log(resData)
     } catch (err) {
       setError(err.response.data.errors)
       console.log(err.response)
-      setSubmitted(false)
     }
     setClicked(true)
+    console.log(error)
   }
 
   return (

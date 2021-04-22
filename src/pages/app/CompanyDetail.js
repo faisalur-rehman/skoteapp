@@ -87,6 +87,7 @@ const CompanyDetail = () => {
       setErrors(null)
     } catch (error) {
       setErrors(error.response.data.errors[0])
+      console.log(error.response)
     }
   }
   return (
