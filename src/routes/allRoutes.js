@@ -61,6 +61,12 @@ export const publicRoutes = [
   { path: "/competitors", component: Competitors },
   { path: "/targetMarket", component: TargetMarket },
   { path: "/uniqueSelling", component: UniqueSelling },
+  { path: "/websitesYouLike", component: WebsitesYouLike },
+  { path: "/websiteColor", component: WebsiteColor },
+  { path: "/websiteContent", component: WebsiteContent },
+  { path: "/websiteStyle", component: WebsiteStyle },
+  { path: "/websitesYouDisLike", component: WebsitesYouDisLike },
+  { path: "/websiteGoals", component: WebsiteGoals },
 ]
 
 const userRoutes = [
@@ -75,12 +81,6 @@ const userRoutes = [
   { path: "/account", component: AccountVerification },
 
   { path: "/companyDetail", component: CompanyDetail },
-  { path: "/websiteColor", component: WebsiteColor },
-  { path: "/websiteContent", component: WebsiteContent },
-  { path: "/websiteStyle", component: WebsiteStyle },
-  { path: "/websitesYouDisLike", component: WebsitesYouDisLike },
-  { path: "/websitesYouLike", component: WebsitesYouLike },
-  { path: "/websiteGoals", component: WebsiteGoals },
   { path: "/callToAction", component: CallToAction },
   { path: "/checkList", component: CheckList },
   { path: "/objectives", component: Objectives },

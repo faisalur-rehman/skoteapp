@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Formik, Field, FieldArray, Form } from "formik"
-import { Button, Row, Col } from "reactstrap"
+import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
+import profile from "../../assets/images/profile-img.png"
 import { Redirect } from "react-router-dom"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 
@@ -84,58 +85,160 @@ const WebsitesYouDisLike = () => {
   }
 
   return (
-    <div className="page-content">
-      <div className="container">
-        <Row>
-          <Col sm={2}></Col>
-          <Col sm={8}>
-            <Formik
-              initialValues={initialValues}
-              validate={validate}
-              onSubmit={handleSubmit}
-            >
-              {() => (
-                <Form>
-                  <label htmlFor="websites">
-                    Enter website's name you dislike.
-                  </label>
-                  <FieldArray name="websites">
-                    {props => {
-                      const { form, push, remove } = props
-                      const { values } = form
-                      const { websites } = values
+    // <div className="page-content">
+    //   <div className="container">
+    //     <Row>
+    //       <Col sm={2}></Col>
+    //       <Col sm={8}>
+    //         <Formik
+    //           initialValues={initialValues}
+    //           validate={validate}
+    //           onSubmit={handleSubmit}
+    //         >
+    //           {() => (
+    //             <Form>
+    //               <label htmlFor="websites">
+    //                 Enter website's name you dislike.
+    //               </label>
+    //               <FieldArray name="websites">
+    //                 {props => {
+    //                   const { form, push, remove } = props
+    //                   const { values } = form
+    //                   const { websites } = values
 
-                      return (
-                        <div>
-                          {websites.map((website, index) => (
-                            <Field
-                              name={`website${index}`}
-                              type="text"
-                              key={index}
-                              className="form-control"
-                            />
-                          ))}
-                          {error && <p style={{ color: "red" }}>{error}</p>}
+    //                   return (
+    //                     <div>
+    //                       {websites.map((website, index) => (
+    //                         <Field
+    //                           name={`website${index}`}
+    //                           type="text"
+    //                           key={index}
+    //                           className="form-control"
+    //                         />
+    //                       ))}
+    //                       {error && <p style={{ color: "red" }}>{error}</p>}
 
-                          <Button color="secondary" onClick={() => push("")}>
-                            Add Website
-                          </Button>
-                          <Button color="primary" className="m-2" type="submit">
-                            Submit
-                          </Button>
-                          {!error && clicked && <Redirect to="websiteColor" />}
-                          {redirect && <Redirect to="login" />}
+    //                       <Button color="secondary" onClick={() => push("")}>
+    //                         Add Website
+    //                       </Button>
+    //                       <Button color="primary" className="m-2" type="submit">
+    //                         Submit
+    //                       </Button>
+    //                       {!error && clicked && <Redirect to="websiteColor" />}
+    //                       {redirect && <Redirect to="login" />}
+    //                     </div>
+    //                   )
+    //                 }}
+    //               </FieldArray>
+    //             </Form>
+    //           )}
+    //         </Formik>
+    //       </Col>
+    //       <Col sm={2}></Col>
+    //     </Row>
+    //   </div>
+    // </div>
+    <div className="container">
+      <Row>
+        <Col>
+          <Formik
+            initialValues={initialValues}
+            validate={validate}
+            onSubmit={handleSubmit}
+          >
+            {() => (
+              <Form>
+                <div className="account-pages my-5 pt-sm-5">
+                  <Container>
+                    <Row className="justify-content-center">
+                      <Col md={8} lg={6} xl={5}>
+                        <Card
+                          className="overflow-hidden"
+                          style={{ minHeight: "300px" }}
+                        >
+                          <div className="bg-primary bg-soft">
+                            <Row>
+                              <Col xs={7}>
+                                <div className="text-primary p-4">
+                                  <h5 className="text-primary">
+                                    Websites You DisLike!
+                                  </h5>
+                                </div>
+                              </Col>
+                              <Col className="col-5 align-self-end">
+                                <img
+                                  src={profile}
+                                  alt=""
+                                  className="img-fluid"
+                                />
+                              </Col>
+                            </Row>
+                          </div>
+                          <CardBody className="pt-0">
+                            <div className="p-2">
+                              <label htmlFor="websites">
+                                Enter website's name you dislike.
+                              </label>
+                              <FieldArray name="websites">
+                                {props => {
+                                  const { form, push, remove } = props
+                                  const { values } = form
+                                  const { websites } = values
+
+                                  return (
+                                    <div>
+                                      {websites.map((website, index) => (
+                                        <Field
+                                          name={`website${index}`}
+                                          type="text"
+                                          key={index}
+                                          className="form-control"
+                                        />
+                                      ))}
+                                      {error && (
+                                        <p style={{ color: "red" }}>{error}</p>
+                                      )}
+
+                                      <Button
+                                        color="secondary"
+                                        onClick={() => push("")}
+                                      >
+                                        Add Website
+                                      </Button>
+                                      <Button
+                                        color="primary"
+                                        className="m-2"
+                                        type="submit"
+                                      >
+                                        Submit
+                                      </Button>
+                                      {!error && clicked && (
+                                        <Redirect to="websiteColor" />
+                                      )}
+                                      {redirect && <Redirect to="login" />}
+                                    </div>
+                                  )
+                                }}
+                              </FieldArray>
+                            </div>
+                          </CardBody>
+                        </Card>
+                        <div className="mt-5 text-center">
+                          <p>
+                            © {new Date().getFullYear()} Skote. Crafted with{" "}
+                            <i className="mdi mdi-heart text-danger" /> by
+                            9thDimension
+                          </p>
                         </div>
-                      )
-                    }}
-                  </FieldArray>
-                </Form>
-              )}
-            </Formik>
-          </Col>
-          <Col sm={2}></Col>
-        </Row>
-      </div>
+                      </Col>
+                    </Row>
+                  </Container>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </Col>
+      </Row>
     </div>
   )
 }
