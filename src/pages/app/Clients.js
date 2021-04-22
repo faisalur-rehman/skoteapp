@@ -164,8 +164,8 @@ const Clients = () => {
                         </Card>
                         <div className="mt-5 text-center">
                           <p>
-                            © {new Date().getFullYear()} Skote. Crafted with{" "}
-                            <i className="mdi mdi-heart text-danger" /> by
+                            © {new Date().getFullYear()} Sicuro Group. Crafted
+                            with <i className="mdi mdi-heart text-danger" /> by
                             9thDimension
                           </p>
                         </div>

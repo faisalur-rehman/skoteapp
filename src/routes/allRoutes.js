@@ -72,6 +72,15 @@ export const publicRoutes = [
   { path: "/paCompetitors", component: PACompetitors },
   { path: "/paClients", component: PAClients },
   { path: "/paGoals", component: PAGoals },
+  { path: "/posting", component: Posting },
+
+  { path: "/socialAccounts", component: SocialAccount },
+  { path: "/fbUrl", component: FacebookUrl },
+  { path: "/accessAccount", component: AccessAccount },
+  { path: "/adAccount", component: AdAccount },
+  { path: "/webInfo", component: WebInfo },
+
+  { path: "/logoDesign", component: LogoDesign },
   { path: "/paTargetMarket", component: PATargetMarket },
 ]
 
@@ -98,17 +107,6 @@ const userRoutes = [
   //Paid Advertising Module
 
   //Social Media Management
-
-  { path: "/posting", component: Posting },
-  // { path: "/cantTalkAbout", component: CantTalkAbout },
-  // { path: "/comments", component: Comments },
-  { path: "/socialAccounts", component: SocialAccount },
-  { path: "/fbUrl", component: FacebookUrl },
-  { path: "/accessAccount", component: AccessAccount },
-  { path: "/adAccount", component: AdAccount },
-  { path: "/webInfo", component: WebInfo },
-
-  { path: "/logoDesign", component: LogoDesign },
 
   { path: "/singleRecord", component: SingleRecord },
 

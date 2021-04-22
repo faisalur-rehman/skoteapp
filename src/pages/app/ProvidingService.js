@@ -78,48 +78,6 @@ const ProvidingService = () => {
   }
 
   return (
-    // <div className="page-content">
-    //   <div className="container">
-    //     <Row>
-    //       <Col sm={2}></Col>
-
-    //       <Col sm={8}>
-    //         <FormikComponent
-    //           initialValues={initialValues}
-    //           handleSubmit={handleSubmit}
-    //           validate={validate}
-    //         >
-    //           <p>What city/country do you provide your services?</p>
-    //           <Field
-    //             name="region"
-    //             className="form-control"
-    //             placeholder="city/country"
-    //           />
-    //           <ErrorMessage
-    //             name="region"
-    //             component="div"
-    //             style={{ color: "red" }}
-    //           />
-    //           {/* {error && (
-    //             <p style={{ color: "red" }}>
-    //               {error}. Please check the Web Development checkbox in
-    //               CheckList form section in order to submit this form.
-    //             </p>
-    //           )} */}
-
-    //           <div>
-    //             <Button type="submit" className="w-md mt-2" color="primary">
-    //               Submit
-    //             </Button>
-    //             {!error && clicked && <Redirect to="paCompetitors" />}
-    //             {redirect && <Redirect to="login" />}
-    //           </div>
-    //         </FormikComponent>
-    //       </Col>
-    //       <Col sm={2}></Col>
-    //     </Row>
-    //   </div>
-    // </div>
     <div className="container">
       <Row>
         <Col>
@@ -183,7 +141,7 @@ const ProvidingService = () => {
                     </Card>
                     <div className="mt-5 text-center">
                       <p>
-                        © {new Date().getFullYear()} Skote. Crafted with{" "}
+                        © {new Date().getFullYear()} Sicuro Group. Crafted with{" "}
                         <i className="mdi mdi-heart text-danger" /> by
                         9thDimension
                       </p>

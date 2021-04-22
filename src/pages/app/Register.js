@@ -80,8 +80,8 @@ const Register = () => {
                   <Row>
                     <Col className="col-7">
                       <div className="text-primary p-4">
-                        <h5 className="text-primary">Free Register</h5>
-                        <p>Get your free Skote account now.</p>
+                        <h5 className="text-primary">Welcome to Sicuro</h5>
+                        <p>We are excited to have you on board.</p>
                       </div>
                     </Col>
                     <Col className="col-5 align-self-end">
@@ -197,10 +197,14 @@ const Register = () => {
 
                             <div className="mt-4 text-center">
                               <p className="mb-0">
-                                By registering you agree to the Skote
-                                <Link to="#" className="text-primary">
+                                By registering you agree to the Sicuro Group
+                                <a
+                                  href="https://www.sicurogroup.com.au/"
+                                  className="text-primary"
+                                  target="_blank"
+                                >
                                   Terms of Use
-                                </Link>
+                                </a>
                               </p>
                             </div>
                           </Form>
@@ -212,13 +216,14 @@ const Register = () => {
               </Card>
               <div className="mt-5 text-center">
                 <p>
-                  Already have an account ?
+                  Already have an account?
                   <Link to="/login" className="font-weight-medium text-primary">
+                    {" "}
                     Login
                   </Link>
                 </p>
                 <p>
-                  © {new Date().getFullYear()} Skote. Crafted with{" "}
+                  © {new Date().getFullYear()} Sicuro Group. Crafted with{" "}
                   <i className="mdi mdi-heart text-danger" /> by 9thDimension
                 </p>
               </div>

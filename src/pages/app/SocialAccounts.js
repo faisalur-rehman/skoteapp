@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react"
-import { Row, Col, Button } from "reactstrap"
+import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
+import profile from "../../assets/images/profile-img.png"
+import FormikComponent from "./Formik"
+
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
@@ -74,80 +77,184 @@ const SocialAccount = () => {
     setClicked(true)
   }
   return (
-    <div className="page-content">
-      <div className="container">
-        <Row>
-          <Col sm={2}></Col>
-          <Col sm={8}>
-            <Formik
-              initialValues={initialValues}
-              validate={validate}
-              onSubmit={handleSubmit}
-            >
-              {({ values }) => (
-                <Form>
-                  <p>Accounts</p>
-                  <div role="group" aria-labelledby="checkbox-group">
-                    <label>
-                      <Field
-                        type="checkbox"
-                        name="platforms"
-                        value="Facebook"
-                      />{" "}
-                      Facebook
-                    </label>
-                    <br />
-                    <label>
-                      <Field
-                        type="checkbox"
-                        name="platforms"
-                        value="Instagram"
-                      />{" "}
-                      Instagram
-                    </label>
-                    <br />
-                    <label>
-                      <Field type="checkbox" name="platforms" value="Twitter" />{" "}
-                      Twitter
-                    </label>
-                    <br />
+    // <div className="page-content">
+    //   <div className="container">
+    //     <Row>
+    //       <Col sm={2}></Col>
+    //       <Col sm={8}>
+    //         <Formik
+    //           initialValues={initialValues}
+    //           validate={validate}
+    //           onSubmit={handleSubmit}
+    //         >
+    //           {({ values }) => (
+    //             <Form>
+    //               <p>Accounts</p>
+    //               <div role="group" aria-labelledby="checkbox-group">
+    //                 <label>
+    //                   <Field
+    //                     type="checkbox"
+    //                     name="platforms"
+    //                     value="Facebook"
+    //                   />{" "}
+    //                   Facebook
+    //                 </label>
+    //                 <br />
+    //                 <label>
+    //                   <Field
+    //                     type="checkbox"
+    //                     name="platforms"
+    //                     value="Instagram"
+    //                   />{" "}
+    //                   Instagram
+    //                 </label>
+    //                 <br />
+    //                 <label>
+    //                   <Field type="checkbox" name="platforms" value="Twitter" />{" "}
+    //                   Twitter
+    //                 </label>
+    //                 <br />
 
-                    <label>
-                      <Field
-                        type="checkbox"
-                        name="platforms"
-                        value="Linkedin"
-                      />{" "}
-                      Linkedin
-                    </label>
-                    <br />
-                    <label>
-                      <Field
-                        type="checkbox"
-                        name="platforms"
-                        value="Google Ads/My Business"
-                      />{" "}
-                      Google Ads/My Business
-                    </label>
-                    <ErrorMessage
-                      component="div"
-                      style={{ color: "red" }}
-                      name="accounts"
-                    />
-                  </div>
+    //                 <label>
+    //                   <Field
+    //                     type="checkbox"
+    //                     name="platforms"
+    //                     value="Linkedin"
+    //                   />{" "}
+    //                   Linkedin
+    //                 </label>
+    //                 <br />
+    //                 <label>
+    //                   <Field
+    //                     type="checkbox"
+    //                     name="platforms"
+    //                     value="Google Ads/My Business"
+    //                   />{" "}
+    //                   Google Ads/My Business
+    //                 </label>
+    //                 <ErrorMessage
+    //                   component="div"
+    //                   style={{ color: "red" }}
+    //                   name="accounts"
+    //                 />
+    //               </div>
 
-                  <Button type="submit" color="primary">
-                    Submit
-                  </Button>
-                  {!error && clicked && <Redirect to="fbUrl" />}
-                  {redirect && <Redirect to="login" />}
-                </Form>
-              )}
-            </Formik>
-            <Col sm={2}></Col>
-          </Col>
-        </Row>
-      </div>
+    //               <Button type="submit" color="primary">
+    //                 Submit
+    //               </Button>
+    //               {!error && clicked && <Redirect to="fbUrl" />}
+    //               {redirect && <Redirect to="login" />}
+    //             </Form>
+    //           )}
+    //         </Formik>
+    //         <Col sm={2}></Col>
+    //       </Col>
+    //     </Row>
+    //   </div>
+    // </div>
+    <div className="container">
+      <Row>
+        <Col>
+          <FormikComponent
+            initialValues={initialValues}
+            validate={validate}
+            handleSubmit={handleSubmit}
+          >
+            <div className="account-pages my-5 pt-sm-5">
+              <Container>
+                <Row className="justify-content-center">
+                  <Col md={8} lg={6} xl={5}>
+                    <Card className="overflow-hidden">
+                      <div className="bg-primary bg-soft">
+                        <Row>
+                          <Col xs={7}>
+                            <div className="text-primary p-4">
+                              <h5 className="text-primary">Social Accounts!</h5>
+                            </div>
+                          </Col>
+                          <Col className="col-5 align-self-end">
+                            <img src={profile} alt="" className="img-fluid" />
+                          </Col>
+                        </Row>
+                      </div>
+                      <CardBody className="pt-0">
+                        <div className="p-2">
+                          <p>Accounts</p>
+                          <div role="group" aria-labelledby="checkbox-group">
+                            <label>
+                              <Field
+                                type="checkbox"
+                                name="platforms"
+                                value="Facebook"
+                              />{" "}
+                              Facebook
+                            </label>
+                            <br />
+                            <label>
+                              <Field
+                                type="checkbox"
+                                name="platforms"
+                                value="Instagram"
+                              />{" "}
+                              Instagram
+                            </label>
+                            <br />
+                            <label>
+                              <Field
+                                type="checkbox"
+                                name="platforms"
+                                value="Twitter"
+                              />{" "}
+                              Twitter
+                            </label>
+                            <br />
+
+                            <label>
+                              <Field
+                                type="checkbox"
+                                name="platforms"
+                                value="Linkedin"
+                              />{" "}
+                              Linkedin
+                            </label>
+                            <br />
+                            <label>
+                              <Field
+                                type="checkbox"
+                                name="platforms"
+                                value="Google Ads/My Business"
+                              />{" "}
+                              Google Ads/My Business
+                            </label>
+                            <ErrorMessage
+                              component="div"
+                              style={{ color: "red" }}
+                              name="accounts"
+                            />
+                          </div>
+
+                          <Button type="submit" color="primary">
+                            Submit
+                          </Button>
+                          {!error && clicked && <Redirect to="fbUrl" />}
+                          {redirect && <Redirect to="login" />}
+                        </div>
+                      </CardBody>
+                    </Card>
+                    <div className="mt-5 text-center">
+                      <p>
+                        © {new Date().getFullYear()} Sicuro Group. Crafted with{" "}
+                        <i className="mdi mdi-heart text-danger" /> by
+                        9thDimension
+                      </p>
+                    </div>
+                  </Col>
+                </Row>
+              </Container>
+            </div>
+          </FormikComponent>
+        </Col>
+      </Row>
     </div>
   )
 }
