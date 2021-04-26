@@ -66,12 +66,15 @@ const BusinessInfo = () => {
     return errors
   }
   async function handleSubmit(data) {
+    console.log(data)
     let resData
     let newData = {
       bus_short_desc: data.bus_short_desc,
       company_do: data.company_do,
       products: data.products,
     }
+    console.log(newData)
+
     try {
       if (value) {
         resData = await patchData(
@@ -90,12 +93,14 @@ const BusinessInfo = () => {
       setError(null)
     } catch (err) {
       setError(err.response.data.errors[0])
+      console.log(err.response)
     }
     setClicked(true)
   }
   return (
     <div className="container">
       <Row>
+        {/* <Col sm={2}>Step 1:</Col> */}
         <Col sm={12}>
           <Formik
             initialValues={initialValues}
@@ -108,6 +113,23 @@ const BusinessInfo = () => {
                   <Container>
                     <Row className="justify-content-center">
                       <Col md={8} lg={6} xl={5}>
+                        <nav aria-label="breadcrumb">
+                          <ol className="breadcrumb">
+                            <li
+                              className="breadcrumb-item active"
+                              aria-current="page"
+                            >
+                              Step1
+                            </li>
+                            <li
+                              style={{ color: "blue" }}
+                              className="breadcrumb-item"
+                              aria-current="page"
+                            >
+                              Business Info
+                            </li>
+                          </ol>
+                        </nav>
                         <Card className="overflow-hidden">
                           <div className="bg-primary bg-soft">
                             <Row>
@@ -203,8 +225,8 @@ const BusinessInfo = () => {
                         </Card>
                         <div className="mt-5 text-center">
                           <p>
-                            © {new Date().getFullYear()} Skote. Crafted with{" "}
-                            <i className="mdi mdi-heart text-danger" /> by
+                            © {new Date().getFullYear()} Sicuro Group. Crafted
+                            with <i className="mdi mdi-heart text-danger" /> by
                             9thDimension
                           </p>
                         </div>

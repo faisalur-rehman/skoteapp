@@ -126,6 +126,23 @@ const WebsiteContent = () => {
               <Container>
                 <Row className="justify-content-center">
                   <Col md={8} lg={6} xl={5}>
+                    <nav aria-label="breadcrumb">
+                      <ol className="breadcrumb">
+                        <li
+                          className="breadcrumb-item active"
+                          aria-current="page"
+                        >
+                          Step3
+                        </li>
+                        <li
+                          style={{ color: "blue" }}
+                          className="breadcrumb-item"
+                          aria-current="page"
+                        >
+                          Website Content
+                        </li>
+                      </ol>
+                    </nav>
                     <Card className="overflow-hidden">
                       <div className="bg-primary bg-soft">
                         <Row>

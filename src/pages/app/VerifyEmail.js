@@ -1,13 +1,14 @@
-import React from "react"
+import React, { useState } from "react"
 import MetaTags from "react-meta-tags"
 import { Link } from "react-router-dom"
 import { Card, CardBody, Col, Container, Row } from "reactstrap"
-
+import { Redirect } from "react-router-dom"
 // import images
 import logodark from "../../assets/images/logo-dark.png"
 import logolight from "../../assets/images/logo-light.png"
 
 const EmailVerification = () => {
+  const [redirect, setRedirect] = useState(false)
   return (
     <React.Fragment>
       <div className="account-pages my-5 pt-sm-5">
@@ -34,7 +35,6 @@ const EmailVerification = () => {
                     className="auth-logo-light mx-auto"
                   />
                 </Link>
-                <p className="mt-3">Responsive Bootstrap 5 Admin Dashboard</p>
               </div>
             </Col>
           </Row>
@@ -59,14 +59,18 @@ const EmailVerification = () => {
                           , Please check it
                         </p>
                         <div className="mt-4">
-                          <a href="/" className="btn btn-success w-md">
+                          <button
+                            onClick={() => setRedirect(true)}
+                            className="btn btn-success w-md"
+                          >
                             Verify email
-                          </a>
+                          </button>
                         </div>
                       </div>
                     </div>
                   </div>
                 </CardBody>
+                {redirect && <Redirect to="/login" />}
               </Card>
               <div className="mt-5 text-center">
                 <p>

@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react"
-import { Row, Col, Button } from "reactstrap"
+import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
+import profile from "../../assets/images/profile-img.png"
+import FormikComponent from "./Formik"
+
+// import profile from "../../assets/images/profile-img.png"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
@@ -76,50 +80,98 @@ const CallToAction = () => {
     }
   }
   return (
-    <div className="page-content">
-      <div className="container">
-        <Row>
-          <Col sm={2}></Col>
-          <Col sm={8}>
-            <Formik
-              initialValues={initialValues}
-              validate={validate}
-              onSubmit={handleSubmit}
-            >
-              {({ values }) => (
-                <Form>
-                  <p style={{ fontWeight: "bold" }}>Call to action:</p>
-                  <label htmlFor="name">Describe the action* : </label>
-                  <Field name="action" className="form-control" />
-                  <ErrorMessage
-                    name="action"
-                    component="div"
-                    style={{ color: "red" }}
-                  />
+    <div className="container">
+      <Row>
+        <Col>
+          <FormikComponent
+            initialValues={initialValues}
+            validate={validate}
+            handleSubmit={handleSubmit}
+          >
+            <div className="account-pages my-5 pt-sm-5">
+              <Container>
+                <Row className="justify-content-center">
+                  <Col md={8} lg={6} xl={5}>
+                    <nav aria-label="breadcrumb">
+                      <ol className="breadcrumb">
+                        <li
+                          className="breadcrumb-item active"
+                          aria-current="page"
+                        >
+                          Step2
+                        </li>
+                        <li
+                          style={{ color: "blue" }}
+                          className="breadcrumb-item"
+                          aria-current="page"
+                        >
+                          Action
+                        </li>
+                      </ol>
+                    </nav>
+                    <Card className="overflow-hidden">
+                      <div className="bg-primary bg-soft">
+                        <Row>
+                          <Col xs={7}>
+                            <div className="text-primary p-4">
+                              <h5 className="text-primary">Call To Action!</h5>
+                            </div>
+                          </Col>
+                          <Col className="col-5 align-self-end">
+                            <img src={profile} alt="" className="img-fluid" />
+                          </Col>
+                        </Row>
+                      </div>
+                      <CardBody className="pt-0">
+                        <div className="p-2">
+                          <p style={{ fontWeight: "bold" }}>Call to action:</p>
+                          <label htmlFor="name">Describe the action* : </label>
+                          <Field name="action" className="form-control" />
+                          <ErrorMessage
+                            name="action"
+                            component="div"
+                            style={{ color: "red" }}
+                          />
 
-                  <div>
-                    <Button type="submit" className="w-md mt-3" color="primary">
-                      Submit
-                    </Button>
-                  </div>
-                  {submitted && (
-                    <Button
-                      className="mt-3"
-                      color="success"
-                      onClick={() => setClicked(true)}
-                    >
-                      Next Section
-                    </Button>
-                  )}
-                  {!error && clicked && <Redirect to="/websitesYouLike" />}
-                  {redirect && <Redirect to="login" />}
-                </Form>
-              )}
-            </Formik>
-          </Col>
-          <Col sm={2}></Col>
-        </Row>
-      </div>
+                          <div>
+                            <Button
+                              type="submit"
+                              className="w-md mt-3"
+                              color="primary"
+                            >
+                              Submit
+                            </Button>
+                          </div>
+                          {submitted && (
+                            <Button
+                              className="mt-3"
+                              color="success"
+                              onClick={() => setClicked(true)}
+                            >
+                              Next Section
+                            </Button>
+                          )}
+                          {!error && clicked && (
+                            <Redirect to="/websitesYouLike" />
+                          )}
+                          {redirect && <Redirect to="login" />}
+                        </div>
+                      </CardBody>
+                    </Card>
+                    <div className="mt-5 text-center">
+                      <p>
+                        © {new Date().getFullYear()} Sicuro Group. Crafted with{" "}
+                        <i className="mdi mdi-heart text-danger" /> by
+                        9thDimension
+                      </p>
+                    </div>
+                  </Col>
+                </Row>
+              </Container>
+            </div>
+          </FormikComponent>
+        </Col>
+      </Row>
     </div>
   )
 }

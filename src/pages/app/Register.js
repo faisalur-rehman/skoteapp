@@ -14,7 +14,8 @@ import { Link, Redirect } from "react-router-dom"
 
 // import images
 import profileImg from "../../assets/images/profile-img.png"
-import logoImg from "../../assets/images/logo.svg"
+// import logoImg from "../../assets/images/logo.svg"
+import logo from "../../assets/images/logo1.jpg"
 
 //ApiCalls
 import { postData } from "./ApiRequest"
@@ -95,10 +96,11 @@ const Register = () => {
                       <div className="avatar-md profile-user-wid mb-4">
                         <span className="avatar-title rounded-circle bg-light">
                           <img
-                            src={logoImg}
+                            src={logo}
                             alt=""
                             className="rounded-circle"
                             height="34"
+                            width="90"
                           />
                         </span>
                       </div>
@@ -190,7 +192,7 @@ const Register = () => {
                               {clicked && !error && (
                                 <>
                                   <p>Registered Successfully</p>
-                                  {redirect && <Redirect to="/login" />}
+                                  {redirect && <Redirect to="/verifyEmail" />}
                                 </>
                               )}
                             </div>

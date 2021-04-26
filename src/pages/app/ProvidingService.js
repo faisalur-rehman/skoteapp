@@ -90,12 +90,31 @@ const ProvidingService = () => {
               <Container>
                 <Row className="justify-content-center">
                   <Col md={8} lg={6} xl={5}>
+                    <nav aria-label="breadcrumb">
+                      <ol className="breadcrumb">
+                        <li
+                          className="breadcrumb-item active"
+                          aria-current="page"
+                        >
+                          Step4
+                        </li>
+                        <li
+                          style={{ color: "blue" }}
+                          className="breadcrumb-item"
+                          aria-current="page"
+                        >
+                          Providing Service To
+                        </li>
+                      </ol>
+                    </nav>
                     <Card className="overflow-hidden">
                       <div className="bg-primary bg-soft">
                         <Row>
                           <Col xs={7}>
                             <div className="text-primary p-4">
-                              <h5 className="text-primary">Website Style!</h5>
+                              <h5 className="text-primary">
+                                Providing Services to!
+                              </h5>
                             </div>
                           </Col>
                           <Col className="col-5 align-self-end">

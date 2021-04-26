@@ -75,74 +75,6 @@ const UniqueSelling = () => {
     setClicked(true)
   }
   return (
-    // <div className="page-content">
-    //   <div className="container">
-    //     <Row>
-    //       <Col sm={2}></Col>
-    //       <Col sm={8}>
-    //         <FormikComponent
-    //           initialValues={initialValues}
-    //           validate={validate}
-    //           handleSubmit={handleSubmit}
-    //         >
-    //           <label htmlFor="description">Your unique selling point: </label>
-    //           <Field
-    //             type="text"
-    //             id="description"
-    //             name="description"
-    //             className="form-control"
-    //           />
-    //           <ErrorMessage
-    //             name="description"
-    //             component="div"
-    //             style={{ color: "red" }}
-    //           />
-    //           <br />
-
-    //           <label htmlFor="strength">Your Strength: </label>
-    //           <Field
-    //             type="text"
-    //             id="strength"
-    //             name="strength"
-    //             className="form-control"
-    //           />
-    //           <ErrorMessage
-    //             name="strength"
-    //             component="div"
-    //             style={{ color: "red" }}
-    //           />
-
-    //           <br />
-
-    //           <label htmlFor="reason_to_choose">
-    //             Why should customer choose you?{" "}
-    //           </label>
-    //           <Field
-    //             type="text"
-    //             id="reason_to_choose"
-    //             name="reason_to_choose"
-    //             className="form-control"
-    //           />
-    //           <ErrorMessage
-    //             name="reason_to_choose"
-    //             component="div"
-    //             style={{ color: "red" }}
-    //           />
-
-    //           <div>
-    //             <Button type="submit" className="w-md mt-3" color="primary">
-    //               Submit
-    //             </Button>
-    //           </div>
-    //           {!error && clicked && <Redirect to="competitors" />}
-    //           {redirect && <Redirect to="login" />}
-    //         </FormikComponent>
-    //       </Col>
-    //       <Col sm={2}></Col>
-    //     </Row>
-    //   </div>
-    // </div>
-
     <div className="container">
       <Row>
         <Col>
@@ -155,6 +87,23 @@ const UniqueSelling = () => {
               <Container>
                 <Row className="justify-content-center">
                   <Col md={8} lg={6} xl={5}>
+                    <nav aria-label="breadcrumb">
+                      <ol className="breadcrumb">
+                        <li
+                          className="breadcrumb-item active"
+                          aria-current="page"
+                        >
+                          Step1
+                        </li>
+                        <li
+                          style={{ color: "blue" }}
+                          className="breadcrumb-item"
+                          aria-current="page"
+                        >
+                          Unique Selling
+                        </li>
+                      </ol>
+                    </nav>
                     <Card className="overflow-hidden">
                       <div className="bg-primary bg-soft">
                         <Row>

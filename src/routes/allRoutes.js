@@ -82,6 +82,16 @@ export const publicRoutes = [
 
   { path: "/logoDesign", component: LogoDesign },
   { path: "/paTargetMarket", component: PATargetMarket },
+  { path: "/checkList", component: CheckList },
+  { path: "/objectives", component: Objectives },
+  { path: "/advancedFeatures", component: AdvancedFeatures },
+  { path: "/posting", component: Posting },
+  { path: "/uploadLogo", component: UploadLogo },
+  { path: "/aboutform", component: AboutForm },
+  { path: "/account", component: AccountVerification },
+  { path: "/companyDetail", component: CompanyDetail },
+  { path: "/callToAction", component: CallToAction },
+  { path: "/sitemap", component: Sitemap },
 ]
 
 const userRoutes = [
@@ -91,18 +101,6 @@ const userRoutes = [
   { path: "/profile", component: UserProfile },
 
   //Forms Route
-
-  { path: "/aboutform", component: AboutForm },
-  { path: "/account", component: AccountVerification },
-
-  { path: "/companyDetail", component: CompanyDetail },
-  { path: "/callToAction", component: CallToAction },
-  { path: "/checkList", component: CheckList },
-  { path: "/objectives", component: Objectives },
-  { path: "/sitemap", component: Sitemap },
-  { path: "/advancedFeatures", component: AdvancedFeatures },
-  { path: "/posting", component: Posting },
-  { path: "/uploadLogo", component: UploadLogo },
 
   //Paid Advertising Module
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
-import { Row, Col, Button } from "reactstrap"
+import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
+import profile from "../../assets/images/profile-img.png"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
@@ -99,106 +100,267 @@ const WebsiteGoals = () => {
     setClicked(true)
   }
   return (
-    <div className="page-content">
-      <div className="container">
-        <Row>
-          <Col sm={2}></Col>
-          <Col sm={8}>
-            <Formik
-              initialValues={initialValues}
-              validate={validate}
-              onSubmit={handleSubmit}
-            >
-              {({ values }) => (
-                <Form>
-                  <label htmlFor="role">Goals: </label>
-                  <br />
-                  <label>
-                    <Field
-                      type="radio"
-                      name="goal"
-                      value="Promote a brand and image"
-                    />
-                    Promote a brand and image
-                  </label>
-                  <br />
-                  <label>
-                    <Field
-                      type="radio"
-                      name="goal"
-                      value="Promote a product range"
-                    />
-                    Promote a product range
-                  </label>
-                  <br />
+    // <div className="page-content">
+    //   <div className="container">
+    //     <Row>
+    //       <Col sm={2}></Col>
+    //       <Col sm={8}>
+    //         <Formik
+    //           initialValues={initialValues}
+    //           validate={validate}
+    //           onSubmit={handleSubmit}
+    //         >
+    //           {({ values }) => (
+    //             <Form>
+    //               <label htmlFor="role">Goals: </label>
+    //               <br />
+    //               <label>
+    //                 <Field
+    //                   type="radio"
+    //                   name="goal"
+    //                   value="Promote a brand and image"
+    //                 />
+    //                 Promote a brand and image
+    //               </label>
+    //               <br />
+    //               <label>
+    //                 <Field
+    //                   type="radio"
+    //                   name="goal"
+    //                   value="Promote a product range"
+    //                 />
+    //                 Promote a product range
+    //               </label>
+    //               <br />
 
-                  <label>
-                    <Field
-                      type="radio"
-                      name="goal"
-                      value="Improve access information"
-                    />
-                    Improve access information
-                  </label>
-                  <br />
-                  <label>
-                    <Field
-                      type="radio"
-                      name="goal"
-                      value="Create a web presence"
-                    />
-                    Create a web presence
-                  </label>
-                  <br />
+    //               <label>
+    //                 <Field
+    //                   type="radio"
+    //                   name="goal"
+    //                   value="Improve access information"
+    //                 />
+    //                 Improve access information
+    //               </label>
+    //               <br />
+    //               <label>
+    //                 <Field
+    //                   type="radio"
+    //                   name="goal"
+    //                   value="Create a web presence"
+    //                 />
+    //                 Create a web presence
+    //               </label>
+    //               <br />
 
-                  <label>
-                    <Field
-                      type="radio"
-                      name="goal"
-                      value="Increase sales lead"
-                    />
-                    Increase sales lead
-                  </label>
-                  <br />
-                  <label>
-                    <Field type="radio" name="goal" value="other" />
-                    Other
-                  </label>
-                  {values.goal === "other" && (
-                    <div>
-                      <p>Please specify</p>
-                      <Field
-                        type="text"
-                        name="otherGoal"
-                        className="form-control"
-                      />
-                      <br />
-                      <ErrorMessage
-                        name="otherGoal"
-                        component="div"
-                        style={{ color: "red" }}
-                      />
-                    </div>
-                  )}
-                  <ErrorMessage
-                    name="goal"
-                    component="div"
-                    style={{ color: "red" }}
-                  />
-                  <div>
-                    <Button type="submit" className="w-md mt-3" color="primary">
-                      Submit
-                    </Button>
-                  </div>
-                  {!error && clicked && <Redirect to="objectives" />}
-                  {redirect && <Redirect to="login" />}
-                </Form>
-              )}
-            </Formik>
-          </Col>
-          <Col sm={2}></Col>
-        </Row>
-      </div>
+    //               <label>
+    //                 <Field
+    //                   type="radio"
+    //                   name="goal"
+    //                   value="Increase sales lead"
+    //                 />
+    //                 Increase sales lead
+    //               </label>
+    //               <br />
+    //               <label>
+    //                 <Field type="radio" name="goal" value="other" />
+    //                 Other
+    //               </label>
+    //               {values.goal === "other" && (
+    //                 <div>
+    //                   <p>Please specify</p>
+    //                   <Field
+    //                     type="text"
+    //                     name="otherGoal"
+    //                     className="form-control"
+    //                   />
+    //                   <br />
+    //                   <ErrorMessage
+    //                     name="otherGoal"
+    //                     component="div"
+    //                     style={{ color: "red" }}
+    //                   />
+    //                 </div>
+    //               )}
+    //               <ErrorMessage
+    //                 name="goal"
+    //                 component="div"
+    //                 style={{ color: "red" }}
+    //               />
+    //               <div>
+    //                 <Button type="submit" className="w-md mt-3" color="primary">
+    //                   Submit
+    //                 </Button>
+    //               </div>
+    //               {!error && clicked && <Redirect to="objectives" />}
+    //               {redirect && <Redirect to="login" />}
+    //             </Form>
+    //           )}
+    //         </Formik>
+    //       </Col>
+    //       <Col sm={2}></Col>
+    //     </Row>
+    //   </div>
+    // </div>
+
+    <div className="container">
+      <Row>
+        <Col sm={12}>
+          <Formik
+            initialValues={initialValues}
+            validate={validate}
+            onSubmit={handleSubmit}
+          >
+            {({ values }) => (
+              <Form>
+                <div className="account-pages my-5 pt-sm-5">
+                  <Container>
+                    <Row className="justify-content-center">
+                      <Col md={8} lg={6} xl={5}>
+                        <nav aria-label="breadcrumb">
+                          <ol className="breadcrumb">
+                            <li
+                              className="breadcrumb-item active"
+                              aria-current="page"
+                            >
+                              Step2
+                            </li>
+                            <li
+                              style={{ color: "blue" }}
+                              className="breadcrumb-item"
+                              aria-current="page"
+                            >
+                              Goals
+                            </li>
+                          </ol>
+                        </nav>
+                        <Card className="overflow-hidden">
+                          <div className="bg-primary bg-soft">
+                            <Row>
+                              <Col xs={7}>
+                                <div className="text-primary p-4">
+                                  <h5 className="text-primary">
+                                    Website Goals!
+                                  </h5>
+                                </div>
+                              </Col>
+                              <Col className="col-5 align-self-end">
+                                <img
+                                  src={profile}
+                                  alt=""
+                                  className="img-fluid"
+                                />
+                              </Col>
+                            </Row>
+                          </div>
+                          <CardBody className="pt-0">
+                            <div className="p-2">
+                              <label htmlFor="role">Goals: </label>
+                              <br />
+                              <label>
+                                <Field
+                                  type="radio"
+                                  name="goal"
+                                  value="Promote a brand and image"
+                                />
+                                Promote a brand and image
+                              </label>
+                              <br />
+                              <label>
+                                <Field
+                                  type="radio"
+                                  name="goal"
+                                  value="Promote a product range"
+                                />
+                                Promote a product range
+                              </label>
+                              <br />
+
+                              <label>
+                                <Field
+                                  type="radio"
+                                  name="goal"
+                                  value="Improve access information"
+                                />
+                                Improve access information
+                              </label>
+                              <br />
+                              <label>
+                                <Field
+                                  type="radio"
+                                  name="goal"
+                                  value="Create a web presence"
+                                />
+                                Create a web presence
+                              </label>
+                              <br />
+
+                              <label>
+                                <Field
+                                  type="radio"
+                                  name="goal"
+                                  value="Increase sales lead"
+                                />
+                                Increase sales lead
+                              </label>
+                              <br />
+                              <label>
+                                <Field type="radio" name="goal" value="other" />
+                                Other
+                              </label>
+                              {values.goal === "other" && (
+                                <div>
+                                  <p>Please specify</p>
+                                  <Field
+                                    type="text"
+                                    name="otherGoal"
+                                    className="form-control"
+                                  />
+                                  <br />
+                                  <ErrorMessage
+                                    name="otherGoal"
+                                    component="div"
+                                    style={{ color: "red" }}
+                                  />
+                                </div>
+                              )}
+                              <ErrorMessage
+                                name="goal"
+                                component="div"
+                                style={{ color: "red" }}
+                              />
+                              <div>
+                                <Button
+                                  type="submit"
+                                  className="w-md mt-3"
+                                  color="primary"
+                                >
+                                  Submit
+                                </Button>
+                              </div>
+                              {!error && clicked && (
+                                <Redirect to="objectives" />
+                              )}
+                              {redirect && <Redirect to="login" />}
+                            </div>
+                          </CardBody>
+                        </Card>
+                        <div className="mt-5 text-center">
+                          <p>
+                            © {new Date().getFullYear()} Sicuro Group. Crafted
+                            with <i className="mdi mdi-heart text-danger" /> by
+                            9thDimension
+                          </p>
+                        </div>
+                      </Col>
+                    </Row>
+                  </Container>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </Col>
+        {/* <Col sm={2}></Col> */}
+      </Row>
     </div>
   )
 }

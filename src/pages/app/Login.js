@@ -5,7 +5,7 @@ import { Form, ErrorMessage, Field, Formik } from "formik"
 import { Link, Redirect } from "react-router-dom"
 
 import profile from "../../assets/images/profile-img.png"
-import logo from "../../assets/images/logo.svg"
+import logo from "../../assets/images/logo1.jpg"
 import { postData } from "./ApiRequest"
 
 const Login = () => {
@@ -20,6 +20,7 @@ const Login = () => {
       localStorage.setItem("token", resData.data.token)
     } catch (err) {
       setError(err.response.data.name)
+      console.log(err.response)
     }
     setClicked(true)
   }
@@ -47,7 +48,7 @@ const Login = () => {
             {clicked && !error && (
               <>
                 <p>Registered Successfully</p>
-                <Redirect to="/dashboard" />
+                <Redirect to="/businessInfo" />
               </>
             )}
             <div className="home-btn d-none d-sm-block">
@@ -83,6 +84,7 @@ const Login = () => {
                                   alt=""
                                   className="rounded-circle"
                                   height="34"
+                                  width="90"
                                 />
                               </span>
                             </div>

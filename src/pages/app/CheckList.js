@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
-import { Row, Col, Button } from "reactstrap"
+import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
+import profile from "../../assets/images/profile-img.png"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
@@ -72,92 +73,148 @@ const CheckList = () => {
     setClicked(true)
   }
   return (
-    <div className="page-content">
-      <div className="container">
-        <Row>
-          <Col sm={2}></Col>
-          <Col sm={8}>
-            <Formik
-              initialValues={initialValues}
-              validate={validate}
-              onSubmit={handleSubmit}
-            >
-              {({ values }) => (
-                <Form>
-                  <p>CheckList</p>
-                  <div role="group" aria-labelledby="checkbox-group">
-                    <label>
-                      <Field
-                        type="checkbox"
-                        name="services"
-                        value="web_development"
-                      />{" "}
-                      Website Development
-                    </label>
-                    <br />
-                    <label>
-                      <Field
-                        type="checkbox"
-                        name="services"
-                        value="paid_advertising"
-                      />{" "}
-                      Paid Advertising
-                    </label>
-                    <br />
-                    <label>
-                      <Field
-                        type="checkbox"
-                        name="services"
-                        value="social_media_marketing"
-                      />{" "}
-                      Social Media Marketing
-                    </label>
-                    <br />
-                    <label>
-                      <Field
-                        type="checkbox"
-                        name="services"
-                        value="logo_creation"
-                      />{" "}
-                      Logo Creation
-                    </label>
-                    <br />
-                    <label>
-                      <Field
-                        type="checkbox"
-                        name="services"
-                        value="graphic_designing"
-                      />{" "}
-                      Graphic Design
-                    </label>
-                    <br />
-                    <label>
-                      <Field
-                        type="checkbox"
-                        name="services"
-                        value="productivity_and_automation"
-                      />{" "}
-                      Productivity and Automation
-                    </label>
-                    <ErrorMessage
-                      component="div"
-                      style={{ color: "red" }}
-                      name="services"
-                    />
-                  </div>
+    <div className="container">
+      <Row>
+        <Col sm={12}>
+          <Formik
+            initialValues={initialValues}
+            validate={validate}
+            onSubmit={handleSubmit}
+          >
+            {({ values }) => (
+              <Form>
+                <div className="account-pages my-5 pt-sm-5">
+                  <Container>
+                    <Row className="justify-content-center">
+                      <Col md={8} lg={6} xl={5}>
+                        <nav aria-label="breadcrumb">
+                          <ol className="breadcrumb">
+                            <li
+                              className="breadcrumb-item active"
+                              aria-current="page"
+                            >
+                              Step2
+                            </li>
+                            <li
+                              style={{ color: "blue" }}
+                              className="breadcrumb-item"
+                              aria-current="page"
+                            >
+                              Checklist
+                            </li>
+                          </ol>
+                        </nav>
+                        <Card className="overflow-hidden">
+                          <div className="bg-primary bg-soft">
+                            <Row>
+                              <Col xs={7}>
+                                <div className="text-primary p-4">
+                                  <h5 className="text-primary">Checklist!</h5>
+                                </div>
+                              </Col>
+                              <Col className="col-5 align-self-end">
+                                <img
+                                  src={profile}
+                                  alt=""
+                                  className="img-fluid"
+                                />
+                              </Col>
+                            </Row>
+                          </div>
+                          <CardBody className="pt-0">
+                            <div className="p-2">
+                              <p>CheckList</p>
+                              <div
+                                role="group"
+                                aria-labelledby="checkbox-group"
+                              >
+                                <label>
+                                  <Field
+                                    type="checkbox"
+                                    name="services"
+                                    value="web_development"
+                                  />{" "}
+                                  Website Development
+                                </label>
+                                <br />
+                                <label>
+                                  <Field
+                                    type="checkbox"
+                                    name="services"
+                                    value="paid_advertising"
+                                  />{" "}
+                                  Paid Advertising
+                                </label>
+                                <br />
+                                <label>
+                                  <Field
+                                    type="checkbox"
+                                    name="services"
+                                    value="social_media_marketing"
+                                  />{" "}
+                                  Social Media Marketing
+                                </label>
+                                <br />
+                                <label>
+                                  <Field
+                                    type="checkbox"
+                                    name="services"
+                                    value="logo_creation"
+                                  />{" "}
+                                  Logo Creation
+                                </label>
+                                <br />
+                                <label>
+                                  <Field
+                                    type="checkbox"
+                                    name="services"
+                                    value="graphic_designing"
+                                  />{" "}
+                                  Graphic Design
+                                </label>
+                                <br />
+                                <label>
+                                  <Field
+                                    type="checkbox"
+                                    name="services"
+                                    value="productivity_and_automation"
+                                  />{" "}
+                                  Productivity and Automation
+                                </label>
+                                <ErrorMessage
+                                  component="div"
+                                  style={{ color: "red" }}
+                                  name="services"
+                                />
+                              </div>
 
-                  <Button type="submit" color="primary">
-                    Submit
-                  </Button>
-                  {!error && clicked && <Redirect to="websiteGoals" />}
-                  {redirect && <Redirect to="login" />}
-                </Form>
-              )}
-            </Formik>
-            <Col sm={2}></Col>
-          </Col>
-        </Row>
-      </div>
+                              <Button type="submit" color="primary">
+                                Submit
+                              </Button>
+                              {!error && clicked && (
+                                <Redirect to="websiteGoals" />
+                              )}
+                              {redirect && <Redirect to="login" />}
+                            </div>
+                          </CardBody>
+                        </Card>
+                        <div className="mt-5 text-center">
+                          <p>
+                            © {new Date().getFullYear()} Sicuro Group. Crafted
+                            with <i className="mdi mdi-heart text-danger" /> by
+                            9thDimension
+                          </p>
+                        </div>
+                      </Col>
+                    </Row>
+                  </Container>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </Col>
+        {/* <Col sm={2}></Col> */}
+      </Row>
     </div>
   )
 }
