@@ -80,13 +80,13 @@ const BusinessInfo = () => {
         resData = await patchData(
           "/business/introduction",
           id,
-          newData,
+          data,
           localStorage.getItem("token")
         )
       } else {
         resData = await formPostData(
           "/business/introduction",
-          newData,
+          data,
           localStorage.getItem("token")
         )
       }

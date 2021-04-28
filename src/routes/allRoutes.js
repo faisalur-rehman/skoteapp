@@ -50,6 +50,7 @@ import SingleRecord from "pages/app/SingleRecord"
 import VerifyEmail from "pages/app/VerifyEmail"
 import UploadLogo from "pages/app/UploadLogo"
 import FileManager from "pages/app/FileManager/index"
+import EmailVerfication from "pages/app/EmailVerfication"
 
 export const publicRoutes = [
   { path: "/login", component: Login },
@@ -92,6 +93,7 @@ export const publicRoutes = [
   { path: "/companyDetail", component: CompanyDetail },
   { path: "/callToAction", component: CallToAction },
   { path: "/sitemap", component: Sitemap },
+  { path: "/verify/:token", component: EmailVerfication },
 ]
 
 const userRoutes = [

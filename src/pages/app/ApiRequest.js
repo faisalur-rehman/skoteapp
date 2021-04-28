@@ -9,7 +9,7 @@ export async function postData(endpoint, data) {
     ...data,
   })
 }
-export async function formPostData(endpoint, data, token) {
+export async function formPostContent(endpoint, data, token) {
   return api.post(
     `${endpoint}`,
     {
@@ -24,7 +24,7 @@ export async function formPostData(endpoint, data, token) {
     }
   )
 }
-export async function formPostContent(endpoint, data, token) {
+export async function formPostData(endpoint, data, token) {
   return api.post(
     `${endpoint}`,
     {
@@ -56,6 +56,11 @@ export async function patchData(endpoint, id, data, token) {
     }
   )
 }
+
+export async function verifyEmail(endpoint, data) {
+  return api.post(`${endpoint}`, { ...data })
+}
+
 export async function getUsers(endpoint, token) {
   return api.get(`${endpoint}`, {
     headers: {

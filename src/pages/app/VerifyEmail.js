@@ -1,14 +1,15 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import MetaTags from "react-meta-tags"
 import { Link } from "react-router-dom"
 import { Card, CardBody, Col, Container, Row } from "reactstrap"
-import { Redirect } from "react-router-dom"
+import { Redirect, useParams } from "react-router-dom"
 // import images
 import logodark from "../../assets/images/logo-dark.png"
 import logolight from "../../assets/images/logo-light.png"
 
 const EmailVerification = () => {
   const [redirect, setRedirect] = useState(false)
+  // console.log(token)
   return (
     <React.Fragment>
       <div className="account-pages my-5 pt-sm-5">
@@ -58,14 +59,14 @@ const EmailVerification = () => {
                           </span> */}
                           , Please check it
                         </p>
-                        <div className="mt-4">
+                        {/* <div className="mt-4">
                           <button
                             onClick={() => setRedirect(true)}
                             className="btn btn-success w-md"
                           >
                             Verify email
                           </button>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -79,10 +80,6 @@ const EmailVerification = () => {
                     {" "}
                     Resend{" "}
                   </a>{" "}
-                </p>
-                <p>
-                  © {new Date().getFullYear()} Skote. Crafted with{" "}
-                  <i className="mdi mdi-heart text-danger"></i> by 9th Dimension
                 </p>
               </div>
             </Col>
