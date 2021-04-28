@@ -91,76 +91,6 @@ const AccessAccount = () => {
   }
 
   return (
-    // <div className="page-content">
-    //   <div className="container">
-    //     <Row>
-    //       <Col sm={2}></Col>
-
-    //       <Col sm={8}>
-    //         <FormikComponent
-    //           initialValues={initialValues}
-    //           handleSubmit={handleSubmit}
-    //           validate={validate}
-    //         >
-    //   <p>
-    //     In order to add analytics, we need access to the backend of your
-    //     website.Please include your login url
-    //   </p>
-
-    //   <Field
-    //     name="login_url"
-    //     className="form-control"
-    //     placeholder="e.g. https://sicurogroup.com"
-    //   />
-    //   <br />
-    //   <ErrorMessage
-    //     name="login_url"
-    //     component="div"
-    //     style={{ color: "red" }}
-    //   />
-    //   <p>Username:</p>
-    //   <Field
-    //     name="username"
-    //     className="form-control"
-    //     placeholder="Username"
-    //   />
-    //   <ErrorMessage
-    //     name="username"
-    //     component="div"
-    //     style={{ color: "red" }}
-    //   />
-    //   <p>Password:</p>
-    //   <Field
-    //     type="password"
-    //     name="password"
-    //     className="form-control"
-    //     placeholder="password"
-    //   />
-    //   <ErrorMessage
-    //     name="password"
-    //     component="div"
-    //     style={{ color: "red" }}
-    //   />
-    //   <br />
-    //   <div>
-    //     <Button type="submit" color="primary" className="w-md mt-3">
-    //       Submit
-    //     </Button>
-    //   </div>
-    // {submitted && (
-    //   <Button color="success" onClick={() => setClicked(true)}>
-    //     Next Section
-    //   </Button>
-    // )}
-    // {!error && clicked && <Redirect to="logoDesign" />}
-    // {redirect && <Redirect to="login" />}
-    //         </FormikComponent>
-    //       </Col>
-    //       <Col sm={2}></Col>
-    //     </Row>
-    //   </div>
-    // </div>
-
     <div className="container">
       <Row>
         <Col>
@@ -268,13 +198,6 @@ const AccessAccount = () => {
                         </div>
                       </CardBody>
                     </Card>
-                    <div className="mt-5 text-center">
-                      <p>
-                        © {new Date().getFullYear()} Sicuro Group. Crafted with{" "}
-                        <i className="mdi mdi-heart text-danger" /> by
-                        9thDimension
-                      </p>
-                    </div>
                   </Col>
                 </Row>
               </Container>

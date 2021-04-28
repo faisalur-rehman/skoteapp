@@ -79,50 +79,6 @@ const AdvancedFeatures = () => {
   }
 
   return (
-    // <div className="page-content">
-    //   <div className="container">
-    //     <Row>
-    //       <Col sm={2}></Col>
-
-    //       <Col sm={8}>
-    //         <FormikComponent
-    //           initialValues={initialValues}
-    //           handleSubmit={handleSubmit}
-    //           validate={validate}
-    //         >
-    //           <p>Advanced Feature:</p>
-    //           <Field
-    //             name="feature"
-    //             className="form-control"
-    //             placeholder="Advanced Feature"
-    //           />
-    //           <ErrorMessage
-    //             name="feature"
-    //             component="div"
-    //             style={{ color: "red" }}
-    //           />
-
-    //           {/* {error && (
-    //             <p style={{ color: "red" }}>
-    //               {error}. Please check the Web Development checkbox in
-    //               CheckList form section in order to submit this form.
-    //             </p>
-    //           )} */}
-
-    //           <div>
-    //             <Button type="submit" className="w-md mt-2" color="primary">
-    //               Submit
-    //             </Button>
-    //             {!error && clicked && <Redirect to="callToAction" />}
-    //             {redirect && <Redirect to="login" />}
-    //           </div>
-    //         </FormikComponent>
-    //       </Col>
-    //       <Col sm={2}></Col>
-    //     </Row>
-    //   </div>
-    // </div>
-
     <div className="container">
       <Row>
         <Col>
@@ -204,13 +160,6 @@ const AdvancedFeatures = () => {
                         </div>
                       </CardBody>
                     </Card>
-                    <div className="mt-5 text-center">
-                      <p>
-                        © {new Date().getFullYear()} Sicuro Group. Crafted with{" "}
-                        <i className="mdi mdi-heart text-danger" /> by
-                        9thDimension
-                      </p>
-                    </div>
                   </Col>
                 </Row>
               </Container>

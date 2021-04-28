@@ -6,6 +6,7 @@ import { Redirect, useParams } from "react-router-dom"
 // import images
 import logodark from "../../assets/images/logo-dark.png"
 import logolight from "../../assets/images/logo-light.png"
+import logo from "../../assets/images/logo1.jpg"
 
 const EmailVerification = () => {
   const [redirect, setRedirect] = useState(false)
@@ -24,16 +25,10 @@ const EmailVerification = () => {
               <div className="text-center mb-5 text-muted">
                 <Link to="dashboard" className="d-block auth-logo">
                   <img
-                    src={logodark}
+                    src={logo}
                     alt=""
-                    height="20"
+                    height="40"
                     className="auth-logo-dark mx-auto"
-                  />
-                  <img
-                    src={logolight}
-                    alt=""
-                    height="20"
-                    className="auth-logo-light mx-auto"
                   />
                 </Link>
               </div>

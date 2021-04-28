@@ -98,90 +98,6 @@ const AccessAccount = () => {
   }
 
   return (
-    // <div className="page-content">
-    //   <div className="container">
-    //     <Row>
-    //       <Col sm={2}></Col>
-
-    //       <Col sm={8}>
-    //         <FormikComponent
-    //           initialValues={initialValues}
-    //           handleSubmit={handleSubmit}
-    //           validate={validate}
-    //         >
-    //           <p>
-    //             Would you like to use a different way for Sicuro Group to access
-    //             your account?
-    //           </p>
-
-    //           <label>
-    //             <Field type="radio" name="has_difference_access" value="true" />
-    //             Yes
-    //           </label>
-    //           <br />
-    //           <label>
-    //             <Field
-    //               type="radio"
-    //               name="has_difference_access"
-    //               value="false"
-    //             />
-    //             No
-    //           </label>
-    //           <br />
-    //           <ErrorMessage
-    //             name="has_difference_access"
-    //             component="div"
-    //             style={{ color: "red" }}
-    //           />
-    //           <p>Do you have an Ad account ID?</p>
-    //           <label>
-    //             <Field
-    //               type="radio"
-    //               name="info"
-    //               value="Yes I have an ad account number"
-    //             />
-    //             Yes I have an ad account number
-    //           </label>
-    //           <br />
-    //           <label>
-    //             <Field type="radio" name="info" value="I am not sure" />
-    //             I’m not sure
-    //           </label>
-    //           <br />
-
-    //           <label>
-    //             <Field
-    //               type="radio"
-    //               name="info"
-    //               value="I don't have an ad account number"
-    //             />
-    //             No
-    //           </label>
-    //           <br />
-    //           <ErrorMessage
-    //             name="info"
-    //             component="div"
-    //             style={{ color: "red" }}
-    //           />
-    //           <div>
-    //             <Button type="submit" color="primary" className="w-md mt-3">
-    //               Submit
-    //             </Button>
-    //           </div>
-    //         </FormikComponent>
-    //         {!error && clicked && <Redirect to="webInfo" />}
-    //         {redirect && <Redirect to="login" />}
-
-    //         {/* {submitted && (
-    //           <Button color="success" onClick={() => setClicked(true)}>
-    //             Next Section
-    //           </Button>
-    //         )} */}
-    //       </Col>
-    //       <Col sm={2}></Col>
-    //     </Row>
-    //   </div>
-    // </div>
     <div className="container">
       <Row>
         <Col>
@@ -302,13 +218,6 @@ const AccessAccount = () => {
                         {redirect && <Redirect to="login" />}
                       </CardBody>
                     </Card>
-                    <div className="mt-5 text-center">
-                      <p>
-                        © {new Date().getFullYear()} Sicuro Group. Crafted with{" "}
-                        <i className="mdi mdi-heart text-danger" /> by
-                        9thDimension
-                      </p>
-                    </div>
                   </Col>
                 </Row>
               </Container>

@@ -77,81 +77,6 @@ const SocialAccount = () => {
     setClicked(true)
   }
   return (
-    // <div className="page-content">
-    //   <div className="container">
-    //     <Row>
-    //       <Col sm={2}></Col>
-    //       <Col sm={8}>
-    //         <Formik
-    //           initialValues={initialValues}
-    //           validate={validate}
-    //           onSubmit={handleSubmit}
-    //         >
-    //           {({ values }) => (
-    //             <Form>
-    //               <p>Accounts</p>
-    //               <div role="group" aria-labelledby="checkbox-group">
-    //                 <label>
-    //                   <Field
-    //                     type="checkbox"
-    //                     name="platforms"
-    //                     value="Facebook"
-    //                   />{" "}
-    //                   Facebook
-    //                 </label>
-    //                 <br />
-    //                 <label>
-    //                   <Field
-    //                     type="checkbox"
-    //                     name="platforms"
-    //                     value="Instagram"
-    //                   />{" "}
-    //                   Instagram
-    //                 </label>
-    //                 <br />
-    //                 <label>
-    //                   <Field type="checkbox" name="platforms" value="Twitter" />{" "}
-    //                   Twitter
-    //                 </label>
-    //                 <br />
-
-    //                 <label>
-    //                   <Field
-    //                     type="checkbox"
-    //                     name="platforms"
-    //                     value="Linkedin"
-    //                   />{" "}
-    //                   Linkedin
-    //                 </label>
-    //                 <br />
-    //                 <label>
-    //                   <Field
-    //                     type="checkbox"
-    //                     name="platforms"
-    //                     value="Google Ads/My Business"
-    //                   />{" "}
-    //                   Google Ads/My Business
-    //                 </label>
-    //                 <ErrorMessage
-    //                   component="div"
-    //                   style={{ color: "red" }}
-    //                   name="accounts"
-    //                 />
-    //               </div>
-
-    //               <Button type="submit" color="primary">
-    //                 Submit
-    //               </Button>
-    //               {!error && clicked && <Redirect to="fbUrl" />}
-    //               {redirect && <Redirect to="login" />}
-    //             </Form>
-    //           )}
-    //         </Formik>
-    //         <Col sm={2}></Col>
-    //       </Col>
-    //     </Row>
-    //   </div>
-    // </div>
     <div className="container">
       <Row>
         <Col>
@@ -258,13 +183,6 @@ const SocialAccount = () => {
                         </div>
                       </CardBody>
                     </Card>
-                    <div className="mt-5 text-center">
-                      <p>
-                        © {new Date().getFullYear()} Sicuro Group. Crafted with{" "}
-                        <i className="mdi mdi-heart text-danger" /> by
-                        9thDimension
-                      </p>
-                    </div>
                   </Col>
                 </Row>
               </Container>

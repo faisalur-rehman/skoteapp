@@ -60,10 +60,6 @@ const Register = () => {
     }
     setClicked(true)
   }
-  // const redirect = () => {
-  //   console.log("here")
-  //   setTimeout(() => setRedirect(true), 3000)
-  // }
 
   return (
     <React.Fragment>
@@ -100,7 +96,7 @@ const Register = () => {
                             alt=""
                             className="rounded-circle"
                             height="34"
-                            width="90"
+                            width="78"
                           />
                         </span>
                       </div>
@@ -223,10 +219,6 @@ const Register = () => {
                     {" "}
                     Login
                   </Link>
-                </p>
-                <p>
-                  © {new Date().getFullYear()} Sicuro Group. Crafted with{" "}
-                  <i className="mdi mdi-heart text-danger" /> by 9thDimension
                 </p>
               </div>
             </Col>

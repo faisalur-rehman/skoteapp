@@ -7,6 +7,7 @@ import { Card, CardBody, Col, Container, Row } from "reactstrap"
 // import images
 import logodark from "../../assets/images/logo-dark.png"
 import logolight from "../../assets/images/logo-light.png"
+import logo from "../../assets/images/logo1.jpg"
 
 const EmailVerfication = () => {
   const [redirect, setRedirect] = useState(false)
@@ -25,16 +26,10 @@ const EmailVerfication = () => {
             <div className="text-center mb-5 text-muted">
               <Link to="dashboard" className="d-block auth-logo">
                 <img
-                  src={logodark}
+                  src={logo}
                   alt=""
-                  height="20"
+                  height="40"
                   className="auth-logo-dark mx-auto"
-                />
-                <img
-                  src={logolight}
-                  alt=""
-                  height="F20"
-                  className="auth-logo-light mx-auto"
                 />
               </Link>
               <p className="mt-3">Responsive Bootstrap 5 Admin Dashboard</p>

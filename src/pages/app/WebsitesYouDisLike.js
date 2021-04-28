@@ -85,59 +85,6 @@ const WebsitesYouDisLike = () => {
   }
 
   return (
-    // <div className="page-content">
-    //   <div className="container">
-    //     <Row>
-    //       <Col sm={2}></Col>
-    //       <Col sm={8}>
-    //         <Formik
-    //           initialValues={initialValues}
-    //           validate={validate}
-    //           onSubmit={handleSubmit}
-    //         >
-    //           {() => (
-    //             <Form>
-    //               <label htmlFor="websites">
-    //                 Enter website's name you dislike.
-    //               </label>
-    //               <FieldArray name="websites">
-    //                 {props => {
-    //                   const { form, push, remove } = props
-    //                   const { values } = form
-    //                   const { websites } = values
-
-    //                   return (
-    //                     <div>
-    //                       {websites.map((website, index) => (
-    //                         <Field
-    //                           name={`website${index}`}
-    //                           type="text"
-    //                           key={index}
-    //                           className="form-control"
-    //                         />
-    //                       ))}
-    //                       {error && <p style={{ color: "red" }}>{error}</p>}
-
-    //                       <Button color="secondary" onClick={() => push("")}>
-    //                         Add Website
-    //                       </Button>
-    //                       <Button color="primary" className="m-2" type="submit">
-    //                         Submit
-    //                       </Button>
-    //                       {!error && clicked && <Redirect to="websiteColor" />}
-    //                       {redirect && <Redirect to="login" />}
-    //                     </div>
-    //                   )
-    //                 }}
-    //               </FieldArray>
-    //             </Form>
-    //           )}
-    //         </Formik>
-    //       </Col>
-    //       <Col sm={2}></Col>
-    //     </Row>
-    //   </div>
-    // </div>
     <div className="container">
       <Row>
         <Col>
@@ -240,13 +187,6 @@ const WebsitesYouDisLike = () => {
                             </div>
                           </CardBody>
                         </Card>
-                        <div className="mt-5 text-center">
-                          <p>
-                            © {new Date().getFullYear()} Sicuro Group. Crafted
-                            with <i className="mdi mdi-heart text-danger" /> by
-                            9thDimension
-                          </p>
-                        </div>
                       </Col>
                     </Row>
                   </Container>

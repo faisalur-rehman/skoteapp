@@ -147,11 +147,6 @@ const Login = () => {
                           Signup now
                         </Link>
                       </p>
-                      <p>
-                        © {new Date().getFullYear()} Sicuro Group. Crafted with{" "}
-                        <i className="mdi mdi-heart text-danger" /> by
-                        9thDimension
-                      </p>
                     </div>
                   </Col>
                 </Row>
