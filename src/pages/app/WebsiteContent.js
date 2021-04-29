@@ -17,19 +17,39 @@ const WebsiteContent = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [services, setServices] = useState([])
   const [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
       setRedirect(true)
     }
+    // async function fetchData1() {
+    //   try {
+    //     const { data } = await formGetData(
+    //       "/services/checklist",
+    //       localStorage.getItem("token")
+    //     )
+    //     setServices([...data.checkList.services])
+    //     console.log(services)
+    //     // console.log(data.checkList.services)
+    //   } catch (error) {
+    //     setError(error.response)
+    //   }
+    // }
+    // fetchData1()
     async function fetchData() {
       try {
         const { data } = await formGetData(
           "/services/design/content",
           localStorage.getItem("token")
         )
-        console.log(data.content)
+        const response = await formGetData(
+          "/services/checklist",
+          localStorage.getItem("token")
+        )
+        setServices([...response.data.checkList.services])
+        // console.log(data.content)
         if (data.content) {
           setId(data.content["_id"])
           if (data.content.has_content_ready) {
@@ -53,7 +73,7 @@ const WebsiteContent = () => {
     }
     fetchData()
   }, [])
-
+  services.length > 0 && console.log(services)
   const validate = values => {
     const errors = {}
     if (!values.has_content_ready) {
@@ -215,6 +235,7 @@ const WebsiteContent = () => {
                               Submit
                             </Button>
                           </div>
+                          {clicked && <Redirect to="dashboard" />}
                           {submitted && (
                             <Button
                               color="success"
@@ -223,7 +244,17 @@ const WebsiteContent = () => {
                               Next Section
                             </Button>
                           )}
-                          {!error && clicked && <Redirect to="services" />}
+
+                          {clicked &&
+                            services.length > 0 &&
+                            services.includes("logo_creation") && (
+                              <Redirect to="logoDesign" />
+                            )}
+                          {clicked &&
+                            services.length > 0 &&
+                            services.includes("paid_advertising") && (
+                              <Redirect to="services" />
+                            )}
                           {redirect && <Redirect to="login" />}
                         </div>
                       </CardBody>

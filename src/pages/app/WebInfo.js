@@ -17,6 +17,7 @@ const AccessAccount = () => {
   const [error, setError] = useState(null)
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
+  const [services, setServices] = useState([])
   const [submitted, setSubmitted] = useState(false)
   const [redirect, setRedirect] = useState(false)
 
@@ -30,6 +31,11 @@ const AccessAccount = () => {
           "/services/social-media/web-info",
           localStorage.getItem("token")
         )
+        const response = await formGetData(
+          "/services/checklist",
+          localStorage.getItem("token")
+        )
+        setServices([...response.data.checkList.services])
         console.log(data.payload)
         if (data.payload) {
           setId(data.payload["_id"])
@@ -193,7 +199,12 @@ const AccessAccount = () => {
                               Next Section
                             </Button>
                           )}
-                          {!error && clicked && <Redirect to="logoDesign" />}
+                          {clicked && <Redirect to="dashboard" />}
+                          {clicked &&
+                            services.length > 0 &&
+                            services.includes("logo_creation") && (
+                              <Redirect to="logoDesign" />
+                            )}
                           {redirect && <Redirect to="login" />}
                         </div>
                       </CardBody>

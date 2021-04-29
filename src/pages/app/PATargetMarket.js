@@ -15,6 +15,7 @@ const PATargetMarket = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [services, setServices] = useState([])
   const [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
@@ -27,7 +28,12 @@ const PATargetMarket = () => {
           "/services/advertise/offer-target",
           localStorage.getItem("token")
         )
-        console.log(data)
+        // console.log(data)
+        const response = await formGetData(
+          "/services/checklist",
+          localStorage.getItem("token")
+        )
+        setServices([...response.data.checkList.services])
         if (data.payload) {
           setId(data.payload["_id"])
           initialValues.niche_market = data.payload.niche_market
@@ -77,7 +83,6 @@ const PATargetMarket = () => {
       setError(err.response)
       console.log(err.response)
     }
-    setClicked(true)
   }
   console.l
   return (
@@ -158,13 +163,33 @@ const PATargetMarket = () => {
                           <div>
                             <Button
                               type="submit"
-                              className="w-md mt-3"
+                              className="w-md mt-3 mb-3"
                               color="primary"
                             >
                               Submit
                             </Button>
                           </div>
-                          {!error && clicked && <Redirect to="posting" />}
+                          {submitted && (
+                            <Button
+                              color="success"
+                              onClick={() => setClicked(true)}
+                            >
+                              Next Section
+                            </Button>
+                          )}
+
+                          {clicked && <Redirect to="dashboard" />}
+                          {clicked &&
+                            services.length > 0 &&
+                            services.includes("logo_creation") && (
+                              <Redirect to="logoDesign" />
+                            )}
+                          {clicked &&
+                            services.length > 0 &&
+                            services.includes("social_media_marketing") && (
+                              <Redirect to="posting" />
+                            )}
+
                           {redirect && <Redirect to="login" />}
                         </div>
                       </CardBody>

@@ -15,7 +15,7 @@ const CheckList = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
   const [redirect, setRedirect] = useState(false)
-
+  const [services, setServices] = useState([])
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
       setRedirect(true)
@@ -66,7 +66,10 @@ const CheckList = () => {
           localStorage.getItem("token")
         )
       }
+      // console.log(resData.data.checkList.services)
+      setServices([...resData.data.checkList.services])
       setError(null)
+      services.length > 0 && console.log(services)
     } catch (error) {
       setError(error.response)
     }
@@ -123,7 +126,9 @@ const CheckList = () => {
                           </div>
                           <CardBody className="pt-0">
                             <div className="p-2">
-                              <p>CheckList</p>
+                              <p>
+                                Choose the services you want to engage in...
+                              </p>
                               <div
                                 role="group"
                                 aria-labelledby="checkbox-group"
@@ -191,9 +196,25 @@ const CheckList = () => {
                               <Button type="submit" color="primary">
                                 Submit
                               </Button>
-                              {!error && clicked && (
-                                <Redirect to="websiteGoals" />
-                              )}
+                              {!error &&
+                                services.length > 0 &&
+                                services.includes("logo_creation") && (
+                                  <Redirect to="logoDesign" />
+                                )}
+
+                              {services.length > 0 &&
+                                services.includes("social_media_marketing") && (
+                                  <Redirect to="posting" />
+                                )}
+                              {services.length > 0 &&
+                                services.includes("paid_advertising") && (
+                                  <Redirect to="services" />
+                                )}
+                              {services.length > 0 &&
+                                services.includes("web_development") && (
+                                  <Redirect to="websiteGoals" />
+                                )}
+
                               {redirect && <Redirect to="login" />}
                             </div>
                           </CardBody>

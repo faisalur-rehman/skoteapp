@@ -21,13 +21,6 @@ import {
 } from "reactstrap"
 import { Link, Redirect } from "react-router-dom"
 
-//import Charts
-import StackedColumnChart from "./StackedColumnChart"
-
-import modalimage1 from "../../assets/images/product/img-7.png"
-import modalimage2 from "../../assets/images/product/img-4.png"
-
-// Pages Components
 
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb"
@@ -39,7 +32,11 @@ const Dashboard = props => {
   const [users, setUsers] = useState([])
   const [clicked, setClicked] = useState(false)
   const [index, setIndex] = useState()
+  const [redirect, setRedirect] = useState(false)
   useEffect(() => {
+    if (localStorage.getItem("token") === null) {
+      setRedirect(true)
+    }
     async function fetchData() {
       try {
         const { data } = await getUsers("/user", localStorage.getItem("token"))
@@ -158,6 +155,7 @@ const Dashboard = props => {
                                   }}
                                 />
                               )}
+                              {redirect && <Redirect to="login" />}
                             </td>
                           </tr>
                         ))}
