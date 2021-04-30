@@ -6,6 +6,7 @@ import FormikComponent from "./Formik"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
+import Step5 from "./Step5"
 
 const initialValues = {
   platforms: [],
@@ -79,6 +80,7 @@ const SocialAccount = () => {
   return (
     <div className="container">
       <Row>
+        <Step5 active={1} />
         <Col>
           <FormikComponent
             initialValues={initialValues}

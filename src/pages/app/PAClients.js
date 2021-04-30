@@ -5,6 +5,7 @@ import profile from "../../assets/images/profile-img.png"
 
 import { Redirect } from "react-router-dom"
 import { formGetData, formPostData, patchData } from "./ApiRequest"
+import Step4 from "./Step4"
 
 const initialValues = { customers: [""] }
 
@@ -79,6 +80,7 @@ const PAClients = () => {
   return (
     <div className="container">
       <Row>
+        <Step4 active={3} />
         <Col>
           <Formik
             initialValues={initialValues}

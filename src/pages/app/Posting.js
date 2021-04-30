@@ -7,6 +7,7 @@ import profile from "../../assets/images/profile-img.png"
 import { Redirect } from "react-router-dom"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 import { divide } from "lodash"
+import Step5 from "./Step5"
 
 const initialValues = {
   voice_tone: "",
@@ -119,6 +120,7 @@ const Posting = () => {
   return (
     <div className="container">
       <Row>
+        <Step5 active={0} />
         <Col>
           <FormikComponent
             initialValues={initialValues}

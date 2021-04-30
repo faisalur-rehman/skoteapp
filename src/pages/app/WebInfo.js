@@ -5,6 +5,7 @@ import { formPostData, formGetData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
 import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
 import profile from "../../assets/images/profile-img.png"
+import Step5 from "./Step5"
 
 const initialValues = {
   login_url: "",
@@ -99,6 +100,7 @@ const AccessAccount = () => {
   return (
     <div className="container">
       <Row>
+        <Step5 active={4} />
         <Col>
           <FormikComponent
             initialValues={initialValues}

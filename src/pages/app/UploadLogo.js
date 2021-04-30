@@ -6,6 +6,7 @@ import profile from "../../assets/images/profile-img.png"
 import { formGetData, patchData, formPostContent } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
 import FormData from "form-data"
+import Step6 from "./Step6"
 
 let initialValues = {
   logo: "",
@@ -100,7 +101,8 @@ const UploadLogo = () => {
   return (
     <div className="container">
       <Row>
-        <Col sm={12}>
+        <Step6 active={1} />
+        <Col>
           <Formik
             initialValues={initialValues}
             validate={validate}

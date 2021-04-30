@@ -5,6 +5,7 @@ import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
 import profile from "../../assets/images/profile-img.png"
 import { Redirect } from "react-router-dom"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
+import Step5 from "./Step5"
 
 const initialValues = {
   credential: "",
@@ -88,6 +89,7 @@ const FacebookUrl = () => {
   return (
     <div className="container">
       <Row>
+        <Step5 active={2} />
         <Col>
           <FormikComponent
             initialValues={initialValues}

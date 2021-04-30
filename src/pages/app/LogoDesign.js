@@ -5,6 +5,7 @@ import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
 import profile from "../../assets/images/profile-img.png"
 import { formGetData, formPostData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
+import Step6 from "./Step6"
 
 const initialValues = {
   exact_text: "",
@@ -100,7 +101,8 @@ const LogoDesign = () => {
   return (
     <div className="container">
       <Row>
-        <Col sm={12}>
+        <Step6 active={0} />
+        <Col>
           <Formik
             initialValues={initialValues}
             validate={validate}

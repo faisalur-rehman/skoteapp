@@ -6,6 +6,7 @@ import FormikComponent from "./Formik"
 
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
+import Step4 from "./Step4"
 
 const initialValues = {
   services: [],
@@ -81,6 +82,7 @@ const CheckList = () => {
   return (
     <div className="container">
       <Row>
+        <Step4 active={0} />
         <Col>
           <FormikComponent
             initialValues={initialValues}

@@ -5,6 +5,7 @@ import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
 import profile from "../../assets/images/profile-img.png"
 import { Redirect } from "react-router-dom"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
+import Step4 from "./Step4"
 
 const initialValues = {
   region: "",
@@ -80,6 +81,7 @@ const ProvidingService = () => {
   return (
     <div className="container">
       <Row>
+        <Step4 active={1} />
         <Col>
           <FormikComponent
             initialValues={initialValues}

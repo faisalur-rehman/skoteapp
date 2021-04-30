@@ -4,6 +4,7 @@ import profile from "../../assets/images/profile-img.png"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
+import Step4 from "./Step4"
 
 const initialValues = {
   goal: "",
@@ -102,7 +103,8 @@ const PAGoals = () => {
   return (
     <div className="container">
       <Row>
-        <Col sm={12}>
+        <Step4 active={4} />
+        <Col>
           <Formik
             initialValues={initialValues}
             validate={validate}
