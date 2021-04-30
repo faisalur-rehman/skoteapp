@@ -4,6 +4,7 @@ import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
 import profile from "../../assets/images/profile-img.png"
 
 import { Redirect } from "react-router-dom"
+import Step1 from "./Step1"
 import { formGetData, formPostData, patchData } from "./ApiRequest"
 
 const initialValues = { customers: [""] }
@@ -79,7 +80,9 @@ const Clients = () => {
   return (
     <div className="container">
       <Row>
-        <Col>
+        <Step1 active={4} />
+
+        <Col sm={10}>
           <Formik
             initialValues={initialValues}
             validate={validate}

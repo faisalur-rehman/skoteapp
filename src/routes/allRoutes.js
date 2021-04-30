@@ -51,6 +51,7 @@ import VerifyEmail from "pages/app/VerifyEmail"
 import UploadLogo from "pages/app/UploadLogo"
 import FileManager from "pages/app/FileManager/index"
 import EmailVerfication from "pages/app/EmailVerfication"
+import StepperExample from "pages/app/Stepper"
 
 export const publicRoutes = [
   { path: "/login", component: Login },
@@ -94,6 +95,7 @@ export const publicRoutes = [
   { path: "/callToAction", component: CallToAction },
   { path: "/sitemap", component: Sitemap },
   { path: "/verify/:token", component: EmailVerfication },
+  { path: "/stepper", component: StepperExample },
 ]
 
 const userRoutes = [

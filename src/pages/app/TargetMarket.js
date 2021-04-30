@@ -6,6 +6,7 @@ import profile from "../../assets/images/profile-img.png"
 
 import { Redirect } from "react-router-dom"
 import { formGetData, formPostData, patchData } from "./ApiRequest"
+import Step1 from "./Step1"
 
 const initialValues = { niche_market: "", target_audience: "" }
 
@@ -15,6 +16,13 @@ const TargetMarket = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
   const [redirect, setRedirect] = useState(false)
+  const steps = [
+    "Introduction",
+    "Unique Selling Point",
+    "Competitors",
+    "Target Market",
+    "Clients",
+  ]
 
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
@@ -75,7 +83,8 @@ const TargetMarket = () => {
   return (
     <div className="container">
       <Row>
-        <Col>
+        <Step1 active={3} />
+        <Col sm={10}>
           <FormikComponent
             initialValues={initialValues}
             validate={validate}

@@ -6,6 +6,7 @@ import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
 
 import { formGetData, formPostData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
+import VerticalLinearStepper from "./Stepper"
 
 import profile from "../../assets/images/profile-img.png"
 
@@ -22,6 +23,13 @@ const Competitors = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
   const [redirect, setRedirect] = useState(false)
+  const steps = [
+    "Introduction",
+    "Unique Selling Point",
+    "Competitors",
+    "Target Market",
+    "Clients",
+  ]
 
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
@@ -93,7 +101,27 @@ const Competitors = () => {
   return (
     <div className="container">
       <Row>
-        <Col>
+        <Col sm={2}>
+          <div className="account-pages mt-10 my-5 pt-sm-5">
+            <Container>
+              <Row>
+                <Col>
+                  <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb">
+                      <li
+                        className="breadcrumb-item active"
+                        aria-current="page"
+                      >
+                        <VerticalLinearStepper active={2} step={steps} />
+                      </li>
+                    </ol>
+                  </nav>
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        </Col>
+        <Col sm={10}>
           <FormikComponent
             initialValues={initialValues}
             validate={validate}
