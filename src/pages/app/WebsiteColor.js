@@ -5,6 +5,7 @@ import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
 import profile from "../../assets/images/profile-img.png"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
+import Step3 from "./Step3"
 
 const initialValues = {
   preference: "",
@@ -103,7 +104,8 @@ const WebsiteColor = () => {
   return (
     <div className="container">
       <Row>
-        <Col>
+        <Step3 active={2} />
+        <Col sm={10}>
           <Formik
             initialValues={initialValues}
             validate={validate}

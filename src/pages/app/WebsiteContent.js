@@ -5,6 +5,7 @@ import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
 import profile from "../../assets/images/profile-img.png"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
+import Step3 from "./Step3"
 
 const initialValues = {
   has_content_ready: "",
@@ -136,6 +137,7 @@ const WebsiteContent = () => {
   return (
     <div className="container">
       <Row>
+        <Step3 active={4} />
         <Col>
           <FormikComponent
             initialValues={initialValues}

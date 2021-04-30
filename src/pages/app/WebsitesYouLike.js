@@ -4,6 +4,7 @@ import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
 import profile from "../../assets/images/profile-img.png"
 import { Redirect } from "react-router-dom"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
+import Step3 from "./Step3"
 
 const initialValues = { websites: [""] }
 
@@ -87,6 +88,7 @@ const WebsitesYouLike = () => {
   return (
     <div className="container">
       <Row>
+        <Step3 active={0} />
         <Col>
           <Formik
             initialValues={initialValues}
