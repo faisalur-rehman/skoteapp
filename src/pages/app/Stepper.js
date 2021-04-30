@@ -21,10 +21,13 @@ export default function VerticalLinearStepper({ active, step }) {
 
   return (
     <div>
+      <p>
+        {active}/{steps.length} are completed
+      </p>
       <Stepper
         style={{
           padding: "40px",
-          marginTop: "50px",
+          marginTop: "0px",
           width: "300px",
         }}
         activeStep={active}

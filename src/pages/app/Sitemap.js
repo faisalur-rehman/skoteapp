@@ -5,6 +5,7 @@ import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
 import profile from "../../assets/images/profile-img.png"
 import { Redirect } from "react-router-dom"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
+import Step2 from "./Step2"
 
 const initialValues = {
   indication: "",
@@ -87,7 +88,8 @@ const Sitemap = () => {
   return (
     <div className="container">
       <Row>
-        <Col>
+        <Step2 active={2} />
+        <Col sm={10}>
           <FormikComponent
             initialValues={initialValues}
             validate={validate}
@@ -151,13 +153,6 @@ const Sitemap = () => {
                             component="div"
                             style={{ color: "red" }}
                           />
-
-                          {/* {error && (
-                <p style={{ color: "red" }}>
-                  {error}. Please check the Web Development checkbox in
-                  CheckList form section in order to submit this form.
-                </p>
-              )} */}
 
                           <div>
                             <Button

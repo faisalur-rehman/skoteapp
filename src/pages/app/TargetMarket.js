@@ -16,13 +16,6 @@ const TargetMarket = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
   const [redirect, setRedirect] = useState(false)
-  const steps = [
-    "Introduction",
-    "Unique Selling Point",
-    "Competitors",
-    "Target Market",
-    "Clients",
-  ]
 
   useEffect(() => {
     if (localStorage.getItem("token") === null) {

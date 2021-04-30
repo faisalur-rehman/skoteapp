@@ -5,6 +5,7 @@ import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
 import profile from "../../assets/images/profile-img.png"
 import { Redirect } from "react-router-dom"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
+import Step2 from "./Step2"
 
 const initialValues = {
   feature: "",
@@ -81,6 +82,7 @@ const AdvancedFeatures = () => {
   return (
     <div className="container">
       <Row>
+        <Step2 active={3} />
         <Col>
           <FormikComponent
             initialValues={initialValues}

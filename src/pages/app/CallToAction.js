@@ -7,6 +7,7 @@ import FormikComponent from "./Formik"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
+import Step2 from "./Step2"
 
 const initialValues = {
   action: "",
@@ -82,6 +83,7 @@ const CallToAction = () => {
   return (
     <div className="container">
       <Row>
+        <Step2 active={4} />
         <Col>
           <FormikComponent
             initialValues={initialValues}
