@@ -29,7 +29,7 @@ const BusinessInfo = () => {
     async function fetchData() {
       try {
         const { data } = await formGetData(
-          "/business/introduction",
+          "/bus-detail",
           localStorage.getItem("token")
         )
         console.log(data)
@@ -80,14 +80,14 @@ const BusinessInfo = () => {
     try {
       if (value) {
         resData = await patchData(
-          "/business/introduction",
+          "/bus-detail",
           id,
           data,
           localStorage.getItem("token")
         )
       } else {
         resData = await formPostData(
-          "/business/introduction",
+          "/bus-detail",
           data,
           localStorage.getItem("token")
         )
@@ -100,7 +100,7 @@ const BusinessInfo = () => {
     setClicked(true)
   }
   return (
-    <div className="containe">
+    <div className="">
       <Row>
         <Col sm={2}>
           <Step1 active={0} />
