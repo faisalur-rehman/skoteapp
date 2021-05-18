@@ -5,10 +5,12 @@ import VerticalLinearStepper from "./Stepper"
 const Step1 = ({ active }) => {
   const steps = [
     "Introduction",
-    "Unique Selling Point",
-    "Competitors",
-    "Target Market",
-    "Clients",
+    "Services",
+    "Your Offerings",
+    "Posting",
+    "Accounts",
+    "Web Info",
+    "Logo Design",
   ]
   return (
     <Col sm={2}>

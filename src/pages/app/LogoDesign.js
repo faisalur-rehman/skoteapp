@@ -5,7 +5,7 @@ import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
 import profile from "../../assets/images/profile-img.png"
 import { formGetData, formPostData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
-import Step6 from "./Step6"
+import Step1 from "./Step1"
 
 const initialValues = {
   text: "",
@@ -93,11 +93,12 @@ const LogoDesign = () => {
       console.log(err.response)
     }
     setClicked(true)
+    setRedirect(true)
   }
   return (
     <div className="">
       <Row>
-        <Step6 active={0} />
+        <Step1 active={6} />
         <Col>
           <Formik
             initialValues={initialValues}
@@ -116,7 +117,7 @@ const LogoDesign = () => {
                               className="breadcrumb-item active"
                               aria-current="page"
                             >
-                              Step6
+                              Step1
                             </li>
                             <li
                               style={{ color: "blue" }}
@@ -218,10 +219,11 @@ const LogoDesign = () => {
                                   Submit
                                 </Button>
                               </div>
-                              {!error && clicked && (
+                              {/* {!error && clicked && (
                                 <Redirect to="uploadLogo" />
-                              )}
-                              {redirect && <Redirect to="login" />}
+                              )} */}
+                              {/* {redirect && <Redirect to="login" />} */}
+                              {redirect && <Redirect to="dashboard" />}
                             </div>
                           </CardBody>
                         </Card>

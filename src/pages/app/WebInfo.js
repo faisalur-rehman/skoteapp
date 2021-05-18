@@ -5,7 +5,7 @@ import { formPostData, formGetData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
 import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
 import profile from "../../assets/images/profile-img.png"
-import Step5 from "./Step5"
+import Step1 from "./Step1"
 
 const initialValues = {
   loginURL: "",
@@ -61,9 +61,7 @@ const AccessAccount = () => {
     if (!values.loginDetail) {
       errors.loginDetail = "Required"
     }
-    if (!values.password) {
-      errors.password = "Required"
-    }
+
     return errors
   }
 
@@ -71,36 +69,37 @@ const AccessAccount = () => {
     let resData
     console.log(data)
 
-    try {
-      if (value) {
-        resData = await patchData(
-          "/social-media-web",
-          id,
-          data,
-          localStorage.getItem("token")
-        )
-      } else {
-        resData = await formPostData(
-          "/social-media-web",
-          data,
-          localStorage.getItem("token")
-        )
-      }
-      setError(null)
-      setSubmitted(true)
+    // try {
+    //   if (value) {
+    //     resData = await patchData(
+    //       "/social-media-web",
+    //       id,
+    //       data,
+    //       localStorage.getItem("token")
+    //     )
+    //   } else {
+    //     resData = await formPostData(
+    //       "/social-media-web",
+    //       data,
+    //       localStorage.getItem("token")
+    //     )
+    //   }
+    //   setError(null)
+    //   setSubmitted(true)
 
-      console.log(resData)
-    } catch (err) {
-      setError(err.response.data.errors)
-      console.log(err.response)
-      setSubmitted(false)
-    }
+    //   console.log(resData)
+    // } catch (err) {
+    //   setError(err.response.data.errors)
+    //   console.log(err.response)
+    //   setSubmitted(false)
+    // }
+    setRedirect(true)
   }
 
   return (
     <div className="">
       <Row>
-        <Step5 active={4} />
+        <Step1 active={5} />
         <Col>
           <FormikComponent
             initialValues={initialValues}
@@ -117,7 +116,7 @@ const AccessAccount = () => {
                           className="breadcrumb-item active"
                           aria-current="page"
                         >
-                          Step5
+                          Step1
                         </li>
                         <li
                           style={{ color: "blue" }}
@@ -203,7 +202,8 @@ const AccessAccount = () => {
                             services.includes("logo_creation") && (
                               <Redirect to="logoDesign" />
                             )}
-                          {redirect && <Redirect to="login" />}
+                          {/* {redirect && <Redirect to="login" />} */}
+                          {redirect && <Redirect to="logoDesign" />}
                         </div>
                       </CardBody>
                     </Card>

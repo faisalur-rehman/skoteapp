@@ -5,7 +5,7 @@ import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
 import profile from "../../assets/images/profile-img.png"
 import { Redirect } from "react-router-dom"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
-import Step5 from "./Step5"
+import Step1 from "./Step1"
 
 const initialValues = {
   platform: "",
@@ -63,34 +63,35 @@ const FacebookUrl = () => {
   async function handleSubmit(data) {
     let resData
     console.log(data)
-    try {
-      if (value) {
-        resData = await patchData(
-          "/social-media-account",
-          id,
-          data,
-          localStorage.getItem("token")
-        )
-      } else {
-        resData = await formPostData(
-          "/social-media-account",
-          data,
-          localStorage.getItem("token")
-        )
-      }
-      setError(null)
-      console.log(resData)
-    } catch (err) {
-      setError(err.response)
-      console.log(err.response)
-    }
+    // try {
+    //   if (value) {
+    //     resData = await patchData(
+    //       "/social-media-account",
+    //       id,
+    //       data,
+    //       localStorage.getItem("token")
+    //     )
+    //   } else {
+    //     resData = await formPostData(
+    //       "/social-media-account",
+    //       data,
+    //       localStorage.getItem("token")
+    //     )
+    //   }
+    //   setError(null)
+    //   console.log(resData)
+    // } catch (err) {
+    //   setError(err.response)
+    //   console.log(err.response)
+    // }
+    setRedirect(true)
     setClicked(true)
   }
 
   return (
     <div className="">
       <Row>
-        <Step5 active={2} />
+        <Step1 active={4} />
         <Col>
           <FormikComponent
             initialValues={initialValues}
@@ -107,7 +108,7 @@ const FacebookUrl = () => {
                           className="breadcrumb-item active"
                           aria-current="page"
                         >
-                          Step5
+                          Step1
                         </li>
                         <li
                           style={{ color: "blue" }}
@@ -147,7 +148,7 @@ const FacebookUrl = () => {
                           <Field
                             name="platform"
                             className="form-control"
-                            placeholder="credential"
+                            placeholder="Platforms"
                             as="textarea"
                           />
                           <ErrorMessage
@@ -208,7 +209,8 @@ const FacebookUrl = () => {
                             {!error && clicked && (
                               <Redirect to="accessAccount" />
                             )}
-                            {redirect && <Redirect to="login" />}
+                            {/* {redirect && <Redirect to="login" />} */}
+                            {redirect && <Redirect to="webInfo" />}
                           </div>
                         </div>
                       </CardBody>

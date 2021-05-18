@@ -6,7 +6,7 @@ import FormikComponent from "./Formik"
 
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
-import Step4 from "./Step4"
+import Step1 from "./Step1"
 
 const initialValues = {
   service: "",
@@ -57,32 +57,33 @@ const CheckList = () => {
   async function handleSubmit(data) {
     let resData
     console.log(data)
-    try {
-      if (value) {
-        resData = await patchData(
-          "/ad-service",
-          id,
-          data,
-          localStorage.getItem("token")
-        )
-      } else {
-        resData = await formPostData(
-          "/ad-service",
-          data,
-          localStorage.getItem("token")
-        )
-      }
-      setError(null)
-    } catch (err) {
-      setError(err.response.data.message)
-      console.log(err.response)
-    }
+    // try {
+    //   if (value) {
+    //     resData = await patchData(
+    //       "/ad-service",
+    //       id,
+    //       data,
+    //       localStorage.getItem("token")
+    //     )
+    //   } else {
+    //     resData = await formPostData(
+    //       "/ad-service",
+    //       data,
+    //       localStorage.getItem("token")
+    //     )
+    //   }
+    //   setError(null)
+    // } catch (err) {
+    //   setError(err.response.data.message)
+    //   console.log(err.response)
+    // }
     setClicked(true)
+    setRedirect(true)
   }
   return (
     <div className="">
       <Row>
-        <Step4 active={0} />
+        <Step1 active={1} />
         <Col>
           <FormikComponent
             initialValues={initialValues}
@@ -99,7 +100,7 @@ const CheckList = () => {
                           className="breadcrumb-item active"
                           aria-current="page"
                         >
-                          Step4
+                          Step1
                         </li>
                         <li
                           style={{ color: "blue" }}
@@ -131,7 +132,7 @@ const CheckList = () => {
                       <CardBody className="pt-0">
                         <div className="p-2">
                           <p>
-                            Please click the services you will be using with
+                            Please choose the services you will be using with
                             Sicuro Group
                           </p>
                           <p>○ Social Media Advertising</p>
@@ -151,10 +152,11 @@ const CheckList = () => {
                           <Button type="submit" color="primary">
                             Submit
                           </Button>
-                          {!error && clicked && (
+                          {/* {!error && clicked && (
                             <Redirect to="providingService" />
-                          )}
-                          {redirect && <Redirect to="login" />}
+                          )} */}
+                          {redirect && <Redirect to="providingService" />}
+                          {/* {redirect && <Redirect to="login" />} */}
                         </div>
                       </CardBody>
                     </Card>

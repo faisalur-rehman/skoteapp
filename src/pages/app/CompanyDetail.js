@@ -7,11 +7,13 @@ import { Redirect } from "react-router-dom"
 
 let initialValues = {
   logo: "",
-  bus_name: "",
-  bus_email: "",
-  bus_phone: "",
-  bus_address: "",
-  website_link: "",
+  busName: "",
+  busEmail: "",
+  busPhone: "",
+  busAddress: "",
+  webURL: "",
+
+  // /company-detail:  (string),  (string),  (string),  (string),  (string), logo? (file).
 }
 const CompanyDetail = () => {
   const [errors, setErrors] = useState(null)
@@ -29,13 +31,13 @@ const CompanyDetail = () => {
           "/company",
           localStorage.getItem("token")
         )
-        setId(data.company._id)
-        initialValues.logo = data.company.logo
-        initialValues.bus_name = data.company.bus_name
-        initialValues.bus_email = data.company.bus_email
-        initialValues.bus_phone = data.company.bus_phone
-        initialValues.bus_address = data.company.bus_address
-        initialValues.website_link = data.company.website_link
+        // setId(data.company._id)
+        // initialValues.logo = data.company.logo
+        // initialValues.busName = data.company.busName
+        // initialValues.busEmail = data.company.busEmail
+        // initialValues.busPhone = data.company.busPhone
+        // initialValues.busAddress = data.company.busAddress
+        // initialValues.webURL = data.company.webURL
         setValues(initialValues)
       } catch (error) {
         setErrors()
@@ -46,22 +48,22 @@ const CompanyDetail = () => {
   function validate(values) {
     const errors = {}
 
-    if (!values.bus_name) {
-      errors.bus_name = "Required"
+    if (!values.busName) {
+      errors.busName = "Required"
     }
-    if (!values.bus_address) {
-      errors.bus_address = "Required"
+    if (!values.busAddress) {
+      errors.busAddress = "Required"
     }
 
-    if (!values.bus_phone) {
-      errors.bus_phone = "Required"
+    if (!values.busPhone) {
+      errors.busPhone = "Required"
     }
-    if (!values.bus_email) {
-      errors.bus_email = "Required"
+    if (!values.busEmail) {
+      errors.busEmail = "Required"
     } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.bus_email)
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.busEmail)
     ) {
-      errors.bus_email = "Invalid email address"
+      errors.busEmail = "Invalid email address"
     }
     return errors
   }
@@ -103,18 +105,19 @@ const CompanyDetail = () => {
             >
               {errors && <p style={{ color: "red" }}>{errors}</p>}
               <label htmlFor="logo">Logo : </label>
-              <Field type="text" name="logo" className="form-control" />
+              <Field type="file" name="logo" className="form-control" />
 
               <br />
               <label htmlFor="busName">Business Name* : </label>
               <Field
-                type="text"
-                name="bus_name"
+                as="textarea"
+                name="busName"
                 id="busName"
                 className="form-control"
+                placeholder="Name"
               />
               <ErrorMessage
-                name="bus_name"
+                name="busName"
                 component="div"
                 style={{ color: "red" }}
               />
@@ -122,13 +125,14 @@ const CompanyDetail = () => {
               <br />
               <label htmlFor="busEmail">Business Email* : </label>
               <Field
-                type="text"
-                name="bus_email"
+                as="textarea"
+                name="busEmail"
                 id="busEmail"
+                placeholder="Email"
                 className="form-control"
               />
               <ErrorMessage
-                name="bus_email"
+                name="busEmail"
                 component="div"
                 style={{ color: "red" }}
               />
@@ -137,12 +141,14 @@ const CompanyDetail = () => {
               <label htmlFor="busPhone">Business Phone* : </label>
               <Field
                 type="number"
-                name="bus_phone"
+                as="textarea"
+                name="busPhone"
                 id="busPhone"
+                placeholder="Phone"
                 className="form-control"
               />
               <ErrorMessage
-                name="bus_phone"
+                name="busPhone"
                 component="div"
                 style={{ color: "red" }}
               />
@@ -150,12 +156,14 @@ const CompanyDetail = () => {
               <br />
               <label htmlFor="busAddress">Business Address* : </label>
               <Field
-                name="bus_address"
+                name="busAddress"
                 id="busAddress"
                 className="form-control"
+                placeholder="Address"
+                as="textarea"
               />
               <ErrorMessage
-                name="bus_address"
+                name="busAddress"
                 component="div"
                 style={{ color: "red" }}
               />
@@ -163,13 +171,14 @@ const CompanyDetail = () => {
               <br />
               <label htmlFor="website">Website : </label>
               <Field
-                type="text"
-                name="website_link"
+                as="textarea"
+                name="webURL"
                 id="website"
+                placeholder="Website"
                 className="form-control"
               />
               <ErrorMessage
-                name="website_link"
+                name="webURL"
                 component="div"
                 style={{ color: "red" }}
               />

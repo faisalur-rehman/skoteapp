@@ -77,26 +77,27 @@ const BusinessInfo = () => {
     }
     console.log(newData)
 
-    try {
-      if (value) {
-        resData = await patchData(
-          "/bus-detail",
-          id,
-          data,
-          localStorage.getItem("token")
-        )
-      } else {
-        resData = await formPostData(
-          "/bus-detail",
-          data,
-          localStorage.getItem("token")
-        )
-      }
-      setError(null)
-    } catch (err) {
-      setError(err.response.data.errors[0])
-      console.log(err.response)
-    }
+    // try {
+    //   if (value) {
+    //     resData = await patchData(
+    //       "/bus-detail",
+    //       id,
+    //       data,
+    //       localStorage.getItem("token")
+    //     )
+    //   } else {
+    //     resData = await formPostData(
+    //       "/bus-detail",
+    //       data,
+    //       localStorage.getItem("token")
+    //     )
+    //   }
+    //   setError(null)
+    // } catch (err) {
+    //   setError(err.response.data.errors[0])
+    //   console.log(err.response)
+    // }
+    setRedirect(true)
     setClicked(true)
   }
   return (
@@ -156,11 +157,7 @@ const BusinessInfo = () => {
                           </div>
                           <CardBody className="pt-0">
                             <div className="p-2">
-                              <label
-                                htmlFor="introduction"
-                                style={{ fontSize: "1rem" }}
-                                className="mt-3"
-                              >
+                              <label htmlFor="introduction" className="mt-3">
                                 Give us a bit of context about your business.
                                 What does your company do? What are your
                                 products and/or services?
@@ -253,6 +250,7 @@ const BusinessInfo = () => {
                             >
                               Submit
                             </Button>
+                            {redirect && <Redirect to="services" />}
                           </CardBody>
                         </Card>
                       </Col>

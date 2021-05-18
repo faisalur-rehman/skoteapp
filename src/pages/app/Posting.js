@@ -7,7 +7,7 @@ import profile from "../../assets/images/profile-img.png"
 import { Redirect } from "react-router-dom"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 import { divide } from "lodash"
-import Step5 from "./Step5"
+import Step1 from "./Step1"
 
 const initialValues = {
   posting: "",
@@ -81,44 +81,45 @@ const Posting = () => {
   async function handleSubmit(data) {
     let resData
     console.log(data)
-    if (data.webRefContent === "true") {
-      data.webRefContent = true
-    } else {
-      data.webRefContent = false
-    }
-    try {
-      if (value) {
-        resData = await patchData(
-          "/social-media-post",
-          id,
-          data,
-          localStorage.getItem("token")
-        )
-      } else {
-        resData = await formPostData(
-          "/social-media-post",
-          data,
-          localStorage.getItem("token")
-        )
-      }
-      setError(null)
-      if (data.webRefContent) {
-        data.webRefContent = "true"
-      } else {
-        data.webRefContent = "false"
-      }
-      console.log(resData)
-    } catch (err) {
-      // setError(err.response)
-      console.log(err.response)
-    }
+    // if (data.webRefContent === "true") {
+    //   data.webRefContent = true
+    // } else {
+    //   data.webRefContent = false
+    // }
+    // try {
+    //   if (value) {
+    //     resData = await patchData(
+    //       "/social-media-post",
+    //       id,
+    //       data,
+    //       localStorage.getItem("token")
+    //     )
+    //   } else {
+    //     resData = await formPostData(
+    //       "/social-media-post",
+    //       data,
+    //       localStorage.getItem("token")
+    //     )
+    //   }
+    //   setError(null)
+    //   if (data.webRefContent) {
+    //     data.webRefContent = "true"
+    //   } else {
+    //     data.webRefContent = "false"
+    //   }
+    //   console.log(resData)
+    // } catch (err) {
+    //   // setError(err.response)
+    //   console.log(err.response)
+    // }
+    setRedirect(true)
     setClicked(true)
   }
 
   return (
     <div className="">
       <Row>
-        <Step5 active={0} />
+        <Step1 active={3} />
         <Col>
           <FormikComponent
             initialValues={initialValues}
@@ -135,7 +136,7 @@ const Posting = () => {
                           className="breadcrumb-item active"
                           aria-current="page"
                         >
-                          Step5
+                          Step1
                         </li>
                         <li
                           style={{ color: "blue" }}
@@ -234,7 +235,8 @@ const Posting = () => {
                           {!error && clicked && (
                             <Redirect to="socialAccounts" />
                           )}
-                          {redirect && <Redirect to="login" />}
+                          {/* {redirect && <Redirect to="login" />} */}
+                          {redirect && <Redirect to="fbUrl" />}
                           <div>
                             <Button
                               type="submit"

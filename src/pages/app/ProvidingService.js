@@ -5,7 +5,7 @@ import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
 import profile from "../../assets/images/profile-img.png"
 import { Redirect } from "react-router-dom"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
-import Step4 from "./Step4"
+import Step1 from "./Step1"
 
 const initialValues = {
   offerLocation: "",
@@ -69,34 +69,35 @@ const ProvidingService = () => {
   async function handleSubmit(data) {
     let resData
     console.log(data)
-    try {
-      if (value) {
-        resData = await patchData(
-          "/ad-offer",
-          id,
-          data,
-          localStorage.getItem("token")
-        )
-      } else {
-        resData = await formPostData(
-          "/ad-offer",
-          data,
-          localStorage.getItem("token")
-        )
-      }
-      setError(null)
-      console.log(resData)
-    } catch (err) {
-      setError(err.response)
-      console.log(err.response)
-    }
+    // try {
+    //   if (value) {
+    //     resData = await patchData(
+    //       "/ad-offer",
+    //       id,
+    //       data,
+    //       localStorage.getItem("token")
+    //     )
+    //   } else {
+    //     resData = await formPostData(
+    //       "/ad-offer",
+    //       data,
+    //       localStorage.getItem("token")
+    //     )
+    //   }
+    //   setError(null)
+    //   console.log(resData)
+    // } catch (err) {
+    //   setError(err.response)
+    //   console.log(err.response)
+    // }
     setClicked(true)
+    setRedirect(true)
   }
 
   return (
     <div className="">
       <Row>
-        <Step4 active={1} />
+        <Step1 active={2} />
         <Col>
           <FormikComponent
             initialValues={initialValues}
@@ -113,7 +114,7 @@ const ProvidingService = () => {
                           className="breadcrumb-item active"
                           aria-current="page"
                         >
-                          Step4
+                          Step1
                         </li>
                         <li
                           style={{ color: "blue" }}
@@ -234,7 +235,8 @@ const ProvidingService = () => {
                             {!error && clicked && (
                               <Redirect to="paCompetitors" />
                             )}
-                            {redirect && <Redirect to="login" />}
+                            {/* {redirect && <Redirect to="login" />} */}
+                            {redirect && <Redirect to="posting" />}
                           </div>
                         </div>
                       </CardBody>
