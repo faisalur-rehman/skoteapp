@@ -28,7 +28,7 @@ const ProvidingService = () => {
     async function fetchData() {
       try {
         const { data } = await formGetData(
-          "/services/advertise/offer-info",
+          "/ad-offer",
           localStorage.getItem("token")
         )
         if (data.payload) {
@@ -72,14 +72,14 @@ const ProvidingService = () => {
     try {
       if (value) {
         resData = await patchData(
-          "/services/advertise/offer-info",
+          "/ad-offer",
           id,
           data,
           localStorage.getItem("token")
         )
       } else {
         resData = await formPostData(
-          "/services/advertise/offer-info",
+          "/ad-offer",
           data,
           localStorage.getItem("token")
         )
