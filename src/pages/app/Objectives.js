@@ -8,8 +8,11 @@ import { formPostData, formGetData, patchData } from "./ApiRequest"
 import Step2 from "./Step2"
 
 const initialValues = {
-  achievement: "",
-  success: "",
+  objective: "",
+  goal: "",
+  callToAction: "",
+  sitemap: "",
+  advancedFeature: "",
 }
 
 const Objectives = () => {
@@ -23,35 +26,45 @@ const Objectives = () => {
     if (localStorage.getItem("token") === null) {
       setRedirect(true)
     }
-    async function fetchData() {
-      try {
-        const { data } = await formGetData(
-          "/services/wg-objective",
-          localStorage.getItem("token")
-        )
-        if (data) {
-          setId(data.objective["_id"])
-          initialValues.achievement = data.objective.achievement
-          initialValues.success = data.objective.success
-          setValues(initialValues)
-        }
-        console.log(initialValues)
-        setError(null)
-      } catch (err) {
-        //console.log(err.response.data.errors[0])
-        //setError(err.response.data.errors[0])
-      }
-    }
-    fetchData()
+    // async function fetchData() {
+    //   try {
+    //     const { data } = await formGetData(
+    //       "/web-goal",
+    //       localStorage.getItem("token")
+    //     )
+    //     if (data) {
+    //       setId(data.objective["_id"])
+    //       initialValues.objective = data.objective.objective
+    //       initialValues.goal = data.objective.goal
+    //       setValues(initialValues)
+    //     }
+    //     console.log(initialValues)
+    //     setError(null)
+    //   } catch (err) {
+    //     console.log(err.response)
+    //     //setError(err.response.data.errors[0])
+    //   }
+    // }
+    // fetchData()
   }, [])
 
   const validate = values => {
+    console.log(values)
     const errors = {}
-    if (values.achievement.length < 5) {
-      errors.achievement = "Atleast 5 characters are required"
+    if (values.objective.length < 5) {
+      errors.objective = "Atleast 5 characters are required"
     }
-    if (values.success.length < 5) {
-      errors.success = "Atleast 5 characters are required"
+    if (values.goal.length < 5) {
+      errors.goal = "Atleast 5 characters are required"
+    }
+    if (values.sitemap.length < 5) {
+      errors.sitemap = "Atleast 5 characters are required"
+    }
+    if (values.callToAction.length < 5) {
+      errors.callToAction = "Atleast 5 characters are required"
+    }
+    if (values.advancedFeature.length < 5) {
+      errors.advancedFeature = "Atleast 5 characters are required"
     }
 
     return errors
@@ -63,14 +76,14 @@ const Objectives = () => {
     try {
       if (value) {
         resData = await patchData(
-          "/services/wg-objective",
+          "/web-goal",
           id,
           data,
           localStorage.getItem("token")
         )
       } else {
         resData = await formPostData(
-          "/services/wg-objective",
+          "/web-goal",
           data,
           localStorage.getItem("token")
         )
@@ -120,7 +133,7 @@ const Objectives = () => {
                         <Row>
                           <Col xs={8}>
                             <div className="text-primary p-4">
-                              <h5 className="text-primary">Objectives!</h5>
+                              <h5 className="text-primary">Website Goals!</h5>
                             </div>
                           </Col>
                           <Col className="col-4 align-self-end">
@@ -141,17 +154,18 @@ const Objectives = () => {
                             you?
                           </p>
                           <Field
-                            name="achievement"
+                            name="objective"
                             className="form-control"
                             placeholder="Objectives"
+                            as="textarea"
                           />
                           <ErrorMessage
-                            name="achievement"
+                            name="objective"
                             component="div"
                             style={{ color: "red" }}
                           />
                           <br />
-                          <label htmlFor="role">
+                          <label htmlFor="goal">
                             Please enter the most important goal of your website
                             from the list below in the area opposite: o Promote
                             a brand and image o Promote a product range o
@@ -165,6 +179,7 @@ const Objectives = () => {
                             as="textarea"
                             name="goal"
                             className="form-control"
+                            placeholder="Goals"
                           />
                           <br />
 
@@ -174,34 +189,19 @@ const Objectives = () => {
                             style={{ color: "red" }}
                           />
                           <br />
-                          <label htmlFor="name">
+                          <label htmlFor="callToAction">
                             Please describe the action you would like visitors
                             to take after visiting your website. (e.g. call a
                             phone number, complete a form, make a comment etc.){" "}
                           </label>
                           <Field
-                            name="action"
+                            name="callToAction"
                             className="form-control"
                             as="textarea"
+                            placeholder="Call to action"
                           />
                           <ErrorMessage
-                            name="action"
-                            component="div"
-                            style={{ color: "red" }}
-                          />
-                          <br />
-                          <label htmlFor="name">
-                            Please describe the action you would like visitors
-                            to take after visiting your website. (e.g. call a
-                            phone number, complete a form, make a comment etc.){" "}
-                          </label>
-                          <Field
-                            name="action"
-                            className="form-control"
-                            as="textarea"
-                          />
-                          <ErrorMessage
-                            name="action"
+                            name="callToAction"
                             component="div"
                             style={{ color: "red" }}
                           />
@@ -213,13 +213,13 @@ const Objectives = () => {
                             Services/Products, Contact etc)
                           </p>
                           <Field
-                            name="indication"
+                            name="sitemap"
                             as="textarea"
                             className="form-control"
-                            placeholder="Indication"
+                            placeholder="sitemap"
                           />
                           <ErrorMessage
-                            name="indication"
+                            name="sitemap"
                             component="div"
                             style={{ color: "red" }}
                           />
@@ -234,13 +234,13 @@ const Objectives = () => {
                             integration with existing software)
                           </p>
                           <Field
-                            name="feature"
+                            name="advancedFeature"
                             className="form-control"
                             placeholder="Advanced Feature"
                             as="textarea"
                           />
                           <ErrorMessage
-                            name="feature"
+                            name="advancedFeature"
                             component="div"
                             style={{ color: "red" }}
                           />
