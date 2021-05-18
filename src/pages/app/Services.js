@@ -26,7 +26,7 @@ const CheckList = () => {
     async function fetchData() {
       try {
         const { data } = await formGetData(
-          "/services/advertise/service",
+          "/ad-service",
           localStorage.getItem("token")
         )
         console.log(data.payload)
@@ -48,8 +48,8 @@ const CheckList = () => {
 
   function validate(values) {
     const errors = {}
-    if (values.services.length < 1) {
-      errors.services = "You have to select atleast one service"
+    if (values.service.length < 3) {
+      errors.service = "Should be atleast 3 characters long."
     }
 
     return errors
@@ -60,14 +60,14 @@ const CheckList = () => {
     try {
       if (value) {
         resData = await patchData(
-          "/services/advertise/service",
+          "/ad-service",
           id,
           data,
           localStorage.getItem("token")
         )
       } else {
         resData = await formPostData(
-          "/services/advertise/service",
+          "/ad-service",
           data,
           localStorage.getItem("token")
         )
@@ -148,13 +148,6 @@ const CheckList = () => {
                             style={{ color: "red" }}
                           />
                           <br />
-
-                          {/* {error && (
-                            <p style={{ color: "red" }}>
-                              {error}.Go to Checklist form in Services Section
-                              and check Paid Advertising in order to proceed.
-                            </p>
-                          )} */}
                           <Button type="submit" color="primary">
                             Submit
                           </Button>
