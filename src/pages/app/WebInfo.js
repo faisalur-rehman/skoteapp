@@ -8,9 +8,9 @@ import profile from "../../assets/images/profile-img.png"
 import Step5 from "./Step5"
 
 const initialValues = {
-  login_url: "",
-  username: "",
-  password: "",
+  loginURL: "",
+
+  loginDetail: "",
 }
 
 const AccessAccount = () => {
@@ -29,7 +29,7 @@ const AccessAccount = () => {
     async function fetchData() {
       try {
         const { data } = await formGetData(
-          "/services/social-media/web-info",
+          "/social-media-web",
           localStorage.getItem("token")
         )
         const response = await formGetData(
@@ -40,8 +40,8 @@ const AccessAccount = () => {
         console.log(data.payload)
         if (data.payload) {
           setId(data.payload["_id"])
-          initialValues.login_url = data.payload.login_url
-          initialValues.username = data.payload.username
+          initialValues.loginURL = data.payload.loginURL
+          initialValues.loginDetail = data.payload.loginDetail
           initialValues.password = data.payload.password
           setValues(initialValues)
         }
@@ -55,11 +55,11 @@ const AccessAccount = () => {
 
   const validate = values => {
     const errors = {}
-    if (!values.login_url) {
-      errors.login_url = "Required"
+    if (!values.loginURL) {
+      errors.loginURL = "Required"
     }
-    if (!values.username) {
-      errors.username = "Required"
+    if (!values.loginDetail) {
+      errors.loginDetail = "Required"
     }
     if (!values.password) {
       errors.password = "Required"
@@ -74,14 +74,14 @@ const AccessAccount = () => {
     try {
       if (value) {
         resData = await patchData(
-          "/services/social-media/web-info",
+          "/social-media-web",
           id,
           data,
           localStorage.getItem("token")
         )
       } else {
         resData = await formPostData(
-          "/services/social-media/web-info",
+          "/social-media-web",
           data,
           localStorage.getItem("token")
         )
@@ -155,26 +155,26 @@ const AccessAccount = () => {
                           </p>
 
                           <Field
-                            name="login_url"
+                            name="loginURL"
                             className="form-control"
                             placeholder="e.g. https://sicurogroup.com"
                             as="textarea"
                           />
                           <br />
                           <ErrorMessage
-                            name="login_url"
+                            name="loginURL"
                             component="div"
                             style={{ color: "red" }}
                           />
                           <p>Login Details:</p>
                           <Field
-                            name="username"
+                            name="loginDetail"
                             className="form-control"
                             placeholder="login details"
                             as="textarea"
                           />
                           <ErrorMessage
-                            name="username"
+                            name="loginDetail"
                             component="div"
                             style={{ color: "red" }}
                           />
