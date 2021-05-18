@@ -131,28 +131,22 @@ const WebsiteStyle = () => {
                       </div>
                       <CardBody className="pt-0">
                         <div className="p-2">
-                          <p>Style of Website you are looking for?</p>
-                          <Field
-                            type="text"
-                            name="style"
-                            className="form-control"
-                          />
-                          <ErrorMessage
-                            name="style"
-                            component="div"
-                            style={{ color: "red" }}
-                          />
                           <p>
-                            How would you like your visitors to perceive your
-                            new website?
+                            Please describe what style of site you are looking
+                            for: (e.g. serious, professional, creative,
+                            informal, friendly, playful, corporate , modern
+                            etc.) Please describe how you would like your
+                            visitors to perceive your new site: (e.g. friendly,
+                            corporate, serious, engaging, fun, funky, cutting
+                            edge etc.)
                           </p>
                           <Field
-                            type="text"
-                            name="perceive"
+                            as="textarea"
+                            name="style"
                             className="form-control"
                           />
                           <ErrorMessage
-                            name="perceive"
+                            name="style"
                             component="div"
                             style={{ color: "red" }}
                           />

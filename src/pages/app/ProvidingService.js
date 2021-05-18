@@ -8,9 +8,12 @@ import { formPostData, formGetData, patchData } from "./ApiRequest"
 import Step4 from "./Step4"
 
 const initialValues = {
-  region: "",
+  offerLocation: "",
+  competitor: "",
+  client: "",
+  goal: "",
+  targetMarket: "",
 }
-
 const ProvidingService = () => {
   const [value, setValues] = useState()
   const [error, setError] = useState(null)
@@ -45,7 +48,19 @@ const ProvidingService = () => {
 
   const validate = values => {
     const errors = {}
-    if (values.region.length < 3) {
+    if (values.offerLocation.length < 3) {
+      errors.region = "Atleast 3 characters are required"
+    }
+    if (values.competitor.length < 3) {
+      errors.region = "Atleast 3 characters are required"
+    }
+    if (values.client.length < 3) {
+      errors.region = "Atleast 3 characters are required"
+    }
+    if (values.goal.length < 3) {
+      errors.region = "Atleast 3 characters are required"
+    }
+    if (values.targetMarket.length < 3) {
       errors.region = "Atleast 3 characters are required"
     }
     return errors
@@ -79,7 +94,7 @@ const ProvidingService = () => {
   }
 
   return (
-    <div className="container">
+    <div className="">
       <Row>
         <Step4 active={1} />
         <Col>
@@ -88,10 +103,10 @@ const ProvidingService = () => {
             validate={validate}
             handleSubmit={handleSubmit}
           >
-            <div className="account-pages my-5 pt-sm-5">
-              <Container>
+            <div className="account-pages  pt-sm-5">
+              <div>
                 <Row className="justify-content-center">
-                  <Col md={8} lg={6} xl={5}>
+                  <Col sm={8}>
                     <nav aria-label="breadcrumb">
                       <ol className="breadcrumb">
                         <li
@@ -112,15 +127,20 @@ const ProvidingService = () => {
                     <Card className="overflow-hidden">
                       <div className="bg-primary bg-soft">
                         <Row>
-                          <Col xs={7}>
+                          <Col xs={8}>
                             <div className="text-primary p-4">
                               <h5 className="text-primary">
                                 Providing Services to!
                               </h5>
                             </div>
                           </Col>
-                          <Col className="col-5 align-self-end">
-                            <img src={profile} alt="" className="img-fluid" />
+                          <Col className="col-4 align-self-end">
+                            <img
+                              src={profile}
+                              alt=""
+                              className="img-fluid"
+                              style={{ height: 100 }}
+                            />
                           </Col>
                         </Row>
                       </div>
@@ -128,22 +148,81 @@ const ProvidingService = () => {
                         <div className="p-2">
                           <p>What city/country do you provide your services?</p>
                           <Field
-                            name="region"
+                            name="offerLocation"
                             className="form-control"
                             placeholder="city/country"
+                            as="textarea"
                           />
                           <ErrorMessage
-                            name="region"
+                            name="offerLocation"
                             component="div"
                             style={{ color: "red" }}
                           />
-                          {/* {error && (
-                <p style={{ color: "red" }}>
-                  {error}. Please check the Web Development checkbox in
-                  CheckList form section in order to submit this form.
-                </p>
-              )} */}
+                          <br />
+                          <label htmlFor="competitor">
+                            Who are your main competitors? Please provide there
+                            website addresses.{" "}
+                          </label>
+                          <Field
+                            as="textarea"
+                            name="competitor"
+                            id="competitor"
+                            className="form-control"
+                          />
+                          <br />
+                          <ErrorMessage
+                            component="div"
+                            style={{ color: "red" }}
+                            name="competitor"
+                          />
+                          <label htmlFor="targetMarket">
+                            What is your niche market? Who is your target
+                            audience? (e.g. age, gender, location, socio
+                            economic status)
+                          </label>
+                          <Field
+                            as="textarea"
+                            id="targetMarket"
+                            name="targetMarket"
+                            className="form-control"
+                          />
+                          <ErrorMessage
+                            name="targetMarket"
+                            component="div"
+                            style={{ color: "red" }}
+                          />
+                          <br />
 
+                          <br />
+                          <label>
+                            Please describe a typical customer/client of your
+                            business.{" "}
+                          </label>
+                          <Field
+                            as="textarea"
+                            name="client"
+                            className="form-control"
+                          />
+                          <ErrorMessage
+                            component="div"
+                            name="client"
+                            style={{ color: "red" }}
+                          />
+                          <br />
+                          <label>
+                            Please describe a typical customer/client of your
+                            business.{" "}
+                          </label>
+                          <Field
+                            as="textarea"
+                            name="goal"
+                            className="form-control"
+                          />
+                          <ErrorMessage
+                            component="div"
+                            name="goal"
+                            style={{ color: "red" }}
+                          />
                           <div>
                             <Button
                               type="submit"
@@ -162,7 +241,7 @@ const ProvidingService = () => {
                     </Card>
                   </Col>
                 </Row>
-              </Container>
+              </div>
             </div>
           </FormikComponent>
         </Col>

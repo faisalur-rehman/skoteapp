@@ -13,7 +13,7 @@ const Step4 = ({ active }) => {
   ]
   return (
     <Col sm={2}>
-      <div className="account-pages mt-10 my-5 pt-sm-5">
+      <div className="account-pages mt-10  pt-sm-5">
         <Container>
           <Row>
             <Col>

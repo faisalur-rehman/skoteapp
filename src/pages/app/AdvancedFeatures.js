@@ -127,11 +127,20 @@ const AdvancedFeatures = () => {
                       </div>
                       <CardBody className="pt-0">
                         <div className="p-2">
-                          <p>Advanced Feature:</p>
+                          <p>
+                            Does your website require any specific extra
+                            functionality? (e.g. online store, product
+                            catalogue, online directory, advanced search
+                            functionality, advanced online forms, newsletter
+                            subscription, Membership login area, online booking
+                            system, advanced gallery, online payment system,
+                            integration with existing software)
+                          </p>
                           <Field
                             name="feature"
                             className="form-control"
                             placeholder="Advanced Feature"
+                            as="textarea"
                           />
                           <ErrorMessage
                             name="feature"

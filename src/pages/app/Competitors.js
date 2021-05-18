@@ -9,6 +9,7 @@ import { Redirect } from "react-router-dom"
 import VerticalLinearStepper from "./Stepper"
 
 import profile from "../../assets/images/profile-img.png"
+import Step1 from "./Step1"
 
 const initialValues = {
   description: "",
@@ -102,24 +103,7 @@ const Competitors = () => {
     <div className="container">
       <Row>
         <Col sm={2}>
-          <div className="account-pages mt-10 my-5 pt-sm-5">
-            <Container>
-              <Row>
-                <Col>
-                  <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb">
-                      <li
-                        className="breadcrumb-item active"
-                        aria-current="page"
-                      >
-                        <VerticalLinearStepper active={2} step={steps} />
-                      </li>
-                    </ol>
-                  </nav>
-                </Col>
-              </Row>
-            </Container>
-          </div>
+          <Step1 active={2} />
         </Col>
         <Col sm={10}>
           <FormikComponent
@@ -163,9 +147,12 @@ const Competitors = () => {
                       </div>
                       <CardBody className="pt-0">
                         <div className="p-2">
-                          <label htmlFor="competitor">Your Competitors: </label>
+                          <label htmlFor="competitor">
+                            Who are your main competitors? Please provide there
+                            website addresses.{" "}
+                          </label>
                           <Field
-                            type="text"
+                            as="textarea"
                             name="description"
                             id="competitor"
                             className="form-control"
@@ -176,16 +163,7 @@ const Competitors = () => {
                             style={{ color: "red" }}
                             name="description"
                           />
-                          <label>Three Website Adresses: </label>
-                          <Field name="webAddress1" className="form-control" />
-                          <br />
-                          <Field name="webAddress2" className="form-control" />
-                          <br />
-                          <Field name="webAddress3" className="form-control" />
-                          <br />
-                          {error && (
-                            <span style={{ color: "red" }}>{error}</span>
-                          )}
+
                           <div>
                             <Button
                               type="submit"

@@ -129,40 +129,28 @@ const PAClients = () => {
                           </div>
                           <CardBody className="pt-0">
                             <div className="p-2">
-                              <label>Your Clients: </label>
-                              <FieldArray name="customers">
-                                {({ push }) => (
-                                  <div>
-                                    {values.customers.map((customer, index) => (
-                                      <div key={index}>
-                                        <Field
-                                          name={`customers[${index}]`}
-                                          className="form-control"
-                                        />
-                                        <br />
-                                        <ErrorMessage
-                                          name={`customers[${index}]`}
-                                          component="div"
-                                          style={{ color: "red" }}
-                                        />
-                                      </div>
-                                    ))}
-                                    <Button
-                                      color="secondary"
-                                      onClick={() => push("")}
-                                    >
-                                      Add More Clients
-                                    </Button>
-                                    <Button
-                                      color="primary"
-                                      className="m-2"
-                                      type="submit"
-                                    >
-                                      Submit
-                                    </Button>
-                                  </div>
-                                )}
-                              </FieldArray>
+                              <label>
+                                Please describe a typical customer/client of
+                                your business.{" "}
+                              </label>
+                              <Field
+                                as="textarea"
+                                name="customers"
+                                id="niche_market"
+                                className="form-control"
+                              />
+                              <ErrorMessage
+                                component="div"
+                                name="customers"
+                                style={{ color: "red" }}
+                              />
+                              <Button
+                                color="primary"
+                                className="m-2"
+                                type="submit"
+                              >
+                                Submit
+                              </Button>
                               {error && <p style={{ color: "red" }}>{error}</p>}
                               {!error && clicked && <Redirect to="/paGoals" />}
                               {redirect && <Redirect to="login" />}

@@ -5,9 +5,15 @@ import { formGetData, formPostData, patchData } from "./ApiRequest"
 import { Link, Redirect } from "react-router-dom"
 
 import profile from "../../assets/images/profile-img.png"
-import VerticalLinearStepper from "./Stepper"
+import Step1 from "./Step1"
 
-const initialValues = { bus_short_desc: "", company_do: "", products: [""] }
+const initialValues = {
+  introduction: "",
+  sellingPoint: "",
+  competitor: "",
+  targetMarket: "",
+  client: "",
+}
 
 const BusinessInfo = () => {
   const [value, setValues] = useState()
@@ -15,13 +21,6 @@ const BusinessInfo = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
   const [redirect, setRedirect] = useState(false)
-  const steps = [
-    "Introduction",
-    "Unique Selling Point",
-    "Competitors",
-    "Target Market",
-    "Clients",
-  ]
 
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
@@ -36,12 +35,11 @@ const BusinessInfo = () => {
         console.log(data)
         if (data.introduction) {
           setId(data.introduction["_id"])
-          initialValues.bus_short_desc = data.introduction.bus_short_desc
-          initialValues.company_do = data.introduction.company_do
-          data.introduction.products.map(
-            (product, index) => (initialValues.products[index] = product)
-          )
-
+          initialValues.introduction = data.introduction.introduction
+          initialValues.sellingPoint = data.introduction.sellingPoint
+          initialValues.competitor = data.introduction.competitor
+          initialValues.targetMarket = data.introduction.targetMarket
+          initialValues.client = data.introduction.client
           setValues(initialValues)
         }
         setError(null)
@@ -54,22 +52,20 @@ const BusinessInfo = () => {
   }, [])
   function validate(values) {
     const errors = {}
-    if (!values.bus_short_desc) {
-      errors.bus_short_desc = "Required"
+    if (!values.introduction) {
+      errors.introduction = "Required"
     }
-    if (values.bus_short_desc.length < 5) {
-      errors.bus_short_desc = "Length must be atleast 5 characters long."
+    if (!values.sellingPoint) {
+      errors.sellingPoint = "Required"
     }
-    if (values.company_do.length < 5) {
-      errors.company_do = "Length must be atleast 5 characters long."
+    if (!values.targetMarket) {
+      errors.targetMarket = "Required"
     }
-    if (values.bus_short_desc.length < 5) {
-      errors.bus_short_desc = "Length must be atleast 5 characters long."
+    if (!values.client) {
+      errors.client = "Required"
     }
-    for (let i = 0; i < values.products; i++) {
-      if (!values.products[i] || values.products[i].length < 3) {
-        errors.product[i] = "Length must be atleast 3 characters long."
-      }
+    if (!values.competitor) {
+      errors.competitor = "Required"
     }
     return errors
   }
@@ -77,9 +73,7 @@ const BusinessInfo = () => {
     console.log(data)
     let resData
     let newData = {
-      bus_short_desc: data.bus_short_desc,
-      company_do: data.company_do,
-      products: data.products,
+      introduction: data.introduction,
     }
     console.log(newData)
 
@@ -106,27 +100,10 @@ const BusinessInfo = () => {
     setClicked(true)
   }
   return (
-    <div className="container">
+    <div className="containe">
       <Row>
         <Col sm={2}>
-          <div className="account-pages mt-10 my-5 pt-sm-5">
-            <Container>
-              <Row>
-                <Col>
-                  <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb">
-                      <li
-                        className="breadcrumb-item active"
-                        aria-current="page"
-                      >
-                        <VerticalLinearStepper active={0} step={steps} />
-                      </li>
-                    </ol>
-                  </nav>
-                </Col>
-              </Row>
-            </Container>
-          </div>
+          <Step1 active={0} />
         </Col>
         <Col sm={10}>
           <Formik
@@ -136,10 +113,10 @@ const BusinessInfo = () => {
           >
             {({ values }) => (
               <Form>
-                <div className="account-pages my-5 pt-sm-5">
-                  <Container>
+                <div className="account-pages  pt-sm-5">
+                  <div>
                     <Row className="justify-content-center">
-                      <Col md={8} lg={6} xl={5}>
+                      <Col sm={8}>
                         <nav aria-label="breadcrumb">
                           <ol className="breadcrumb">
                             <li
@@ -160,99 +137,137 @@ const BusinessInfo = () => {
                         <Card className="overflow-hidden">
                           <div className="bg-primary bg-soft">
                             <Row>
-                              <Col xs={7}>
+                              <Col xs={8}>
                                 <div className="text-primary p-4">
                                   <h5 className="text-primary">
-                                    Introduction !
+                                    Business Info!
                                   </h5>
                                 </div>
                               </Col>
-                              <Col className="col-5 align-self-end">
+                              <Col className="col-4 align-self-end">
                                 <img
                                   src={profile}
                                   alt=""
                                   className="img-fluid"
+                                  style={{ height: 100 }}
                                 />
                               </Col>
                             </Row>
                           </div>
                           <CardBody className="pt-0">
                             <div className="p-2">
-                              <label htmlFor="bus_short_desc">
-                                Short Notes:{" "}
+                              <label
+                                htmlFor="introduction"
+                                style={{ fontSize: "1rem" }}
+                                className="mt-3"
+                              >
+                                Give us a bit of context about your business.
+                                What does your company do? What are your
+                                products and/or services?
                               </label>
                               <Field
-                                name="bus_short_desc"
-                                id="bus_short_desc"
+                                name="introduction"
+                                id="introduction"
                                 className="form-control"
+                                as="textarea"
                               />
                               <ErrorMessage
-                                name="bus_short_desc"
+                                name="introduction"
                                 component="div"
                                 style={{ color: "red" }}
                               />
                               <br />
-                              <label htmlFor="company_do">Your Company: </label>
+                              <label
+                                htmlFor="competitor"
+                                style={{ fontSize: "1rem" }}
+                              >
+                                Who are your main competitors? Please provide
+                                there website addresses.{" "}
+                              </label>
                               <Field
-                                name="company_do"
-                                id="company_do"
+                                as="textarea"
+                                name="competitor"
+                                id="competitor"
+                                className="form-control"
+                              />
+                              <br />
+                              <ErrorMessage
+                                component="div"
+                                style={{ color: "red" }}
+                                name="competitor"
+                              />
+                              <br />
+                              <label
+                                htmlFor="targetMarket"
+                                style={{ fontSize: "1rem" }}
+                              >
+                                What is your niche market? Who is your target
+                                audience? (e.g. age, gender, location, socio
+                                economic status)
+                              </label>
+                              <Field
+                                as="textarea"
+                                id="targetMarket"
+                                name="targetMarket"
                                 className="form-control"
                               />
                               <ErrorMessage
-                                name="company_do"
+                                name="targetMarket"
                                 component="div"
                                 style={{ color: "red" }}
                               />
-
                               <br />
-                              <label>Your Products: </label>
-
-                              <FieldArray name="products">
-                                {({ push }) => (
-                                  <div>
-                                    {values.products.map((product, index) => (
-                                      <div key={index}>
-                                        <Field
-                                          name={`products[${index}]`}
-                                          className="form-control"
-                                        />
-                                        <br />
-                                        <ErrorMessage
-                                          name={`product[${index}]`}
-                                          component="div"
-                                          style={{ color: "red" }}
-                                        />
-                                      </div>
-                                    ))}
-                                    {error && (
-                                      <p style={{ color: "red" }}>{error}</p>
-                                    )}
-                                    <Button
-                                      color="secondary"
-                                      onClick={() => push("")}
-                                    >
-                                      Add More Products
-                                    </Button>
-                                    <Button
-                                      color="primary"
-                                      className="m-2"
-                                      type="submit"
-                                    >
-                                      Submit
-                                    </Button>
-                                    {!error && clicked && (
-                                      <Redirect to="uniqueSelling" />
-                                    )}
-                                    {redirect && <Redirect to="login" />}
-                                  </div>
-                                )}
-                              </FieldArray>
+                              <label
+                                htmlFor="sellingPoint"
+                                style={{ fontSize: "1rem" }}
+                              >
+                                What are your unique selling points? What is the
+                                strength of your proposition? Why would a
+                                customer choose you over one of your
+                                competitors?
+                              </label>
+                              <Field
+                                as="textarea"
+                                id="sellingPoint"
+                                name="sellingPoint"
+                                className="form-control"
+                              />
+                              <ErrorMessage
+                                name="sellingPoint"
+                                component="div"
+                                style={{ color: "red" }}
+                              />
+                              <br />
+                              <label style={{ fontSize: "1rem" }}>
+                                Please describe a typical customer/client of
+                                your business.{" "}
+                              </label>
+                              <Field
+                                as="textarea"
+                                name="client"
+                                id="niche_market"
+                                className="form-control"
+                              />
+                              <ErrorMessage
+                                component="div"
+                                name="client"
+                                style={{ color: "red" }}
+                              />
                             </div>
+                            <br />
+
+                            <Button
+                              type="submit"
+                              color="primary"
+                              className="mt-3"
+                            >
+                              Submit
+                            </Button>
                           </CardBody>
                         </Card>
                       </Col>
                     </Row>
-                  </Container>
+                  </div>
                 </div>
               </Form>
             )}

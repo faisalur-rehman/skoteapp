@@ -126,9 +126,16 @@ const CallToAction = () => {
                       </div>
                       <CardBody className="pt-0">
                         <div className="p-2">
-                          <p style={{ fontWeight: "bold" }}>Call to action:</p>
-                          <label htmlFor="name">Describe the action* : </label>
-                          <Field name="action" className="form-control" />
+                          <label htmlFor="name">
+                            Please describe the action you would like visitors
+                            to take after visiting your website. (e.g. call a
+                            phone number, complete a form, make a comment etc.){" "}
+                          </label>
+                          <Field
+                            name="action"
+                            className="form-control"
+                            as="textarea"
+                          />
                           <ErrorMessage
                             name="action"
                             component="div"

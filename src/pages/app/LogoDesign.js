@@ -99,7 +99,7 @@ const LogoDesign = () => {
     setClicked(true)
   }
   return (
-    <div className="container">
+    <div className="">
       <Row>
         <Step6 active={0} />
         <Col>
@@ -110,10 +110,10 @@ const LogoDesign = () => {
           >
             {({ values }) => (
               <Form>
-                <div className="account-pages my-5 pt-sm-5">
-                  <Container>
+                <div className="account-pages pt-sm-5">
+                  <div>
                     <Row className="justify-content-center">
-                      <Col md={8} lg={6} xl={5}>
+                      <Col sm={8}>
                         <nav aria-label="breadcrumb">
                           <ol className="breadcrumb">
                             <li
@@ -134,16 +134,17 @@ const LogoDesign = () => {
                         <Card className="overflow-hidden">
                           <div className="bg-primary bg-soft">
                             <Row>
-                              <Col xs={7}>
+                              <Col xs={8}>
                                 <div className="text-primary p-4">
                                   <h5 className="text-primary">Logo Design!</h5>
                                 </div>
                               </Col>
-                              <Col className="col-5 align-self-end">
+                              <Col className="col-4 align-self-end">
                                 <img
                                   src={profile}
                                   alt=""
                                   className="img-fluid"
+                                  style={{ height: 100 }}
                                 />
                               </Col>
                             </Row>
@@ -156,6 +157,7 @@ const LogoDesign = () => {
                               <Field
                                 id="description"
                                 name="exact_text"
+                                as="textarea"
                                 className="form-control"
                               />
                               <ErrorMessage
@@ -172,6 +174,7 @@ const LogoDesign = () => {
                               <Field
                                 id="strength"
                                 name="tagline"
+                                as="textarea"
                                 className="form-control"
                               />
                               <ErrorMessage
@@ -181,46 +184,17 @@ const LogoDesign = () => {
                               />
                               <p id="my-radio-group">Your color preference</p>
 
-                              <label>
-                                <Field
-                                  type="radio"
-                                  name="has_color_preference"
-                                  value="true"
-                                />
-                                Yes
-                              </label>
-                              <br />
-                              <label>
-                                <Field
-                                  type="radio"
-                                  name="has_color_preference"
-                                  value="false"
-                                />
-                                No
-                              </label>
-                              <br />
+                              <Field
+                                id="strength"
+                                name="color"
+                                as="textarea"
+                                className="form-control"
+                              />
                               <ErrorMessage
-                                name="hasPreference"
+                                name="color"
                                 component="div"
                                 style={{ color: "red" }}
                               />
-                              {values.has_color_preference === "true" && (
-                                <div>
-                                  <p>Your color Preference</p>
-                                  <Field
-                                    type="text"
-                                    name="color_preference"
-                                    className="form-control"
-                                  />
-                                  <br />
-                                  <ErrorMessage
-                                    name="color_preference"
-                                    component="div"
-                                    style={{ color: "red" }}
-                                  />
-                                </div>
-                              )}
-
                               <br />
 
                               <label htmlFor="reason_to_choose">
@@ -228,7 +202,7 @@ const LogoDesign = () => {
                                 looking for?{" "}
                               </label>
                               <Field
-                                type="text"
+                                as="textarea"
                                 id="reason_to_choose"
                                 name="style"
                                 className="form-control"
@@ -238,12 +212,7 @@ const LogoDesign = () => {
                                 component="div"
                                 style={{ color: "red" }}
                               />
-                              {error && (
-                                <p style={{ color: "red" }}>
-                                  {error}. Please mark the logo creation as
-                                  checked in Checklist form of Service section.
-                                </p>
-                              )}
+
                               <div>
                                 <Button
                                   type="submit"
@@ -262,7 +231,7 @@ const LogoDesign = () => {
                         </Card>
                       </Col>
                     </Row>
-                  </Container>
+                  </div>
                 </div>
               </Form>
             )}

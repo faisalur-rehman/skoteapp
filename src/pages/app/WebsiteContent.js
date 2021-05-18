@@ -180,49 +180,19 @@ const WebsiteContent = () => {
                       </div>
                       <CardBody className="pt-0">
                         <div className="p-2">
-                          <p>Do you have upcoming website content ready?</p>
+                          <p>
+                            Do you have the upcoming websites content ready?
+                            (e.g. text, images) Y/N Do you need help with
+                            content creation? (copywriting, photography) Y/N
+                          </p>
 
-                          <label>
-                            <Field
-                              type="radio"
-                              name="has_content_ready"
-                              value="true"
-                            />
-                            Yes
-                          </label>
-                          <br />
-                          <label>
-                            <Field
-                              type="radio"
-                              name="has_content_ready"
-                              value="false"
-                            />
-                            No
-                          </label>
-                          <br />
-                          <ErrorMessage
-                            name="has_content_ready"
-                            component="div"
-                            style={{ color: "red" }}
+                          <Field
+                            as="textarea"
+                            name="style"
+                            className="form-control"
                           />
-                          <p>Do you need help for website content creation?</p>
-
-                          <label>
-                            <Field type="radio" name="need_help" value="true" />
-                            Yes
-                          </label>
-                          <br />
-                          <label>
-                            <Field
-                              type="radio"
-                              name="need_help"
-                              value="false"
-                            />
-                            No
-                          </label>
-                          <br />
                           <ErrorMessage
-                            name="need_help"
+                            name="style"
                             component="div"
                             style={{ color: "red" }}
                           />

@@ -7,7 +7,7 @@ import { Redirect } from "react-router-dom"
 import Step1 from "./Step1"
 import { formGetData, formPostData, patchData } from "./ApiRequest"
 
-const initialValues = { customers: [""] }
+const initialValues = { customers: "" }
 
 const Clients = () => {
   const [value, setValues] = useState()
@@ -44,10 +44,8 @@ const Clients = () => {
   }, [])
   function validate(values) {
     const errors = {}
-    for (let i = 0; i < values.length; i++) {
-      if (values.customers[i].length <= 0) {
-        errors.customers[i] = "Required"
-      }
+    if (!values.customers) {
+      errors.customers = "Required"
     }
     return errors
   }
@@ -130,56 +128,42 @@ const Clients = () => {
                           </div>
                           <CardBody className="pt-0">
                             <div className="p-2">
-                              <label>Your Clients: </label>
-                              <FieldArray name="customers">
-                                {({ push }) => (
-                                  <div>
-                                    {values.customers.map((customer, index) => (
-                                      <div key={index}>
-                                        <Field
-                                          name={`customers[${index}]`}
-                                          className="form-control"
-                                        />
-                                        <br />
-                                        <ErrorMessage
-                                          name={`customers[${index}]`}
-                                          component="div"
-                                          style={{ color: "red" }}
-                                        />
-                                      </div>
-                                    ))}
-                                    {error && (
-                                      <p style={{ color: "red" }}>{error}</p>
-                                    )}
-                                    <Button
-                                      color="secondary"
-                                      onClick={() => push("")}
-                                    >
-                                      Add More Clients
-                                    </Button>
-                                    <Button
-                                      color="primary"
-                                      className="m-2"
-                                      type="submit"
-                                    >
-                                      Submit
-                                    </Button>
-                                    {!error && clicked && (
-                                      <Redirect to="/checklist" />
-                                    )}
-                                  </div>
-                                )}
-                              </FieldArray>
-                              {submitted && (
-                                <Button
-                                  color="success"
-                                  onClick={() => setClicked(true)}
-                                >
-                                  Next Section
-                                </Button>
+                              <label>
+                                Please describe a typical customer/client of
+                                your business.{" "}
+                              </label>
+                              <Field
+                                as="textarea"
+                                name="customers"
+                                id="niche_market"
+                                className="form-control"
+                              />
+                              <ErrorMessage
+                                component="div"
+                                name="customers"
+                                style={{ color: "red" }}
+                              />
+                              <Button
+                                color="primary"
+                                className="m-2"
+                                type="submit"
+                              >
+                                Submit
+                              </Button>
+                              {!error && clicked && (
+                                <Redirect to="/checklist" />
                               )}
-                              {redirect && <Redirect to="login" />}
                             </div>
+
+                            {submitted && (
+                              <Button
+                                color="success"
+                                onClick={() => setClicked(true)}
+                              >
+                                Next Section
+                              </Button>
+                            )}
+                            {redirect && <Redirect to="login" />}
                           </CardBody>
                         </Card>
                       </Col>

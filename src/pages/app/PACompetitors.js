@@ -136,9 +136,12 @@ const PACompetitors = () => {
                       </div>
                       <CardBody className="pt-0">
                         <div className="p-2">
-                          <label htmlFor="competitor">Your Competitors: </label>
+                          <label htmlFor="competitor">
+                            Who are your main competitors? Please provide there
+                            website addresses.{" "}
+                          </label>
                           <Field
-                            type="text"
+                            as="textarea"
                             name="description"
                             id="competitor"
                             className="form-control"
@@ -149,13 +152,7 @@ const PACompetitors = () => {
                             style={{ color: "red" }}
                             name="description"
                           />
-                          <label>Three Website Adresses: </label>
-                          <Field name="webAddress1" className="form-control" />
-                          <br />
-                          <Field name="webAddress2" className="form-control" />
-                          <br />
-                          <Field name="webAddress3" className="form-control" />
-                          <br />
+
                           {error && (
                             <span style={{ color: "red" }}>{error}</span>
                           )}

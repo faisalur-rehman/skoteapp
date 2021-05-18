@@ -118,7 +118,7 @@ const Posting = () => {
   }
 
   return (
-    <div className="container">
+    <div className="">
       <Row>
         <Step5 active={0} />
         <Col>
@@ -127,10 +127,10 @@ const Posting = () => {
             validate={validate}
             handleSubmit={handleSubmit}
           >
-            <div className="account-pages my-5 pt-sm-5">
-              <Container>
+            <div className="account-pages  pt-sm-5">
+              <div>
                 <Row className="justify-content-center">
-                  <Col md={8} lg={6} xl={5}>
+                  <Col sm={8}>
                     <nav aria-label="breadcrumb">
                       <ol className="breadcrumb">
                         <li
@@ -151,13 +151,18 @@ const Posting = () => {
                     <Card className="overflow-hidden">
                       <div className="bg-primary bg-soft">
                         <Row>
-                          <Col xs={7}>
+                          <Col xs={8}>
                             <div className="text-primary p-4">
                               <h5 className="text-primary">Posting!</h5>
                             </div>
                           </Col>
-                          <Col className="col-5 align-self-end">
-                            <img src={profile} alt="" className="img-fluid" />
+                          <Col className="col-4 align-self-end">
+                            <img
+                              src={profile}
+                              alt=""
+                              className="img-fluid"
+                              style={{ height: 100 }}
+                            />
                           </Col>
                         </Row>
                       </div>
@@ -168,6 +173,7 @@ const Posting = () => {
                             name="voice_tone"
                             className="form-control"
                             placeholder="E.g. playful, fun, professional"
+                            as="textarea"
                           />
                           <ErrorMessage
                             name="voice_tone"
@@ -177,6 +183,7 @@ const Posting = () => {
                           <br />
                           <p>What can't we talk about?</p>
                           <Field
+                            as="textarea"
                             name="no_post_specification"
                             className="form-control"
                             placeholder="Please specify what we can’t post"
@@ -192,15 +199,13 @@ const Posting = () => {
                             content?
                           </p>
 
-                          <label>
-                            <Field type="radio" name="is_found" value="true" />
-                            Yes
-                          </label>
-                          <br />
-                          <label>
-                            <Field type="radio" name="is_found" value="false" />
-                            No
-                          </label>
+                          <Field
+                            as="textarea"
+                            name="no_post_specification"
+                            className="form-control"
+                            placeholder="Please specify what we can’t post"
+                          />
+
                           <br />
                           <ErrorMessage
                             name="picked"
@@ -214,6 +219,7 @@ const Posting = () => {
                             posting?
                           </p>
                           <Field
+                            as="textarea"
                             name="feedback"
                             className="form-control"
                             placeholder="Your comments"
@@ -225,12 +231,12 @@ const Posting = () => {
                           />
                           <br />
 
-                          {error && (
+                          {/* {error && (
                             <span style={{ color: "red" }}>
                               {error}.First enroll in social media marketing in
                               the Checklist section
                             </span>
-                          )}
+                          )} */}
                           {!error && clicked && (
                             <Redirect to="socialAccounts" />
                           )}
@@ -249,7 +255,7 @@ const Posting = () => {
                     </Card>
                   </Col>
                 </Row>
-              </Container>
+              </div>
             </div>
           </FormikComponent>
         </Col>

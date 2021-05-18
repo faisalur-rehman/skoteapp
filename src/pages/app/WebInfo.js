@@ -98,7 +98,7 @@ const AccessAccount = () => {
   }
 
   return (
-    <div className="container">
+    <div className="">
       <Row>
         <Step5 active={4} />
         <Col>
@@ -107,10 +107,10 @@ const AccessAccount = () => {
             validate={validate}
             handleSubmit={handleSubmit}
           >
-            <div className="account-pages my-5 pt-sm-5">
-              <Container>
+            <div className="account-pages  pt-sm-5">
+              <div>
                 <Row className="justify-content-center">
-                  <Col md={8} lg={6} xl={5}>
+                  <Col sm={8}>
                     <nav aria-label="breadcrumb">
                       <ol className="breadcrumb">
                         <li
@@ -131,13 +131,18 @@ const AccessAccount = () => {
                     <Card className="overflow-hidden">
                       <div className="bg-primary bg-soft">
                         <Row>
-                          <Col xs={7}>
+                          <Col xs={8}>
                             <div className="text-primary p-4">
                               <h5 className="text-primary">Website Info!</h5>
                             </div>
                           </Col>
-                          <Col className="col-5 align-self-end">
-                            <img src={profile} alt="" className="img-fluid" />
+                          <Col className="col-4 align-self-end">
+                            <img
+                              src={profile}
+                              alt=""
+                              className="img-fluid"
+                              style={{ height: 100 }}
+                            />
                           </Col>
                         </Row>
                       </div>
@@ -153,6 +158,7 @@ const AccessAccount = () => {
                             name="login_url"
                             className="form-control"
                             placeholder="e.g. https://sicurogroup.com"
+                            as="textarea"
                           />
                           <br />
                           <ErrorMessage
@@ -160,29 +166,19 @@ const AccessAccount = () => {
                             component="div"
                             style={{ color: "red" }}
                           />
-                          <p>Username:</p>
+                          <p>Login Details:</p>
                           <Field
                             name="username"
                             className="form-control"
-                            placeholder="Username"
+                            placeholder="login details"
+                            as="textarea"
                           />
                           <ErrorMessage
                             name="username"
                             component="div"
                             style={{ color: "red" }}
                           />
-                          <p>Password:</p>
-                          <Field
-                            type="password"
-                            name="password"
-                            className="form-control"
-                            placeholder="password"
-                          />
-                          <ErrorMessage
-                            name="password"
-                            component="div"
-                            style={{ color: "red" }}
-                          />
+
                           <br />
                           <div>
                             <Button
@@ -213,7 +209,7 @@ const AccessAccount = () => {
                     </Card>
                   </Col>
                 </Row>
-              </Container>
+              </div>
             </div>
           </FormikComponent>
         </Col>

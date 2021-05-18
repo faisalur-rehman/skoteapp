@@ -82,7 +82,12 @@ const AboutForm = () => {
               handleSubmit={handleSubmit}
             >
               <label htmlFor="name">Name* : </label>
-              <Field name="name" id="name" className="form-control" />
+              <Field
+                name="name"
+                id="name"
+                className="form-control"
+                as="textarea"
+              />
               <ErrorMessage
                 name="name"
                 component="div"
@@ -90,7 +95,12 @@ const AboutForm = () => {
               />
               <br />
               <label htmlFor="role">Role* : </label>
-              <Field id="role" name="role" className="form-control" />
+              <Field
+                id="role"
+                name="role"
+                className="form-control"
+                as="textarea"
+              />
               <ErrorMessage
                 name="role"
                 component="div"

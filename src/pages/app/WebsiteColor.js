@@ -155,47 +155,21 @@ const WebsiteColor = () => {
                           </div>
                           <CardBody className="pt-0">
                             <div className="p-2">
-                              <p id="my-radio-group">Your color preference</p>
-
-                              <label>
-                                <Field
-                                  type="radio"
-                                  name="hasPreference"
-                                  value="true"
-                                />
-                                Yes
-                              </label>
-                              <br />
-                              <label>
-                                <Field
-                                  type="radio"
-                                  name="hasPreference"
-                                  value="false"
-                                />
-                                No
-                              </label>
+                              <p id="my-radio-group">
+                                Do you have a colour preference? Y/N If Y -
+                                please let us know your colour preference.
+                              </p>
+                              <Field
+                                as="textarea"
+                                name="hasPreference"
+                                className="form-control"
+                              />
                               <br />
                               <ErrorMessage
                                 name="hasPreference"
                                 component="div"
                                 style={{ color: "red" }}
                               />
-                              {values.hasPreference === "true" && (
-                                <div>
-                                  <p>Your color Preference</p>
-                                  <Field
-                                    type="text"
-                                    name="preference"
-                                    className="form-control"
-                                  />
-                                  <br />
-                                  <ErrorMessage
-                                    name="preference"
-                                    component="div"
-                                    style={{ color: "red" }}
-                                  />
-                                </div>
-                              )}
                               <div>
                                 <Button
                                   type="submit"

@@ -140,55 +140,30 @@ const WebsitesYouLike = () => {
                           <CardBody className="pt-0">
                             <div className="p-2">
                               <label htmlFor="websites">
-                                Enter website's name you like.
+                                Please send us links to websites you really
+                                like. (Minimum 3) If you have one in particular
+                                you would like to emulate, let us know.
                               </label>
-                              <FieldArray name="websites">
-                                {props => {
-                                  const { form, push } = props
-                                  const { values } = form
-                                  const { websites } = values
-
-                                  return (
-                                    <div>
-                                      {websites.map((website, index) => (
-                                        <div key={index}>
-                                          <Field
-                                            name={`website${index}`}
-                                            type="text"
-                                            className="form-control"
-                                          />
-                                          <br />
-                                        </div>
-                                      ))}
-                                      <ErrorMessage
-                                        name="websites"
-                                        component="div"
-                                        style={{ color: "red" }}
-                                      />
-                                      {error && (
-                                        <p style={{ color: "red" }}>{error}</p>
-                                      )}
-                                      <Button
-                                        color="secondary"
-                                        onClick={() => push("")}
-                                      >
-                                        Add More Websites
-                                      </Button>
-                                      <Button
-                                        color="primary"
-                                        className="m-2"
-                                        type="submit"
-                                      >
-                                        Submit
-                                      </Button>
-                                      {!error && clicked && (
-                                        <Redirect to="websitesYouDisLike" />
-                                      )}
-                                      {redirect && <Redirect to="login" />}
-                                    </div>
-                                  )
-                                }}
-                              </FieldArray>
+                              <Field
+                                name="like"
+                                id="bus_short_desc"
+                                className="form-control"
+                                as="textarea"
+                              />
+                              <ErrorMessage
+                                name="like"
+                                component="div"
+                                style={{ color: "red" }}
+                              />
+                              <div>
+                                <Button
+                                  type="submit"
+                                  color="primary"
+                                  className="mt-3"
+                                >
+                                  Submit
+                                </Button>
+                              </div>
                             </div>
                           </CardBody>
                         </Card>

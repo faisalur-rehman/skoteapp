@@ -154,75 +154,23 @@ const PAGoals = () => {
                           </div>
                           <CardBody className="pt-0">
                             <div className="p-2">
-                              <label htmlFor="role">Goals: </label>
-                              <br />
-                              <label>
-                                <Field
-                                  type="radio"
-                                  name="goal"
-                                  value="Promote a brand and image"
-                                />
-                                Promote a brand and image
-                              </label>
-                              <br />
-                              <label>
-                                <Field
-                                  type="radio"
-                                  name="goal"
-                                  value="Promote a product range"
-                                />
-                                Promote a product range
+                              <label htmlFor="role">
+                                Please enter the most important goal of your
+                                website from the list below in the area
+                                opposite: o Promote a brand and image o Promote
+                                a product range o Improve access to information
+                                o Create a web presence o Increase sales leads o
+                                Other – (please specify){" "}
                               </label>
                               <br />
 
-                              <label>
-                                <Field
-                                  type="radio"
-                                  name="goal"
-                                  value="Improve access information"
-                                />
-                                Improve access information
-                              </label>
-                              <br />
-                              <label>
-                                <Field
-                                  type="radio"
-                                  name="goal"
-                                  value="Create a web presence"
-                                />
-                                Create a web presence
-                              </label>
+                              <Field
+                                as="textarea"
+                                name="goal"
+                                className="form-control"
+                              />
                               <br />
 
-                              <label>
-                                <Field
-                                  type="radio"
-                                  name="goal"
-                                  value="Increase sales lead"
-                                />
-                                Increase sales lead
-                              </label>
-                              <br />
-                              <label>
-                                <Field type="radio" name="goal" value="other" />
-                                Other
-                              </label>
-                              {values.goal === "other" && (
-                                <div>
-                                  <p>Please specify</p>
-                                  <Field
-                                    type="text"
-                                    name="otherGoal"
-                                    className="form-control"
-                                  />
-                                  <br />
-                                  <ErrorMessage
-                                    name="otherGoal"
-                                    component="div"
-                                    style={{ color: "red" }}
-                                  />
-                                </div>
-                              )}
                               <ErrorMessage
                                 name="goal"
                                 component="div"

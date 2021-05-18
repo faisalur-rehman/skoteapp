@@ -87,7 +87,7 @@ const FacebookUrl = () => {
   }
 
   return (
-    <div className="container">
+    <div className="">
       <Row>
         <Step5 active={2} />
         <Col>
@@ -96,10 +96,10 @@ const FacebookUrl = () => {
             validate={validate}
             handleSubmit={handleSubmit}
           >
-            <div className="account-pages my-5 pt-sm-5">
-              <Container>
+            <div className="account-pages  pt-sm-5">
+              <div>
                 <Row className="justify-content-center">
-                  <Col md={8} lg={6} xl={5}>
+                  <Col sm={8}>
                     <nav aria-label="breadcrumb">
                       <ol className="breadcrumb">
                         <li
@@ -120,24 +120,46 @@ const FacebookUrl = () => {
                     <Card className="overflow-hidden">
                       <div className="bg-primary bg-soft">
                         <Row>
-                          <Col xs={7}>
+                          <Col xs={8}>
                             <div className="text-primary p-4">
                               <h5 className="text-primary">
                                 Facebook Credentials!
                               </h5>
                             </div>
                           </Col>
-                          <Col className="col-5 align-self-end">
-                            <img src={profile} alt="" className="img-fluid" />
+                          <Col className="col-4 align-self-end">
+                            <img
+                              src={profile}
+                              alt=""
+                              className="img-fluid"
+                              style={{ height: 100 }}
+                            />
                           </Col>
                         </Row>
                       </div>
                       <CardBody className="pt-0">
                         <div className="p-2">
+                          <p>
+                            What social media platforms will Sicuro Group be
+                            managing/advertising{" "}
+                          </p>
+                          <Field
+                            name="credential"
+                            className="form-control"
+                            placeholder="credential"
+                            as="textarea"
+                          />
+                          <ErrorMessage
+                            name="indication"
+                            component="div"
+                            style={{ color: "red" }}
+                          />
+                          <br />
                           <p>Facebook:</p>
                           <Field
                             name="credential"
                             className="form-control"
+                            as="textarea"
                             placeholder="credential"
                           />
                           <ErrorMessage
@@ -146,35 +168,34 @@ const FacebookUrl = () => {
                             style={{ color: "red" }}
                           />
                           <br />
+                          <p>
+                            Would you like to use a different way for Sicuro
+                            Group to access your account?
+                          </p>
                           <Field
-                            name="first"
+                            name="credential"
                             className="form-control"
-                            placeholder="firstname"
+                            as="textarea"
+                            placeholder="credential"
                           />
                           <ErrorMessage
-                            name="outline"
+                            name="indication"
                             component="div"
                             style={{ color: "red" }}
                           />
                           <br />
+                          <p>Do you have an Ad account ID?</p>
                           <Field
-                            name="last"
+                            name="adAccount"
                             className="form-control"
-                            placeholder="lastname"
+                            as="textarea"
+                            placeholder="ad account id"
                           />
                           <ErrorMessage
-                            name="outline"
+                            name="adAccount"
                             component="div"
                             style={{ color: "red" }}
                           />
-
-                          {/* {error && (
-                <p style={{ color: "red" }}>
-                  {error}. Please check the Web Development checkbox in
-                  CheckList form section in order to submit this form.
-                </p>
-              )} */}
-
                           <div>
                             <Button
                               type="submit"
@@ -193,7 +214,7 @@ const FacebookUrl = () => {
                     </Card>
                   </Col>
                 </Row>
-              </Container>
+              </div>
             </div>
           </FormikComponent>
         </Col>

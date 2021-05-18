@@ -131,9 +131,15 @@ const Sitemap = () => {
                       </div>
                       <CardBody className="pt-0">
                         <div className="p-2">
-                          <p>Sitemap:</p>
+                          <p>
+                            Do you have any indication of what pages or sections
+                            the website should be made of? Please outline the
+                            pages and subpages required. (e.g. Home, About,
+                            Services/Products, Contact etc)
+                          </p>
                           <Field
                             name="indication"
+                            as="textarea"
                             className="form-control"
                             placeholder="Indication"
                           />
@@ -143,16 +149,6 @@ const Sitemap = () => {
                             style={{ color: "red" }}
                           />
                           <br />
-                          <Field
-                            name="outline"
-                            className="form-control"
-                            placeholder="outline"
-                          />
-                          <ErrorMessage
-                            name="outline"
-                            component="div"
-                            style={{ color: "red" }}
-                          />
 
                           <div>
                             <Button

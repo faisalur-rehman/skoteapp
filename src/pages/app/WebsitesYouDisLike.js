@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Formik, Field, FieldArray, Form } from "formik"
+import { Formik, Field, Form, ErrorMessage } from "formik"
 import { Row, Col, CardBody, Card, Container, Button } from "reactstrap"
 import profile from "../../assets/images/profile-img.png"
 import { Redirect } from "react-router-dom"
@@ -143,49 +143,28 @@ const WebsitesYouDisLike = () => {
                           <CardBody className="pt-0">
                             <div className="p-2">
                               <label htmlFor="websites">
-                                Enter website's name you dislike.
+                                Please send us links to websites you dislike
                               </label>
-                              <FieldArray name="websites">
-                                {props => {
-                                  const { form, push, remove } = props
-                                  const { values } = form
-                                  const { websites } = values
-
-                                  return (
-                                    <div>
-                                      {websites.map((website, index) => (
-                                        <Field
-                                          name={`website${index}`}
-                                          type="text"
-                                          key={index}
-                                          className="form-control"
-                                        />
-                                      ))}
-                                      {error && (
-                                        <p style={{ color: "red" }}>{error}</p>
-                                      )}
-
-                                      <Button
-                                        color="secondary"
-                                        onClick={() => push("")}
-                                      >
-                                        Add Website
-                                      </Button>
-                                      <Button
-                                        color="primary"
-                                        className="m-2"
-                                        type="submit"
-                                      >
-                                        Submit
-                                      </Button>
-                                      {!error && clicked && (
-                                        <Redirect to="websiteColor" />
-                                      )}
-                                      {redirect && <Redirect to="login" />}
-                                    </div>
-                                  )
-                                }}
-                              </FieldArray>
+                              <Field
+                                name="dislike"
+                                id="bus_short_desc"
+                                className="form-control"
+                                as="textarea"
+                              />
+                              <ErrorMessage
+                                name="dislike"
+                                component="div"
+                                style={{ color: "red" }}
+                              />
+                              <div>
+                                <Button
+                                  type="submit"
+                                  color="primary"
+                                  className="mt-3"
+                                >
+                                  Submit
+                                </Button>
+                              </div>
                             </div>
                           </CardBody>
                         </Card>

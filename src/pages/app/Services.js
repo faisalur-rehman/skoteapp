@@ -9,7 +9,7 @@ import { Redirect } from "react-router-dom"
 import Step4 from "./Step4"
 
 const initialValues = {
-  services: [],
+  service: "",
 }
 
 const CheckList = () => {
@@ -39,7 +39,7 @@ const CheckList = () => {
         }
         setError(null)
       } catch (err) {
-        setError(err.response.data.message)
+        // setError(err.response.data.message)
         console.log(err.response)
       }
     }
@@ -80,7 +80,7 @@ const CheckList = () => {
     setClicked(true)
   }
   return (
-    <div className="container">
+    <div className="">
       <Row>
         <Step4 active={0} />
         <Col>
@@ -89,10 +89,10 @@ const CheckList = () => {
             validate={validate}
             handleSubmit={handleSubmit}
           >
-            <div className="account-pages my-5 pt-sm-5">
-              <Container>
+            <div className="account-pages  pt-sm-5">
+              <div>
                 <Row className="justify-content-center">
-                  <Col md={8} lg={6} xl={5}>
+                  <Col sm={8}>
                     <nav aria-label="breadcrumb">
                       <ol className="breadcrumb">
                         <li
@@ -113,50 +113,48 @@ const CheckList = () => {
                     <Card className="overflow-hidden">
                       <div className="bg-primary bg-soft">
                         <Row>
-                          <Col xs={7}>
+                          <Col xs={8}>
                             <div className="text-primary p-4">
                               <h5 className="text-primary">Services!</h5>
                             </div>
                           </Col>
-                          <Col className="col-5 align-self-end">
-                            <img src={profile} alt="" className="img-fluid" />
+                          <Col className="col-4 align-self-end">
+                            <img
+                              src={profile}
+                              alt=""
+                              className="img-fluid"
+                              style={{ height: 100 }}
+                            />
                           </Col>
                         </Row>
                       </div>
                       <CardBody className="pt-0">
                         <div className="p-2">
-                          <p>Services</p>
-                          <div role="group" aria-labelledby="checkbox-group">
-                            <label>
-                              <Field
-                                type="checkbox"
-                                name="services"
-                                value="Social Media Advertising"
-                              />{" "}
-                              Social Media Advertising
-                            </label>
-                            <br />
-                            <label>
-                              <Field
-                                type="checkbox"
-                                name="services"
-                                value="Google Advertising"
-                              />{" "}
-                              Google Advertising
-                            </label>
+                          <p>
+                            Please click the services you will be using with
+                            Sicuro Group
+                          </p>
+                          <p>○ Social Media Advertising</p>
+                          <p>○ Google Advertising</p>
+                          <Field
+                            name="service"
+                            className="form-control"
+                            placeholder="Services"
+                            as="textarea"
+                          />
+                          <ErrorMessage
+                            name="service"
+                            component="div"
+                            style={{ color: "red" }}
+                          />
+                          <br />
 
-                            <ErrorMessage
-                              component="div"
-                              style={{ color: "red" }}
-                              name="services"
-                            />
-                          </div>
-                          {error && (
+                          {/* {error && (
                             <p style={{ color: "red" }}>
                               {error}.Go to Checklist form in Services Section
                               and check Paid Advertising in order to proceed.
                             </p>
-                          )}
+                          )} */}
                           <Button type="submit" color="primary">
                             Submit
                           </Button>
@@ -169,7 +167,7 @@ const CheckList = () => {
                     </Card>
                   </Col>
                 </Row>
-              </Container>
+              </div>
             </div>
           </FormikComponent>
         </Col>

@@ -135,9 +135,12 @@ const PATargetMarket = () => {
                       <CardBody className="pt-0">
                         <div className="p-2">
                           <label htmlFor="niche_market">
-                            Your Niche Market:{" "}
+                            What is your niche market? Who is your target
+                            audience? (e.g. age, gender, location, socio
+                            economic status)
                           </label>
                           <Field
+                            as="textarea"
                             name="niche_market"
                             id="niche_market"
                             className="form-control"
@@ -147,21 +150,6 @@ const PATargetMarket = () => {
                             name="niche_market"
                             style={{ color: "red" }}
                           />
-                          <br />
-                          <label htmlFor="target_audience">
-                            Your target audience:{" "}
-                          </label>
-                          <Field
-                            name="target_audience"
-                            id="target_audience"
-                            className="form-control"
-                          />
-                          <ErrorMessage
-                            component="div"
-                            name="target_audience"
-                            style={{ color: "red" }}
-                          />
-
                           <div>
                             <Button
                               type="submit"
