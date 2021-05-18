@@ -177,10 +177,7 @@ const BusinessInfo = () => {
                                 style={{ color: "red" }}
                               />
                               <br />
-                              <label
-                                htmlFor="competitor"
-                                style={{ fontSize: "1rem" }}
-                              >
+                              <label htmlFor="competitor">
                                 Who are your main competitors? Please provide
                                 there website addresses.{" "}
                               </label>
@@ -197,10 +194,7 @@ const BusinessInfo = () => {
                                 name="competitor"
                               />
                               <br />
-                              <label
-                                htmlFor="targetMarket"
-                                style={{ fontSize: "1rem" }}
-                              >
+                              <label htmlFor="targetMarket">
                                 What is your niche market? Who is your target
                                 audience? (e.g. age, gender, location, socio
                                 economic status)
@@ -217,10 +211,7 @@ const BusinessInfo = () => {
                                 style={{ color: "red" }}
                               />
                               <br />
-                              <label
-                                htmlFor="sellingPoint"
-                                style={{ fontSize: "1rem" }}
-                              >
+                              <label htmlFor="sellingPoint">
                                 What are your unique selling points? What is the
                                 strength of your proposition? Why would a
                                 customer choose you over one of your
@@ -238,14 +229,13 @@ const BusinessInfo = () => {
                                 style={{ color: "red" }}
                               />
                               <br />
-                              <label style={{ fontSize: "1rem" }}>
+                              <label>
                                 Please describe a typical customer/client of
                                 your business.{" "}
                               </label>
                               <Field
                                 as="textarea"
                                 name="client"
-                                id="niche_market"
                                 className="form-control"
                               />
                               <ErrorMessage
