@@ -8,11 +8,10 @@ import { Redirect } from "react-router-dom"
 import Step6 from "./Step6"
 
 const initialValues = {
-  exact_text: "",
+  text: "",
   tagline: "",
   style: "",
-  color_preference: "",
-  has_color_preference: "",
+  color: "",
 }
 const LogoDesign = () => {
   const [values, setValues] = useState()
@@ -34,16 +33,16 @@ const LogoDesign = () => {
         console.log(data)
         if (data.payload) {
           setId(data.payload["_id"])
-          initialValues.exact_text = data.payload.exact_text
+          initialValues.text = data.payload.text
           initialValues.tagline = data.payload.tagline
           initialValues.style = data.payload.style
-          if (data.payload.has_color_preference) {
-            initialValues.has_color_preference = "true"
-            initialValues.color_preference = data.payload.color_preference
-          } else {
-            initialValues.has_color_preference = "false"
-            initialValues.color_preference = ""
-          }
+          // if (data.payload.has_color) {
+          //   initialValues.has_color = "true"
+          //   initialValues.color = data.payload.color
+          // } else {
+          //   initialValues.has_color = "false"
+          //   initialValues.color = ""
+          // }
           setValues(initialValues)
         }
         setError(null)
@@ -56,8 +55,8 @@ const LogoDesign = () => {
   }, [])
   function validate(values) {
     const errors = {}
-    if (!values.exact_text) {
-      errors.exact_text = "Required"
+    if (!values.text) {
+      errors.text = "Required"
     }
     if (!values.tagline) {
       errors.tagline = "Required"
@@ -65,11 +64,8 @@ const LogoDesign = () => {
     if (!values.style) {
       errors.style = "Required"
     }
-    if (!values.has_color_preference) {
-      errors.has_color_preference = "Required"
-    }
-    if (values.has_color_preference === "true" && !values.color_preference) {
-      errors.color_preference = "Required"
+    if (!values.color) {
+      errors.color = "Required"
     }
     return errors
   }
@@ -156,12 +152,12 @@ const LogoDesign = () => {
                               </label>
                               <Field
                                 id="description"
-                                name="exact_text"
+                                name="text"
                                 as="textarea"
                                 className="form-control"
                               />
                               <ErrorMessage
-                                name="exact_text"
+                                name="text"
                                 component="div"
                                 style={{ color: "red" }}
                               />
