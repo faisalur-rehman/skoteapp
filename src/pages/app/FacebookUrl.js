@@ -8,9 +8,10 @@ import { formPostData, formGetData, patchData } from "./ApiRequest"
 import Step5 from "./Step5"
 
 const initialValues = {
-  credential: "",
-  first: "",
-  last: "",
+  platform: "",
+  facebookURL: "",
+  accessaccess: "",
+  accountId: "",
 }
 
 const FacebookUrl = () => {
@@ -27,13 +28,13 @@ const FacebookUrl = () => {
     async function fetchData() {
       try {
         const { data } = await formGetData(
-          "/services/social-media/fb-credential",
+          "/social-media-account",
           localStorage.getItem("token")
         )
         console.log(data.payload)
         if (data.payload) {
           setId(data.payload["_id"])
-          initialValues.credential = data.payload.credential
+          initialValues.platform = data.payload.platform
           initialValues.first = data.payload.first
           initialValues.last = data.payload.last
           setValues(initialValues)
@@ -65,14 +66,14 @@ const FacebookUrl = () => {
     try {
       if (value) {
         resData = await patchData(
-          "/services/social-media/fb-credential",
+          "/social-media-account",
           id,
           data,
           localStorage.getItem("token")
         )
       } else {
         resData = await formPostData(
-          "/services/social-media/fb-credential",
+          "/social-media-account",
           data,
           localStorage.getItem("token")
         )
@@ -138,32 +139,32 @@ const FacebookUrl = () => {
                         </Row>
                       </div>
                       <CardBody className="pt-0">
-                        <div className="p-2">
+                        <div className="p-2 mt-3">
                           <p>
                             What social media platforms will Sicuro Group be
                             managing/advertising{" "}
                           </p>
                           <Field
-                            name="credential"
+                            name="platform"
                             className="form-control"
                             placeholder="credential"
                             as="textarea"
                           />
                           <ErrorMessage
-                            name="indication"
+                            name="platform"
                             component="div"
                             style={{ color: "red" }}
                           />
                           <br />
-                          <p>Facebook:</p>
+                          <p>Facebook URL/Credentials:</p>
                           <Field
-                            name="credential"
+                            name="facebookURL "
                             className="form-control"
                             as="textarea"
                             placeholder="credential"
                           />
                           <ErrorMessage
-                            name="indication"
+                            name="facebookURL "
                             component="div"
                             style={{ color: "red" }}
                           />
@@ -173,26 +174,26 @@ const FacebookUrl = () => {
                             Group to access your account?
                           </p>
                           <Field
-                            name="credential"
+                            name="access"
                             className="form-control"
                             as="textarea"
-                            placeholder="credential"
+                            placeholder="access your account"
                           />
                           <ErrorMessage
-                            name="indication"
+                            name="access"
                             component="div"
                             style={{ color: "red" }}
                           />
                           <br />
                           <p>Do you have an Ad account ID?</p>
                           <Field
-                            name="adAccount"
+                            name="accountId"
                             className="form-control"
                             as="textarea"
                             placeholder="ad account id"
                           />
                           <ErrorMessage
-                            name="adAccount"
+                            name="accountId"
                             component="div"
                             style={{ color: "red" }}
                           />
