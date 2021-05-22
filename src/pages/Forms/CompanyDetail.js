@@ -21,7 +21,6 @@ const CompanyDetail = () => {
       <br />
       <label htmlFor="busEmail">Business Email* : </label>
       <Field
-        as="textarea"
         name="busEmail"
         id="busEmail"
         placeholder="Email"
@@ -33,7 +32,6 @@ const CompanyDetail = () => {
       <label htmlFor="busPhone">Business Phone* : </label>
       <Field
         type="number"
-        as="textarea"
         name="busPhone"
         id="busPhone"
         placeholder="Phone"
@@ -59,7 +57,6 @@ const CompanyDetail = () => {
       <br />
       <label htmlFor="website">Website : </label>
       <Field
-        as="textarea"
         name="webURL"
         id="website"
         placeholder="Website"

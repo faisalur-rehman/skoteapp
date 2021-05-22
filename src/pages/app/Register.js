@@ -188,7 +188,7 @@ const Register = () => {
                               {clicked && !error && (
                                 <>
                                   <p>Registered Successfully</p>
-                                  {redirect && <Redirect to="/verifyEmail" />}
+                                  {redirect && <Redirect to="/login" />}
                                 </>
                               )}
                             </div>

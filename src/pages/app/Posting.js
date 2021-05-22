@@ -228,9 +228,9 @@ const Posting = () => {
                           />
                           <br />
 
-                          {!error && clicked && (
+                          {/* {!error && clicked && (
                             <Redirect to="socialAccounts" />
-                          )}
+                          )} */}
                           {/* {redirect && <Redirect to="login" />} */}
                           {redirect && <Redirect to="fbUrl" />}
                           <div>

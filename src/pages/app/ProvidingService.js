@@ -20,6 +20,7 @@ const ProvidingService = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
   const [redirect, setRedirect] = useState(false)
+  const [services, setServices] = useState()
 
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
@@ -31,6 +32,13 @@ const ProvidingService = () => {
           "/ad-offer",
           localStorage.getItem("token")
         )
+        const response = await formGetData(
+          "/checklist",
+          localStorage.getItem("token")
+        )
+        console.log(data)
+
+        setServices({ ...response.data.checklist })
         if (data.adOffer) {
           setId(data.adOffer["_id"])
           initialValues.goal = data.adOffer.goal
@@ -43,13 +51,13 @@ const ProvidingService = () => {
         console.log(data)
         setError(null)
       } catch (err) {
-        console.log(err.response)
+        console.log(err)
         setError(err.response)
       }
     }
     fetchData()
   }, [])
-
+  services && console.log(services)
   const validate = values => {
     const errors = {}
     if (values.offerLocation.length < 3) {
@@ -236,11 +244,22 @@ const ProvidingService = () => {
                             >
                               Submit
                             </Button>
-                            {!error && clicked && (
+                            {clicked && !error && <Redirect to="dashboard" />}
+                            {clicked &&
+                              !error &&
+                              services &&
+                              services.isLogoCreation && (
+                                <Redirect to="logoDesign" />
+                              )}
+                            {clicked &&
+                              !error &&
+                              services &&
+                              services.isMarketing && <Redirect to="posting" />}
+                            {/* {!error && clicked && (
                               <Redirect to="paCompetitors" />
                             )}
-                            {/* {redirect && <Redirect to="login" />} */}
-                            {redirect && <Redirect to="posting" />}
+                             {redirect && <Redirect to="login" />} 
+                            {redirect && <Redirect to="posting" />} */}
                           </div>
                         </div>
                       </CardBody>

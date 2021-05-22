@@ -27,15 +27,16 @@ const LogoDesign = () => {
     async function fetchData() {
       try {
         const { data } = await formGetData(
-          "/services/logo-design/detail",
+          "/logo-design",
           localStorage.getItem("token")
         )
         console.log(data)
-        if (data.payload) {
-          setId(data.payload["_id"])
-          initialValues.text = data.payload.text
-          initialValues.tagline = data.payload.tagline
-          initialValues.style = data.payload.style
+        if (data.logoDesign) {
+          setId(data.logoDesign["_id"])
+          initialValues.text = data.logoDesign.text
+          initialValues.tagline = data.logoDesign.tagline
+          initialValues.style = data.logoDesign.style
+          initialValues.color = data.logoDesign.color
           // if (data.payload.has_color) {
           //   initialValues.has_color = "true"
           //   initialValues.color = data.payload.color
@@ -75,14 +76,14 @@ const LogoDesign = () => {
     try {
       if (values) {
         resData = await patchData(
-          "/services/logo-design/detail",
+          "/logo-design",
           id,
           data,
           localStorage.getItem("token")
         )
       } else {
         resData = await formPostData(
-          "/services/logo-design/detail",
+          "/logo-design",
           data,
           localStorage.getItem("token")
         )
@@ -219,11 +220,9 @@ const LogoDesign = () => {
                                   Submit
                                 </Button>
                               </div>
-                              {/* {!error && clicked && (
-                                <Redirect to="uploadLogo" />
-                              )} */}
+                              {!error && clicked && <Redirect to="dashboard" />}
                               {/* {redirect && <Redirect to="login" />} */}
-                              {redirect && <Redirect to="dashboard" />}
+                              {/* {redirect && <Redirect to="dashboard" />} */}
                             </div>
                           </CardBody>
                         </Card>

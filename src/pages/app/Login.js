@@ -16,10 +16,10 @@ const Login = () => {
     try {
       const resData = await postData("/auth/login", data)
       setError(null)
-      console.log(resData)
-      localStorage.setItem("token", resData.data.token)
+      // console.log(resData.data)
+      localStorage.setItem("token", resData.data.user.token)
     } catch (err) {
-      setError(err.response.data.name)
+      setError(err.response.data.message)
       console.log(err.response)
     }
     setClicked(true)
@@ -47,7 +47,6 @@ const Login = () => {
           <>
             {clicked && !error && (
               <>
-                <p>Registered Successfully</p>
                 <Redirect to="/companyDetail" />
               </>
             )}

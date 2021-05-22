@@ -19,7 +19,7 @@ const CheckList = () => {
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
   const [redirect, setRedirect] = useState(false)
-  const [services, setServices] = useState([])
+  const [services, setServices] = useState()
 
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
@@ -41,7 +41,7 @@ const CheckList = () => {
 
           data.checklist.isPaidAd && initialValues.isPaidAd.push("isPaidAd")
           data.checklist.isWebDev && initialValues.isWebDev.push("isWebDev")
-
+          setServices({ ...data.checklist })
           setValues(initialValues)
         }
         setError(null)
@@ -52,8 +52,17 @@ const CheckList = () => {
     fetchData()
   }, [])
 
+  services && console.log(services)
   function validate(values) {
     const errors = {}
+    if (
+      !values.isMarketing &&
+      !values.isWebDev &&
+      !values.isPaidAd &&
+      !values.isLogoCreation
+    ) {
+      errors.services = "Required"
+    }
     // if (values.services.length < 1) {
     //   errors.services = "You have to select atleast one service"
     // }
@@ -65,27 +74,23 @@ const CheckList = () => {
     let newData = {}
     if (data.isWebDev.length > 0) {
       newData.isWebDev = true
-      newData.isLogoCreation = false
-      newData.isMarketing = false
-      newData.isPaidAd = false
+    } else {
+      newData.isWebDev = false
     }
     if (data.isLogoCreation.length > 0) {
-      newData.isWebDev = false
       newData.isLogoCreation = true
-      newData.isMarketing = false
-      newData.isPaidAd = false
+    } else {
+      newData.isLogoCreation = false
     }
     if (data.isMarketing.length > 0) {
-      newData.isWebDev = false
-      newData.isLogoCreation = false
       newData.isMarketing = true
-      newData.isPaidAd = false
+    } else {
+      newData.isMarketing = false
     }
     if (data.isPaidAd.length > 0) {
-      newData.isWebDev = false
-      newData.isLogoCreation = false
-      newData.isMarketing = false
       newData.isPaidAd = true
+    } else {
+      newData.isPaidAd = false
     }
 
     let resData
@@ -105,8 +110,9 @@ const CheckList = () => {
         )
       }
       console.log(resData)
+      setServices({ ...resData.data.checklist })
       // console.log(resData.data.checkList.services)
-      setServices([...resData.data.checkList.services])
+      // setServices([...resData.data.checkList.services])
       setError(null)
       services.length > 0 && console.log(services)
     } catch (error) {
@@ -219,22 +225,27 @@ const CheckList = () => {
                               <Button type="submit" color="primary">
                                 Submit
                               </Button>
-                              {!error &&
-                                services.length > 0 &&
-                                services.includes("logo_creation") && (
+                              {clicked &&
+                                !error &&
+                                services &&
+                                services.isLogoCreation && (
                                   <Redirect to="logoDesign" />
                                 )}
 
-                              {services.length > 0 &&
-                                services.includes("social_media_marketing") && (
+                              {clicked &&
+                                !error &&
+                                services &&
+                                services.isMarketing && (
                                   <Redirect to="posting" />
                                 )}
-                              {services.length > 0 &&
-                                services.includes("paid_advertising") && (
-                                  <Redirect to="services" />
-                                )}
-                              {services.length > 0 &&
-                                services.includes("web_development") && (
+                              {clicked &&
+                                !error &&
+                                services &&
+                                services.isPaidAd && <Redirect to="services" />}
+                              {clicked &&
+                                !error &&
+                                services &&
+                                services.isWebDev && (
                                   <Redirect to="websiteGoals" />
                                 )}
 

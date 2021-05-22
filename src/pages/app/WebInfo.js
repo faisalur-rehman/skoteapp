@@ -18,7 +18,7 @@ const AccessAccount = () => {
   const [error, setError] = useState(null)
   const [id, setId] = useState()
   const [clicked, setClicked] = useState(false)
-  const [services, setServices] = useState([])
+  const [services, setServices] = useState()
   const [submitted, setSubmitted] = useState(false)
   const [redirect, setRedirect] = useState(false)
 
@@ -36,6 +36,8 @@ const AccessAccount = () => {
           "/checklist",
           localStorage.getItem("token")
         )
+        console.log(response)
+        setServices({ ...response.data.checklist })
         // response && setServices([...response.data.checkList.services])
         console.log(data)
         if (data.webDetail) {
@@ -52,6 +54,7 @@ const AccessAccount = () => {
     }
     fetchData()
   }, [])
+  services && console.log("services", services)
 
   const validate = values => {
     const errors = {}
@@ -94,6 +97,7 @@ const AccessAccount = () => {
       setSubmitted(false)
     }
     setRedirect(true)
+    setClicked(true)
   }
 
   return (
@@ -188,14 +192,19 @@ const AccessAccount = () => {
                               Submit
                             </Button>
                           </div>
-                          {submitted && (
-                            <Button
-                              color="success"
-                              onClick={() => setClicked(true)}
-                            >
-                              Next Section
-                            </Button>
-                          )}
+                          {clicked &&
+                            !error &&
+                            services &&
+                            !services.isLogoCreation && (
+                              <Redirect to="dashboard" />
+                            )}
+
+                          {clicked &&
+                            !error &&
+                            services &&
+                            services.isLogoCreation && (
+                              <Redirect to="logoDesign" />
+                            )}
                           {/* {clicked && <Redirect to="dashboard" />}
                           {clicked &&
                             services.length > 0 &&

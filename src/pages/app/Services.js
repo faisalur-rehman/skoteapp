@@ -152,9 +152,9 @@ const CheckList = () => {
                           <Button type="submit" color="primary">
                             Submit
                           </Button>
-                          {/* {!error && clicked && (
+                          {!error && clicked && (
                             <Redirect to="providingService" />
-                          )} */}
+                          )}
                           {/* {redirect && <Redirect to="providingService" />} */}
                           {/* {redirect && <Redirect to="login" />} */}
                         </div>

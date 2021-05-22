@@ -211,7 +211,7 @@ const FacebookUrl = () => {
                               <Redirect to="accessAccount" />
                             )} */}
                             {/* {redirect && <Redirect to="login" />} */}
-                            {/* {redirect && <Redirect to="webInfo" />} */}
+                            {redirect && <Redirect to="webInfo" />}
                           </div>
                         </div>
                       </CardBody>
