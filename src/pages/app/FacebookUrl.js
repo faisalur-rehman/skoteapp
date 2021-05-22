@@ -10,7 +10,7 @@ import Step1 from "./Step1"
 const initialValues = {
   platform: "",
   facebookURL: "",
-  accessaccess: "",
+  access: "",
   accountId: "",
 }
 
@@ -31,12 +31,13 @@ const FacebookUrl = () => {
           "/social-media-account",
           localStorage.getItem("token")
         )
-        console.log(data.payload)
-        if (data.payload) {
-          setId(data.payload["_id"])
-          initialValues.platform = data.payload.platform
-          initialValues.first = data.payload.first
-          initialValues.last = data.payload.last
+        console.log(data)
+        if (data.account) {
+          setId(data.account["_id"])
+          initialValues.platform = data.account.platform
+          initialValues.facebookURL = data.account.facebookURL
+          initialValues.access = data.account.access
+          initialValues.accountId = data.account.accountId
           setValues(initialValues)
         }
         setError(null)
@@ -63,27 +64,27 @@ const FacebookUrl = () => {
   async function handleSubmit(data) {
     let resData
     console.log(data)
-    // try {
-    //   if (value) {
-    //     resData = await patchData(
-    //       "/social-media-account",
-    //       id,
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   } else {
-    //     resData = await formPostData(
-    //       "/social-media-account",
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   }
-    //   setError(null)
-    //   console.log(resData)
-    // } catch (err) {
-    //   setError(err.response)
-    //   console.log(err.response)
-    // }
+    try {
+      if (value) {
+        resData = await patchData(
+          "/social-media-account",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/social-media-account",
+          data,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+      console.log(resData)
+    } catch (err) {
+      setError(err.response)
+      console.log(err.response)
+    }
     setRedirect(true)
     setClicked(true)
   }
@@ -159,13 +160,13 @@ const FacebookUrl = () => {
                           <br />
                           <p>Facebook URL/Credentials:</p>
                           <Field
-                            name="facebookURL "
+                            name="facebookURL"
                             className="form-control"
                             as="textarea"
                             placeholder="credential"
                           />
                           <ErrorMessage
-                            name="facebookURL "
+                            name="facebookURL"
                             component="div"
                             style={{ color: "red" }}
                           />
@@ -206,11 +207,11 @@ const FacebookUrl = () => {
                             >
                               Submit
                             </Button>
-                            {!error && clicked && (
+                            {/* {!error && clicked && (
                               <Redirect to="accessAccount" />
-                            )}
+                            )} */}
                             {/* {redirect && <Redirect to="login" />} */}
-                            {redirect && <Redirect to="webInfo" />}
+                            {/* {redirect && <Redirect to="webInfo" />} */}
                           </div>
                         </div>
                       </CardBody>

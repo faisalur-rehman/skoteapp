@@ -17,6 +17,8 @@ import Competitors from "../pages/app/Competitors"
 import TargetMarket from "pages/app/TargetMarket"
 import UniqueSelling from "pages/app/UniqueSelling"
 import CompanyDetail from "pages/app/CompanyDetail"
+// import CompanyDetail from "pages/Forms/CompanyDetail"
+
 import WebsiteColor from "pages/app/WebsiteColor"
 import WebsiteContent from "pages/app/WebsiteContent"
 import WebsiteStyle from "pages/app/WebsiteStyle"
@@ -96,6 +98,7 @@ export const publicRoutes = [
   { path: "/sitemap", component: Sitemap },
   { path: "/verify/:token", component: EmailVerfication },
   { path: "/stepper", component: StepperExample },
+  { path: "/format", component: CompanyDetail },
 ]
 
 const userRoutes = [

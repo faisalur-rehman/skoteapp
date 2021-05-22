@@ -7,6 +7,10 @@ import { Redirect } from "react-router-dom"
 
 const initialValues = {
   services: [],
+  isWebDev: [],
+  isLogoCreation: [],
+  isMarketing: [],
+  isPaidAd: [],
 }
 
 const CheckList = () => {
@@ -16,6 +20,7 @@ const CheckList = () => {
   const [clicked, setClicked] = useState(false)
   const [redirect, setRedirect] = useState(false)
   const [services, setServices] = useState([])
+
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
       setRedirect(true)
@@ -23,14 +28,20 @@ const CheckList = () => {
     async function fetchData() {
       try {
         const { data } = await formGetData(
-          "/services/checklist",
+          "/checklist",
           localStorage.getItem("token")
         )
-        if (data.checkList) {
-          setId(data.checkList["_id"])
-          data.checkList.services.map(service =>
-            initialValues.services.push(service)
-          )
+        console.log(data)
+        if (data.checklist) {
+          setId(data.checklist._id)
+          data.checklist.isLogoCreation &&
+            initialValues.isLogoCreation.push("isLogoCreation")
+          data.checklist.isMarketing &&
+            initialValues.isMarketing.push("isMarketing")
+
+          data.checklist.isPaidAd && initialValues.isPaidAd.push("isPaidAd")
+          data.checklist.isWebDev && initialValues.isWebDev.push("isWebDev")
+
           setValues(initialValues)
         }
         setError(null)
@@ -43,35 +54,64 @@ const CheckList = () => {
 
   function validate(values) {
     const errors = {}
-    if (values.services.length < 1) {
-      errors.services = "You have to select atleast one service"
-    }
+    // if (values.services.length < 1) {
+    //   errors.services = "You have to select atleast one service"
+    // }
 
     return errors
   }
   async function handleSubmit(data) {
+    console.log(initialValues)
+    let newData = {}
+    if (data.isWebDev.length > 0) {
+      newData.isWebDev = true
+      newData.isLogoCreation = false
+      newData.isMarketing = false
+      newData.isPaidAd = false
+    }
+    if (data.isLogoCreation.length > 0) {
+      newData.isWebDev = false
+      newData.isLogoCreation = true
+      newData.isMarketing = false
+      newData.isPaidAd = false
+    }
+    if (data.isMarketing.length > 0) {
+      newData.isWebDev = false
+      newData.isLogoCreation = false
+      newData.isMarketing = true
+      newData.isPaidAd = false
+    }
+    if (data.isPaidAd.length > 0) {
+      newData.isWebDev = false
+      newData.isLogoCreation = false
+      newData.isMarketing = false
+      newData.isPaidAd = true
+    }
+
     let resData
     try {
       if (value) {
         resData = await patchData(
-          "/services/checklist",
+          "/checklist",
           id,
-          data,
+          newData,
           localStorage.getItem("token")
         )
       } else {
         resData = await formPostData(
-          "/services/checklist",
-          data,
+          "/checklist",
+          newData,
           localStorage.getItem("token")
         )
       }
+      console.log(resData)
       // console.log(resData.data.checkList.services)
       setServices([...resData.data.checkList.services])
       setError(null)
       services.length > 0 && console.log(services)
     } catch (error) {
       setError(error.response)
+      console.log(error.response)
     }
     setClicked(true)
   }
@@ -136,8 +176,8 @@ const CheckList = () => {
                                 <label>
                                   <Field
                                     type="checkbox"
-                                    name="services"
-                                    value="web_development"
+                                    name="isWebDev"
+                                    value="isWebDev"
                                   />{" "}
                                   Website Development
                                 </label>
@@ -145,8 +185,8 @@ const CheckList = () => {
                                 <label>
                                   <Field
                                     type="checkbox"
-                                    name="services"
-                                    value="paid_advertising"
+                                    name="isPaidAd"
+                                    value="isPaidAd"
                                   />{" "}
                                   Paid Advertising
                                 </label>
@@ -154,8 +194,8 @@ const CheckList = () => {
                                 <label>
                                   <Field
                                     type="checkbox"
-                                    name="services"
-                                    value="social_media_marketing"
+                                    name="isMarketing"
+                                    value="isMarketing"
                                   />{" "}
                                   Social Media Marketing
                                 </label>
@@ -163,29 +203,12 @@ const CheckList = () => {
                                 <label>
                                   <Field
                                     type="checkbox"
-                                    name="services"
-                                    value="logo_creation"
+                                    name="isLogoCreation"
+                                    value="isLogoCreation"
                                   />{" "}
                                   Logo Creation
                                 </label>
                                 <br />
-                                <label>
-                                  <Field
-                                    type="checkbox"
-                                    name="services"
-                                    value="graphic_designing"
-                                  />{" "}
-                                  Graphic Design
-                                </label>
-                                <br />
-                                <label>
-                                  <Field
-                                    type="checkbox"
-                                    name="services"
-                                    value="productivity_and_automation"
-                                  />{" "}
-                                  Productivity and Automation
-                                </label>
                                 <ErrorMessage
                                   component="div"
                                   style={{ color: "red" }}

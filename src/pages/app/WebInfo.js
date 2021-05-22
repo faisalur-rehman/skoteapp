@@ -33,21 +33,21 @@ const AccessAccount = () => {
           localStorage.getItem("token")
         )
         const response = await formGetData(
-          "/services/checklist",
+          "/checklist",
           localStorage.getItem("token")
         )
-        setServices([...response.data.checkList.services])
-        console.log(data.payload)
-        if (data.payload) {
-          setId(data.payload["_id"])
-          initialValues.loginURL = data.payload.loginURL
-          initialValues.loginDetail = data.payload.loginDetail
-          initialValues.password = data.payload.password
+        // response && setServices([...response.data.checkList.services])
+        console.log(data)
+        if (data.webDetail) {
+          setId(data.webDetail["_id"])
+          initialValues.loginURL = data.webDetail.loginURL
+          initialValues.loginDetail = data.webDetail.loginDetail
           setValues(initialValues)
         }
         setError(null)
       } catch (error) {
         setError(error.response)
+        console.log(error)
       }
     }
     fetchData()
@@ -69,30 +69,30 @@ const AccessAccount = () => {
     let resData
     console.log(data)
 
-    // try {
-    //   if (value) {
-    //     resData = await patchData(
-    //       "/social-media-web",
-    //       id,
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   } else {
-    //     resData = await formPostData(
-    //       "/social-media-web",
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   }
-    //   setError(null)
-    //   setSubmitted(true)
+    try {
+      if (value) {
+        resData = await patchData(
+          "/social-media-web",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/social-media-web",
+          data,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+      setSubmitted(true)
 
-    //   console.log(resData)
-    // } catch (err) {
-    //   setError(err.response.data.errors)
-    //   console.log(err.response)
-    //   setSubmitted(false)
-    // }
+      console.log(resData)
+    } catch (err) {
+      setError(err.response.data.errors)
+      console.log(err.response)
+      setSubmitted(false)
+    }
     setRedirect(true)
   }
 
@@ -196,14 +196,14 @@ const AccessAccount = () => {
                               Next Section
                             </Button>
                           )}
-                          {clicked && <Redirect to="dashboard" />}
+                          {/* {clicked && <Redirect to="dashboard" />}
                           {clicked &&
                             services.length > 0 &&
                             services.includes("logo_creation") && (
                               <Redirect to="logoDesign" />
-                            )}
+                            )} */}
                           {/* {redirect && <Redirect to="login" />} */}
-                          {redirect && <Redirect to="logoDesign" />}
+                          {/* {redirect && <Redirect to="logoDesign" />} */}
                         </div>
                       </CardBody>
                     </Card>

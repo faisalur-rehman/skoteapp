@@ -29,12 +29,12 @@ const CheckList = () => {
           "/ad-service",
           localStorage.getItem("token")
         )
-        console.log(data.payload)
-        if (data.payload) {
-          setId(data.payload["_id"])
-          data.payload.services.map(
-            (service, index) => (initialValues.services[index] = service)
-          )
+        console.log(data)
+        if (data.adService) {
+          setId(data.adService["_id"])
+
+          initialValues.service = data.adService.service
+
           setValues(initialValues)
         }
         setError(null)
@@ -57,26 +57,26 @@ const CheckList = () => {
   async function handleSubmit(data) {
     let resData
     console.log(data)
-    // try {
-    //   if (value) {
-    //     resData = await patchData(
-    //       "/ad-service",
-    //       id,
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   } else {
-    //     resData = await formPostData(
-    //       "/ad-service",
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   }
-    //   setError(null)
-    // } catch (err) {
-    //   setError(err.response.data.message)
-    //   console.log(err.response)
-    // }
+    try {
+      if (value) {
+        resData = await patchData(
+          "/ad-service",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/ad-service",
+          data,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+    } catch (err) {
+      setError(err.response.data.message)
+      console.log(err.response)
+    }
     setClicked(true)
     setRedirect(true)
   }
@@ -155,7 +155,7 @@ const CheckList = () => {
                           {/* {!error && clicked && (
                             <Redirect to="providingService" />
                           )} */}
-                          {redirect && <Redirect to="providingService" />}
+                          {/* {redirect && <Redirect to="providingService" />} */}
                           {/* {redirect && <Redirect to="login" />} */}
                         </div>
                       </CardBody>

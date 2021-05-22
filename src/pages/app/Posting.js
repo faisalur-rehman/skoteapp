@@ -33,19 +33,15 @@ const Posting = () => {
           "/social-media-post",
           localStorage.getItem("token")
         )
-        console.log(data)
-        if (data.payload) {
-          setId(data.payload["_id"])
-          initialValues.feedback = data.payload.feedback
-          initialValues.posting = data.payload.posting
-          if (data.payload.webRefContent) {
-            initialValues.webRefContent = "true"
-            initialValues.website = data.payload.website
-          } else {
-            initialValues.webRefContent = "false"
-            initialValues.website = ""
-          }
-          initialValues.excludePostContent = data.payload.excludePostContent
+        data && console.log(data)
+        if (data.post) {
+          setId(data.post["_id"])
+          initialValues.feedback = data.post.feedback
+          initialValues.posting = data.post.posting
+
+          initialValues.webRefContent = data.post.webRefContent
+
+          initialValues.excludePostContent = data.post.excludePostContent
 
           setValues(initialValues)
         }
@@ -86,32 +82,32 @@ const Posting = () => {
     // } else {
     //   data.webRefContent = false
     // }
-    // try {
-    //   if (value) {
-    //     resData = await patchData(
-    //       "/social-media-post",
-    //       id,
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   } else {
-    //     resData = await formPostData(
-    //       "/social-media-post",
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   }
-    //   setError(null)
-    //   if (data.webRefContent) {
-    //     data.webRefContent = "true"
-    //   } else {
-    //     data.webRefContent = "false"
-    //   }
-    //   console.log(resData)
-    // } catch (err) {
-    //   // setError(err.response)
-    //   console.log(err.response)
-    // }
+    try {
+      if (value) {
+        resData = await patchData(
+          "/social-media-post",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/social-media-post",
+          data,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+      // if (data.webRefContent) {
+      //   data.webRefContent = "true"
+      // } else {
+      //   data.webRefContent = "false"
+      // }
+      console.log(resData)
+    } catch (err) {
+      // setError(err.response)
+      console.log(err.response)
+    }
     setRedirect(true)
     setClicked(true)
   }

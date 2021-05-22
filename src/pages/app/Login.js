@@ -48,7 +48,7 @@ const Login = () => {
             {clicked && !error && (
               <>
                 <p>Registered Successfully</p>
-                <Redirect to="/businessInfo" />
+                <Redirect to="/companyDetail" />
               </>
             )}
             <div className="home-btn d-none d-sm-block">
