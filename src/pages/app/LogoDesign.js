@@ -99,7 +99,7 @@ const LogoDesign = () => {
   return (
     <div className="">
       <Row>
-        <Step1 active={6} />
+        {/* <Step1 active={6} /> */}
         <Col>
           <Formik
             initialValues={initialValues}

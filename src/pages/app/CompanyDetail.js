@@ -5,6 +5,7 @@ import { Row, Col, Button } from "reactstrap"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
 import Details from "../Forms/CompanyDetail"
+import Step1 from "./Step1"
 
 let initialValues = {
   logo: "",
@@ -103,7 +104,7 @@ const CompanyDetail = () => {
     <div className="page-content">
       <div className="container">
         <Row>
-          <Col sm={2}></Col>
+          <Step1 active={0} />
           <Col sm={8}>
             <FormikComponent
               initialValues={initialValues}

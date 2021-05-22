@@ -83,7 +83,7 @@ const CheckList = () => {
   return (
     <div className="">
       <Row>
-        <Step1 active={1} />
+        {/* <Step1 active={1} /> */}
         <Col>
           <FormikComponent
             initialValues={initialValues}

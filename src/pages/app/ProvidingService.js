@@ -109,7 +109,7 @@ const ProvidingService = () => {
   return (
     <div className="">
       <Row>
-        <Step1 active={2} />
+        {/* <Step1 active={2} /> */}
         <Col>
           <FormikComponent
             initialValues={initialValues}

@@ -4,7 +4,7 @@ import profile from "../../assets/images/profile-img.png"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { formPostData, formGetData, patchData } from "./ApiRequest"
 import { Redirect } from "react-router-dom"
-import Step2 from "./Step2"
+import Step1 from "./Step1"
 
 const initialValues = {
   goal: "",
@@ -120,7 +120,7 @@ const WebsiteGoals = () => {
   return (
     <div className="container">
       <Row>
-        <Step2 active={0} />
+        {/* <Step1 active={0} /> */}
         <Col>
           <Formik
             initialValues={initialValues}
@@ -139,14 +139,14 @@ const WebsiteGoals = () => {
                               className="breadcrumb-item active"
                               aria-current="page"
                             >
-                              Step2
+                              Step1
                             </li>
                             <li
                               style={{ color: "blue" }}
                               className="breadcrumb-item"
                               aria-current="page"
                             >
-                              Goals
+                              Website Goals
                             </li>
                           </ol>
                         </nav>

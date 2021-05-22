@@ -115,7 +115,7 @@ const Posting = () => {
   return (
     <div className="">
       <Row>
-        <Step1 active={3} />
+        {/* <Step1 active={3} /> */}
         <Col>
           <FormikComponent
             initialValues={initialValues}

@@ -103,7 +103,7 @@ const AccessAccount = () => {
   return (
     <div className="">
       <Row>
-        <Step1 active={5} />
+        {/* <Step1 active={5} /> */}
         <Col>
           <FormikComponent
             initialValues={initialValues}

@@ -92,7 +92,7 @@ const FacebookUrl = () => {
   return (
     <div className="">
       <Row>
-        <Step1 active={4} />
+        {/* <Step1 active={4} /> */}
         <Col>
           <FormikComponent
             initialValues={initialValues}
