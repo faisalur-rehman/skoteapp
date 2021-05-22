@@ -33,13 +33,13 @@ const BusinessInfo = () => {
           localStorage.getItem("token")
         )
         console.log(data)
-        if (data.introduction) {
-          setId(data.introduction["_id"])
-          initialValues.introduction = data.introduction.introduction
-          initialValues.sellingPoint = data.introduction.sellingPoint
-          initialValues.competitor = data.introduction.competitor
-          initialValues.targetMarket = data.introduction.targetMarket
-          initialValues.client = data.introduction.client
+        if (data.busDetail) {
+          setId(data.busDetail["_id"])
+          initialValues.introduction = data.busDetail.introduction
+          initialValues.sellingPoint = data.busDetail.sellingPoint
+          initialValues.competitor = data.busDetail.competitor
+          initialValues.targetMarket = data.busDetail.targetMarket
+          initialValues.client = data.busDetail.client
           setValues(initialValues)
         }
         setError(null)
@@ -77,26 +77,26 @@ const BusinessInfo = () => {
     }
     console.log(newData)
 
-    // try {
-    //   if (value) {
-    //     resData = await patchData(
-    //       "/bus-detail",
-    //       id,
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   } else {
-    //     resData = await formPostData(
-    //       "/bus-detail",
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   }
-    //   setError(null)
-    // } catch (err) {
-    //   setError(err.response.data.errors[0])
-    //   console.log(err.response)
-    // }
+    try {
+      if (value) {
+        resData = await patchData(
+          "/bus-detail",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/bus-detail",
+          data,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+    } catch (err) {
+      setError(err.response.data.errors[0])
+      console.log(err.response)
+    }
     setRedirect(true)
     setClicked(true)
   }
