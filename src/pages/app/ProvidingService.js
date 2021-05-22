@@ -31,12 +31,16 @@ const ProvidingService = () => {
           "/ad-offer",
           localStorage.getItem("token")
         )
-        if (data.payload) {
-          setId(data.payload["_id"])
-          initialValues.region = data.payload.region
+        if (data.adOffer) {
+          setId(data.adOffer["_id"])
+          initialValues.goal = data.adOffer.goal
+          initialValues.competitor = data.adOffer.competitor
+          initialValues.targetMarket = data.adOffer.targetMarket
+          initialValues.offerLocation = data.adOffer.offerLocation
+          initialValues.client = data.adOffer.client
           setValues(initialValues)
         }
-        console.log(initialValues)
+        console.log(data)
         setError(null)
       } catch (err) {
         console.log(err.response)
@@ -69,27 +73,27 @@ const ProvidingService = () => {
   async function handleSubmit(data) {
     let resData
     console.log(data)
-    // try {
-    //   if (value) {
-    //     resData = await patchData(
-    //       "/ad-offer",
-    //       id,
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   } else {
-    //     resData = await formPostData(
-    //       "/ad-offer",
-    //       data,
-    //       localStorage.getItem("token")
-    //     )
-    //   }
-    //   setError(null)
-    //   console.log(resData)
-    // } catch (err) {
-    //   setError(err.response)
-    //   console.log(err.response)
-    // }
+    try {
+      if (value) {
+        resData = await patchData(
+          "/ad-offer",
+          id,
+          data,
+          localStorage.getItem("token")
+        )
+      } else {
+        resData = await formPostData(
+          "/ad-offer",
+          data,
+          localStorage.getItem("token")
+        )
+      }
+      setError(null)
+      console.log(resData)
+    } catch (err) {
+      setError(err.response)
+      console.log(err.response)
+    }
     setClicked(true)
     setRedirect(true)
   }
